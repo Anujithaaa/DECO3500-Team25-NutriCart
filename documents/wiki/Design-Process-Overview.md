@@ -1,6 +1,6 @@
 # Design Process Overview
 
-**Poster:** `[link]` · **Promo video:** `[link, optional]` · **Prototype:** `[hosted link]/dock` and `/cart`, with run instructions in the [README](../). There is no login: each device picks a housemate token. · **Team 25:** Aman Kushwaha, James Olbes, Anujitha Fernando, Kenan Chu
+**Poster:** `[link]` · **Promo video:** `[link, optional]` · **Prototype:** `[hosted link]/dock` and `/cart`, with run instructions in the [README](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart). There is no login: each device picks a housemate token. · **Team 25:** Aman Kushwaha, James Olbes, Anujitha Fernando, Kenan Chu
 
 ## Summary
 
