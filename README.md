@@ -34,10 +34,9 @@ Project link insert
 Interview participants are referred to by ID (e.g. R1-03). Recordings and identifiable transcripts are held privately by the team.
 
 ## Team
-|---|
-| James Olbes |
-| Kenan Chu |
-| Aman Kushwaha |
-| Anujitha Fernando |
+- James Olbes 
+- Kenan Chu 
+- Aman Kushwaha 
+- Anujitha Fernando 
 
 
