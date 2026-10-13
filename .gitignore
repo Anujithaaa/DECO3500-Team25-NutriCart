@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# Local prototype data (each machine makes its own; never commit participant data)
+*.db
+*.sqlite
+# Expo / Node
+node_modules/
+.expo/
+cart-expo/.env
+dist/
+web-build/
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+# Research data stays in the private OneDrive, not on public GitHub
+recordings/
+transcripts/
