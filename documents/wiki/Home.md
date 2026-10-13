@@ -16,4 +16,4 @@
 | [Stand-up Records](Stand-up-Records) | Internal team stand-ups and meetings, Weeks 3–13 |
 
 **Repo README** (how to run the prototype): [README on GitHub](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart)
-**Task board:** [GitHub Projects](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/projects)
+**Task board:** [GitHub Projects](https://github.com/users/MaxCoder07/projects/1)
