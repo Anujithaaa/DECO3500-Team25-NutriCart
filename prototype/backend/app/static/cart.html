@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#183229">
+  <title>NutriCart Cart Unit</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body{background:var(--bg);max-width:520px;margin:0 auto;min-height:100vh;padding-bottom:96px}
+    header{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:14px 16px 16px;border-radius:0 0 22px 22px}
+    header .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    header .kick{font-size:10px;letter-spacing:.14em;font-weight:900;color:var(--lime)}
+    header h1{font-size:20px;margin:3px 0 0}
+    header .status-pill{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:#fff;box-shadow:none}
+    .budget{margin-top:14px}.budget .nums{display:flex;justify-content:space-between;align-items:baseline}
+    .budget .left{font-size:30px;font-weight:900;color:var(--lime)}.budget .of{font-size:12px;color:#c8d5ce}
+    .wrap{padding:14px}
+    .card{padding:16px;border-radius:20px;margin-bottom:12px}
+    .tap{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:transparent;padding:14px 4px;border-top:1px solid var(--line);cursor:pointer;color:var(--ink);min-height:62px}
+    .tap:first-child{border-top:0}.tap .box{width:28px;height:28px;border:2px solid #a9b8b0;border-radius:8px;flex:none;display:grid;place-items:center;font-weight:900}
+    .tap.done .box{background:var(--green);border-color:var(--green);color:#fff}.tap.done .nm{text-decoration:line-through;color:#909b95}
+    .tap .nm{font-size:17px;font-weight:800}.tap .sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .seg{display:flex;background:#eef1ee;border-radius:12px;padding:4px;gap:4px;margin-bottom:12px}.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px 6px;font-weight:800;color:var(--muted);cursor:pointer}.seg button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+    nav.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:500px;display:flex;background:var(--ink);border-radius:20px;padding:6px;z-index:6}
+    nav.tabs button{flex:1;border:0;background:transparent;color:#afc0b7;font-weight:800;font-size:12px;padding:10px 4px;border-radius:14px;cursor:pointer;position:relative}
+    nav.tabs button.on{background:var(--lime);color:var(--ink)}
+    nav.tabs .pip{position:absolute;top:6px;right:16%;width:9px;height:9px;border-radius:50%;background:#e0a526}
+    .sheet{position:fixed;inset:0;background:rgba(24,50,41,.45);display:none;align-items:flex-end;z-index:20}.sheet.show{display:flex}
+    .sheet .panel{background:#fff;width:100%;max-width:520px;margin:0 auto;border-radius:22px 22px 0 0;padding:20px 16px 28px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .tokens{margin:0}.token{min-height:64px;font-size:17px;width:100%}
+    h2.t{font-size:22px;margin:4px 0 12px}
+    .qa{padding:12px 0;border-top:1px solid var(--line)}.qa:first-child{border-top:0}
+    .tab{display:none}.tab.on{display:block}
+    #toast{bottom:92px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="row"><div><div class="kick">NUTRICART · CART UNIT</div><h1 id="hdr">Cart Unit</h1></div><div class="status-pill"><span class="dot"></span><span id="liveStatus">Connecting…</span></div></div>
+  <div class="budget" id="budgetBox" style="display:none">
+    <div class="nums"><div><span class="left" id="left">$0.00</span> <span class="of">left</span></div><div class="of" id="spentOf"></div></div>
+    <div class="bar"><i id="barFill" style="width:0"></i></div>
+  </div>
+</header>
+
+<div class="wrap" id="app"></div>
+
+<nav class="tabs" id="tabs" style="display:none">
+  <button data-tab="list" class="on">List</button>
+  <button data-tab="ask">Ask home</button>
+  <button data-tab="compare">Compare</button>
+  <button data-tab="finish">Finish</button>
+</nav>
+
+<div class="sheet" id="sheet"><div class="panel" id="sheetPanel"></div></div>
+
+<script src="/static/common.js"></script>
+<script>
+let S = { members: [], shopping_items: [], questions: [] };
+let me = store.get('cart_me', null);
+let tab = 'list', filter = store.get('cart_filter', 'mine'), priority = store.get('cart_priority', 'price');
+let seenAnswers = new Set(store.get('cart_seen', []));
+let lastSummary = null, compareResult = null;
+
+let first = true;
+async function refresh() {
+  let next;
+  try { next = await api('/api/state'); } catch (e) { $('#liveStatus').textContent = 'Server offline'; return; }
+  const prev = S; S = next;
+  // Work out what changed, so this works the same over WebSocket or polling.
+  if (!first && me) {
+    const wasIn = prev.shop && prev.shop.shoppers.includes(me);
+    const oldAnswered = new Set((prev.questions || []).filter(q => q.answer).map(q => q.id));
+    (S.questions || []).filter(q => q.asked_by === me && q.answer && !oldAnswered.has(q.id)).forEach(q => {
+      toast(`${q.answered_by}: ${q.answer}`, 6000); try { navigator.vibrate && navigator.vibrate(120); } catch (e) {}
+    });
+    if (wasIn && S.shop) {
+      const oldIds = new Set((prev.shopping_items || []).map(i => i.id));
+      (S.shopping_items || []).filter(i => !oldIds.has(i.id) && i.source === 'dock').forEach(i => toast(`New on the list: ${i.name} (for ${whoLabel(i.added_by)})`));
+    }
+    if (wasIn && !S.shop && S.last_shop && S.last_shop.summary) lastSummary = S.last_shop.summary;
+  }
+  first = false;
+  render();
+}
+function setMe(name) { me = name; store.set('cart_me', me); render(); }
+function inShop() { return S.shop && S.shop.shoppers.includes(me); }
+
+function render() {
+  if (me && !S.members.some(m => m.name === me)) setMe(null);
+  $('#hdr').textContent = me ? (inShop() ? `Shopping as ${me}` : `Hi ${me}`) : 'Cart Unit';
+  $('#tabs').style.display = inShop() ? 'flex' : 'none';
+  $('#budgetBox').style.display = S.shop ? 'block' : 'none';
+  if (S.shop) {
+    const spent = shopSpent(S), b = S.shop.budget || 0, left = b - spent;
+    $('#left').textContent = money(Math.abs(left)); $('#left').style.color = left < 0 ? '#f0a77a' : '';
+    $('#left').nextElementSibling.textContent = left < 0 ? 'over budget' : 'left';
+    $('#spentOf').textContent = `${money(spent)} of ${money(b)} · ${S.shop.store || ''}`;
+    $('#barFill').style.width = (b ? Math.min(100, spent / b * 100) : 0) + '%';
+  }
+  const unseen = (S.questions || []).some(q => q.asked_by === me && q.answer && !seenAnswers.has(q.id));
+  document.querySelectorAll('nav.tabs button').forEach(b => { b.classList.toggle('on', b.dataset.tab === tab); b.innerHTML = b.textContent.replace(/<.*$/, '') + (b.dataset.tab === 'ask' && unseen ? '<span class="pip"></span>' : ''); });
+
+  if (lastSummary && !S.shop) return renderSummary();
+  if (!me) return renderWho();
+  if (!S.shop) return renderStart();
+  if (!inShop()) return renderJoin();
+  ({ list: renderList, ask: renderAsk, compare: renderCompare, finish: renderFinish })[tab]();
+}
+
+function renderWho() {
+  $('#app').innerHTML = `<h2 class="t">Who's using this Cart Unit?</h2><div class="grid2">${S.members.map((m, i) =>
+    `<button class="token" onclick="setMe(S.members[${i}].name)"><span class="disc" style="background:${m.colour}">${i + 1}</span>${escapeHtml(m.name)}</button>`).join('')}</div>
+    <p class="muted small" style="margin-top:14px">Same coloured tokens as the Home Dock.</p>`;
+}
+function renderStart() {
+  const needed = S.shopping_items.filter(i => i.status === 'needed').length;
+  $('#app').innerHTML = `<div class="card"><div class="section-kicker">G3 Hand over the baton</div><h2 class="t">Take the household shop?</h2>
+    <p class="muted">${needed} item${needed === 1 ? '' : 's'} on the shared list. Everyone at home will see that you're shopping.</p>
+    <div class="grid2"><label class="small muted">Budget<input id="b" type="number" step="1" value="${Number(S.settings?.budget || 60)}"></label><label class="small muted">Store<input id="st" value="${escapeHtml(S.settings?.store || '')}"></label></div>
+    <button class="primary big-btn" style="margin-top:14px" onclick="startShop()">Start shop</button></div>
+    <button class="ghost" onclick="setMe(null)">Not ${escapeHtml(me)}? Switch</button>`;
+}
+async function startShop() { try { await post('/api/shop/start', { shopper: me, budget: Number($('#b').value) || null, store: $('#st').value.trim() || null }); tab = 'list'; } catch (e) { toast(e.message); } }
+function renderJoin() {
+  $('#app').innerHTML = `<div class="card"><div class="section-kicker">G5 Split Shop</div><h2 class="t">${escapeHtml(S.shop.shopper)} is already shopping</h2>
+    <p class="muted">Shopping together? Join and the list can be split between your two Cart Units, ticking off live on both.</p>
+    <button class="primary big-btn" onclick="joinShop()">Join as ${escapeHtml(me)}</button></div>
+    <button class="ghost" onclick="setMe(null)">Not ${escapeHtml(me)}? Switch</button>`;
+}
+async function joinShop() { await post('/api/shop/join', { shopper: me }); filter = 'mine'; tab = 'list'; toast('Joined. Tap "Split the list" to divide it.'); }
+
+function itemTap(i) {
+  const done = i.status === 'bought';
+  const extra = [i.at_home ? '<span class="badge home">home says: already have?</span>' : '', i.claimed_by && i.claimed_by !== me ? `<span class="badge claim">${escapeHtml(i.claimed_by)}'s half</span>` : '', i.source === 'off-list' ? '<span class="badge off">off-list</span>' : ''].join('');
+  return `<button class="tap ${done ? 'done' : ''}" onclick="${done ? `undo(${i.id})` : `gotIt(${i.id})`}"><span class="box">${done ? '✓' : ''}</span><span style="flex:1"><div class="nm">${escapeHtml(i.name)}${i.quantity > 1 ? ' ×' + i.quantity : ''}${extra}</div>
+    <div class="sub">${dot(S, i.added_by)}for ${escapeHtml(whoLabel(i.added_by))}${i.note ? ` · <i>"${escapeHtml(i.note)}"</i>` : ''}${done && i.price_paid != null ? ' · ' + money(i.price_paid) : ''}</div></span></button>`;
+}
+function renderList() {
+  const split = S.shop.helpers.length > 0;
+  let needed = S.shopping_items.filter(i => i.status === 'needed');
+  if (split && filter === 'mine') needed = needed.filter(i => !i.claimed_by || i.claimed_by === me);
+  const bought = S.shopping_items.filter(i => i.status === 'bought' && i.shop_id === S.shop.id);
+  const unclaimed = S.shopping_items.some(i => i.status === 'needed' && !i.claimed_by);
+  $('#app').innerHTML = `${split ? `<div class="seg"><button class="${filter === 'mine' ? 'on' : ''}" onclick="setFilter('mine')">My half</button><button class="${filter === 'all' ? 'on' : ''}" onclick="setFilter('all')">Everything</button></div>
+      ${unclaimed ? `<button class="secondary big-btn" style="margin-bottom:12px" onclick="splitList()">Split the list between ${S.shop.shoppers.map(escapeHtml).join(' & ')}</button>` : ''}` : ''}
+    <div class="card">${needed.map(itemTap).join('') || '<div class="empty">Nothing left here. 🎉</div>'}</div>
+    <div class="card"><div class="section-kicker" style="margin-bottom:8px">Not on the list?</div>
+      <div class="form-row" style="grid-template-columns:1fr auto"><input id="offName" placeholder="e.g. avocados on special"><button class="primary" onclick="addOff()">Add</button></div></div>
+    ${bought.length ? `<div class="card"><div class="section-kicker" style="margin-bottom:4px">In the basket (${bought.length})</div>${bought.map(itemTap).join('')}</div>` : ''}`;
+}
+function setFilter(f) { filter = f; store.set('cart_filter', f); render(); }
+async function splitList() { await post('/api/shop/split'); toast('List split. Each Cart Unit shows its half.'); }
+async function addOff() { const n = $('#offName').value.trim(); if (!n) return; await post('/api/list', { name: n, added_by: me, source: 'cart' }); toast(`${n} added for you`); }
+async function undo(id) { await patch(`/api/list/${id}`, { status: 'needed' }); }
+
+function gotIt(id) {
+  const it = S.shopping_items.find(i => i.id === id);
+  $('#sheetPanel').innerHTML = `<div class="section-kicker">Got it</div><h2 class="t">${escapeHtml(it.name)}</h2>
+    <p class="muted small">Price is optional. It's only used to split the cost when you're home.</p>
+    <div class="grid2"><input id="price" type="number" inputmode="decimal" step="0.01" placeholder="Price, e.g. 4.50" value="${it.price_paid ?? ''}"><button class="primary" onclick="markBought(${id}, true)">Save price</button></div>
+    <div class="grid2" style="margin-top:8px"><button class="secondary" onclick="markBought(${id}, false)">No price, just tick</button><button class="secondary" onclick="skip(${id})">Couldn't get it</button></div>
+    <button class="ghost" style="margin-top:8px;width:100%" onclick="closeSheet()">Cancel</button>`;
+  $('#sheet').classList.add('show');
+  setTimeout(() => $('#price')?.focus(), 50);
+}
+function closeSheet() { $('#sheet').classList.remove('show'); }
+$('#sheet').addEventListener('click', e => { if (e.target.id === 'sheet') closeSheet(); });
+async function markBought(id, withPrice) {
+  const v = withPrice ? Number($('#price').value) : NaN;
+  const body = { status: 'bought', bought_by: me };
+  if (withPrice && Number.isFinite(v) && v > 0) body.price_paid = v;
+  closeSheet(); await patch(`/api/list/${id}`, body);
+}
+async function skip(id) {
+  closeSheet(); const it = S.shopping_items.find(i => i.id === id);
+  if (confirm(`Ask home what to do about ${it.name}?`)) { tab = 'ask'; render(); $('#qText').value = `They're out of ${it.name}. Get something else?`; }
+}
+
+const TEMPLATES = [
+  ['Do we still have ___?', ['Yes', 'No', 'Not sure']],
+  ['Brand A or brand B?', ['A', 'B', "Don't mind"]],
+  ['Anything else you need?', ['No thanks', "I'll add it"]],
+];
+function renderAsk() {
+  const mine = (S.questions || []).filter(q => q.asked_by === me);
+  mine.filter(q => q.answer).forEach(q => seenAnswers.add(q.id)); store.set('cart_seen', [...seenAnswers]);
+  $('#app').innerHTML = `<div class="card"><div class="section-kicker">G4 One quick question home</div>
+    <p class="muted small" style="margin:6px 0 10px">Shows up on the Home Dock. Whoever's in the kitchen answers with one tap. Keep it to the questions that matter.</p>
+    <div class="chips" style="margin-bottom:10px">${TEMPLATES.map((t, i) => `<button class="chip" onclick="useTemplate(${i})">${escapeHtml(t[0])}</button>`).join('')}</div>
+    <input id="qText" placeholder="Your question" maxlength="140">
+    <input id="qOpts" placeholder="Answer buttons, comma separated" value="Yes, No" style="margin-top:8px">
+    <button class="primary big-btn" style="margin-top:10px" onclick="ask()">Send to the Dock</button></div>
+    <div class="card">${mine.map(q => `<div class="qa"><b>${escapeHtml(q.text)}</b><div class="small" style="margin-top:4px">${q.answer ? `${dot(S, q.answered_by)}<b>${escapeHtml(q.answered_by)}:</b> ${escapeHtml(q.answer)}` : '<span class="muted">Waiting for someone at home…</span>'}</div></div>`).join('') || '<div class="muted small">No questions yet this shop.</div>'}</div>`;
+}
+function useTemplate(i) { $('#qText').value = TEMPLATES[i][0]; $('#qOpts').value = TEMPLATES[i][1].join(', '); $('#qText').focus(); }
+async function ask() {
+  const text = $('#qText').value.trim(); if (!text) return;
+  await post('/api/questions', { asked_by: me, text, options: $('#qOpts').value.split(',').map(s => s.trim()).filter(Boolean) });
+  toast('Sent to the Home Dock');
+}
+
+async function renderCompare() {
+  let products = [];
+  try { products = await api('/api/products'); } catch (e) {}
+  $('#app').innerHTML = `<div class="card"><div class="section-kicker">Optional compare</div>
+    <p class="muted small" style="margin:6px 0 10px">Only when you're unsure. It shows facts in the order you choose. It never says which one is "healthier".</p>
+    <div class="seg">${[['price', 'Price'], ['protein', 'Protein'], ['sugar', 'Less sugar']].map(([k, l]) => `<button class="${priority === k ? 'on' : ''}" onclick="setPriority('${k}')">${l}</button>`).join('')}</div>
+    <select id="prod"><option value="">Pick the product in your hand…</option>${products.map(p => `<option value="${escapeHtml(p.barcode)}">${escapeHtml(p.name)}${productPrice(p) ? ' · ' + money(productPrice(p).price) : ''}</option>`).join('')}</select>
+    <div class="form-row" style="grid-template-columns:1fr auto;margin-top:8px"><input id="bc" inputmode="numeric" placeholder="…or type the barcode"><button class="secondary" onclick="doCompare($('#bc').value)">Go</button></div></div>
+    <div class="card" id="cmp">${compareResult ? productCard(compareResult.product, true) + '<div style="margin-top:10px">' + alternativesHtml(compareResult.comparison) + '</div>' : '<div class="muted small">The camera scanner is in the Expo version of the Cart Unit.</div>'}</div>`;
+  $('#prod').onchange = e => e.target.value && doCompare(e.target.value);
+}
+function setPriority(k) { priority = k; store.set('cart_priority', k); if (compareResult) doCompare(compareResult.product.barcode); else render(); }
+async function doCompare(code) {
+  if (!code) return;
+  try { compareResult = await post('/api/scan', { barcode: code, device: `Cart Unit (${me})`, store: 'Woolworths', priority }); render(); }
+  catch (e) { toast(e.message); }
+}
+
+function renderFinish() {
+  const needed = S.shopping_items.filter(i => i.status === 'needed').length;
+  const bought = S.shopping_items.filter(i => i.status === 'bought' && i.shop_id === S.shop.id).length;
+  $('#app').innerHTML = `<div class="card"><div class="section-kicker">G6 Re-dock</div><h2 class="t">Back home?</h2>
+    <p class="muted">${bought} bought · ${needed} still on the list (they stay for next time).</p>
+    <p class="muted small">Finishing sends the summary and the cost split to the Home Dock, and marks what you bought as "already at home".</p>
+    <button class="primary big-btn" onclick="finish()">Finish shop</button></div>`;
+}
+async function finish() { if (!confirm('Finish the shop?')) return; lastSummary = await post('/api/shop/finish'); render(); }
+function renderSummary() {
+  $('#app').innerHTML = `<div class="card"><div class="section-kicker">Shop done</div><h2 class="t">Here's what goes to the Dock</h2>${summaryHtml(lastSummary, S)}</div>
+    <button class="secondary big-btn" onclick="lastSummary=null;render()">Done</button>`;
+}
+
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => { tab = b.dataset.tab; render(); window.scrollTo(0, 0); });
+
+live(msg => {
+  if (msg.type === 'reset') { lastSummary = null; compareResult = null; }
+  refresh();
+});
+window.onWrite = refresh;
+refresh();
+</script>
+</body>
+</html>

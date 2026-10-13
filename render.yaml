@@ -1,0 +1,11 @@
+# Optional: one-click hosting on Render (render.com) so phones and the Dock can connect from any network.
+# Free web services sleep when idle and the SQLite file resets on redeploy, which is fine for a demo:
+# open the link a couple of minutes before a session, then use Testing mode > Reset.
+services:
+  - type: web
+    name: nutricart-hub
+    runtime: python
+    rootDir: prototype/backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free

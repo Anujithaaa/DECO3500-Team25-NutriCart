@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NutriCart Home Dock</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">NC</div><div class="brand-copy"><h1>NutriCart</h1><p>Home Dock</p></div></div>
+    <div class="nav">
+      <button data-view="home" class="active">⌂ <span class="label">Kitchen</span></button>
+      <button data-view="products">▦ <span class="label">Product library</span></button>
+      <button data-view="testing">◉ <span class="label">Testing mode</span></button>
+    </div>
+    <div class="sidebar-foot">The Dock lives in the shared kitchen. Whoever shops takes the Cart Unit; the shop comes back here when they re-dock.</div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div><div class="section-kicker">Shared household</div><h2 id="pageTitle">Home Dock</h2><p id="pageSub">Plan the shop together, see who is shopping, answer quick questions, settle up.</p></div>
+      <div class="status-pill"><span class="dot"></span><span id="liveStatus">Connecting…</span></div>
+    </div>
+
+    <!-- ===================== KITCHEN VIEW ===================== -->
+    <section class="view active" id="view-home">
+      <div class="tokens" id="tokens"></div>
+      <div id="banner"></div>
+      <div id="questions"></div>
+      <div id="summary"></div>
+
+      <div class="grid">
+        <div class="card span-7">
+          <div class="card-head"><div><div class="section-kicker">G1 · G2 Plan and request</div><h3>Shared list</h3></div><span class="muted small" id="listCount"></span></div>
+          <div class="add-row">
+            <input id="itemName" placeholder="What do we need?" autocomplete="off">
+            <select id="itemFor"></select>
+            <input id="itemNote" placeholder="Request note (optional)">
+            <button id="addItem" class="primary">Add</button>
+          </div>
+          <div class="chips" id="quickAdd" style="margin-bottom:8px"></div>
+          <div id="list"></div>
+        </div>
+
+        <div class="card span-5" id="shopCard"></div>
+
+        <div class="card span-7">
+          <div class="card-head"><div><div class="section-kicker">G1 Plan together</div><h3>Meal board</h3></div><span class="muted small">Tap your token, then vote</span></div>
+          <div id="meals"></div>
+        </div>
+
+        <div class="card span-5">
+          <div class="card-head"><div><div class="section-kicker">Avoid doubles</div><h3>Already at home</h3></div></div>
+          <div class="chips" id="pantry"></div>
+          <div class="form-row" style="grid-template-columns:1fr auto;margin-top:12px"><input id="pantryName" placeholder="e.g. rice"><button class="secondary" id="addPantry">Add</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCT LIBRARY (James, v0.2) ===================== -->
+    <section class="view" id="view-products">
+      <div class="grid">
+        <div class="card span-5"><div class="card-head"><div><div class="section-kicker">Prototype data</div><h3>Add or edit a product</h3></div></div>
+          <div class="callout">Pre-load the real products and shelf prices you will use in testing, so shoppers never have to type prices. Barcodes can be scanned with the Expo Cart Unit; Open Food Facts fills in product details when it knows them. Live Woolworths prices are not assumed or scraped.</div>
+          <div class="form-grid" style="margin-top:14px">
+            <input class="full" id="pBarcode" placeholder="Barcode / EAN">
+            <input class="full" id="pName" placeholder="Product name">
+            <input id="pBrand" placeholder="Brand"><input id="pQuantity" placeholder="Size, e.g. 1 kg">
+            <input id="pCategory" placeholder="Compare category, e.g. yoghurt"><input id="pPrice" type="number" step="0.01" placeholder="Shelf price">
+            <input id="pProtein" type="number" step="0.1" placeholder="Protein /100g"><input id="pSugar" type="number" step="0.1" placeholder="Sugar /100g">
+            <input class="full" id="pUnit" placeholder="Unit price, e.g. $0.72 / 100g">
+            <button id="saveProduct" class="primary full">Save product</button>
+          </div>
+        </div>
+        <div class="card span-7"><div class="card-head"><h3>Product library</h3><button class="secondary" id="refreshProductsBtn">Refresh</button></div><div class="library" id="productLibrary"></div></div>
+        <div class="card span-12"><div class="card-head"><h3>Last scan from a Cart Unit</h3><span class="muted small">Compare shows facts only, ordered by the shopper's priority</span></div><div id="lastScan" class="empty">No product scanned yet.</div><div id="lastCompare" style="margin-top:12px"></div></div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTING MODE ===================== -->
+    <section class="view" id="view-testing">
+      <div class="grid">
+        <div class="card span-6"><div class="section-kicker">Before each session</div><h3 style="margin:6px 0 10px">Reset the household</h3>
+          <p class="muted small">Clears the list, shops, questions and pantry, and resets token names. Keeps the product library. Reset first, then rename the tokens.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="primary" onclick="resetHouse('demo')">Reset to demo house</button><button class="secondary" onclick="resetHouse('empty')">Reset to empty house</button></div>
+          <h3 style="margin:22px 0 10px">Housemate tokens</h3>
+          <p class="muted small">Rename the tokens to match the participants (first names or aliases only). Keys <span class="kbd">1</span>–<span class="kbd">4</span> select a token, so a keypad or Makey Makey hidden under physical tokens can work as a real tap.</p>
+          <div id="renameRows" class="form-grid"></div>
+        </div>
+        <div class="card span-6"><div class="section-kicker">Connect Cart Units</div><h3 style="margin:6px 0 10px">Open this on each phone</h3>
+          <div class="callout" style="font-size:15px"><b id="cartUrl"></b></div>
+          <p class="muted small">Phones and this device need to reach the same server (same Wi-Fi or hotspot, or the hosted link). The Expo Cart Unit uses the same server address in <span class="kbd">cart-expo/.env</span>.</p>
+          <h3 style="margin:22px 0 10px">Default budget and store</h3>
+          <div class="form-row" style="grid-template-columns:1fr 1.4fr auto"><input id="setBudget" type="number" step="1" placeholder="Budget"><input id="setStore" placeholder="Store"><button class="secondary" id="saveSettings">Save</button></div>
+        </div>
+        <div class="card span-12"><div class="section-kicker">Observe, don't just watch the buttons</div><h3 style="margin:6px 0 10px">What to note in every session</h3>
+          <ul class="muted" style="line-height:1.8;margin:0">
+            <li>Who adds items and requests, and who never touches the Dock (Grudin: who does the work, who benefits).</li>
+            <li>Does anyone text a housemate instead of using Ask home? Why?</li>
+            <li>What the shopper looks at first on the Cart Unit, what they ignore, anything that slows them down.</li>
+            <li>Reactions to the cost split: fair, awkward, useful?</li>
+            <li>First-use comprehension: "What do you think this is for?" before any explanation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="/static/common.js"></script>
+<script>
+let S = { members: [], shopping_items: [], meals: [], pantry: [], questions: [], settings: {} };
+let me = store.get('dock_me', null);           // housemate currently at the Dock (token)
+const QUICK = ['Milk', 'Eggs', 'Bread', 'Rice', 'Bananas', 'Chicken thigh', 'Pasta', 'Onions', 'Yoghurt', 'Toilet paper'];
+
+const pageMeta = {
+  home: ['Home Dock', 'Plan the shop together, see who is shopping, answer quick questions, settle up.'],
+  products: ['Product library', 'Prepare real products and shelf prices for testing.'],
+  testing: ['Testing mode', 'Reset between sessions, name the tokens, connect Cart Units.'],
+};
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  $(`#view-${name}`).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.view === name));
+  $('#pageTitle').textContent = pageMeta[name][0]; $('#pageSub').textContent = pageMeta[name][1];
+  if (name === 'products') refreshProducts();
+}
+document.querySelectorAll('.nav button').forEach(b => b.onclick = () => showView(b.dataset.view));
+
+function actor() { return me || 'Household'; }
+function pickToken(name) {
+  me = me === name ? null : name; store.set('dock_me', me); render();
+  if (me) toast(`Hi ${me} — what you add now is marked as yours`);
+}
+document.addEventListener('keydown', e => {
+  if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+  const i = Number(e.key) - 1;
+  if (i >= 0 && i < S.members.length) pickToken(S.members[i].name);
+});
+
+let firstLoad = true;
+async function refresh() {
+  let next;
+  try { next = await api('/api/state'); } catch (e) { $('#liveStatus').textContent = 'Server offline'; return; }
+  const prev = S; S = next;
+  if (!firstLoad) {
+    const oldQ = new Set((prev.questions || []).map(q => q.id));
+    (S.questions || []).filter(q => !oldQ.has(q.id) && !q.answer).forEach(q => toast(`${q.asked_by} is asking: ${q.text}`, 6000));
+    if (!prev.shop && S.shop) toast(`${S.shop.shopper} is shopping now`);
+  }
+  firstLoad = false;
+  render();
+}
+
+function render() {
+  if (me && !S.members.some(m => m.name === me)) { me = null; store.set('dock_me', null); }
+  // tokens
+  $('#tokens').innerHTML = `<span class="label">Who's at the Dock?</span>` + S.members.map((m, i) =>
+    `<button class="token ${me === m.name ? 'on' : ''}" onclick="pickToken(S.members[${i}].name)"><span class="disc" style="background:${m.colour}">${i + 1}</span>${escapeHtml(m.name)}</button>`).join('');
+  // "for" selector
+  const forSel = $('#itemFor'); const prev = forSel.value;
+  forSel.innerHTML = [`<option value="__me">For ${escapeHtml(me || 'me')}</option>`, `<option value="Household">For the household</option>`]
+    .concat(S.members.filter(m => m.name !== me).map(m => `<option value="${escapeHtml(m.name)}">For ${escapeHtml(m.name)}</option>`)).join('');
+  forSel.value = (forSel.dataset.me === String(me) && [...forSel.options].some(o => o.value === prev)) ? prev : (me ? '__me' : 'Household');
+  forSel.dataset.me = String(me);
+  $('#quickAdd').innerHTML = QUICK.map(q => `<button class="chip" onclick="quickAdd('${q}')">+ ${q}</button>`).join('');
+  renderBanner(); renderQuestions(); renderSummary(); renderList(); renderShopCard(); renderMeals(); renderPantry(); renderTesting();
+}
+
+function renderBanner() {
+  const shop = S.shop;
+  if (!shop) { $('#banner').innerHTML = ''; return; }
+  const got = S.shopping_items.filter(i => i.status === 'bought' && i.shop_id === shop.id).length;
+  const left = S.shopping_items.filter(i => i.status === 'needed').length;
+  const spent = shopSpent(S); const pct = shop.budget ? Math.min(100, spent / shop.budget * 100) : 0;
+  const who = shop.helpers.length ? `${escapeHtml(shop.shopper)} and ${shop.helpers.map(escapeHtml).join(', ')} are shopping now` : `${escapeHtml(shop.shopper)} is shopping now`;
+  $('#banner').innerHTML = `<div class="banner"><div>${dot(S, shop.shopper)}<b>🛒 ${who}</b><div class="sub">at ${escapeHtml(shop.store || 'the shops')} · ${got} bought · ${left} still needed · new requests go straight to the Cart Unit</div></div>
+    <div style="text-align:right"><b>${money(spent)}</b><span class="sub"> of ${money(shop.budget)}</span><div class="bar ${spent > shop.budget ? 'over' : ''}"><i style="width:${pct}%"></i></div></div></div>`;
+}
+
+function renderQuestions() {
+  const open = (S.questions || []).filter(q => !q.answer);
+  $('#questions').innerHTML = open.map(q => `<div class="question"><div><div class="section-kicker">G4 · ${escapeHtml(q.asked_by)} asks from the shop</div><b>${escapeHtml(q.text)}</b></div>
+    <div class="qbtns">${q.options.map(o => `<button class="primary" data-a="${escapeHtml(o)}" onclick="answer(${q.id}, this.dataset.a)">${escapeHtml(o)}</button>`).join('')}</div></div>`).join('');
+}
+async function answer(id, a) {
+  await post(`/api/questions/${id}/answer`, { answer: a, answered_by: actor() });
+  toast(`Sent "${a}" to the Cart Unit`);
+}
+
+function renderSummary() {
+  const last = S.last_shop;
+  if (!last || !last.summary) { $('#summary').innerHTML = ''; return; }
+  $('#summary').innerHTML = `<div class="card summary-card"><div class="card-head"><div><div class="section-kicker">G6 Return and settle</div><h3>${escapeHtml(last.shopper)} is back — here's the shop</h3></div><button class="secondary" onclick="post('/api/shop/dismiss')">Close summary</button></div>${summaryHtml(last.summary, S)}</div>`;
+}
+
+function itemRow(i) {
+  const status = i.status === 'bought' ? `<span class="badge got">bought${i.price_paid != null ? ' ' + money(i.price_paid) : ''}</span>` : '';
+  const badges = (i.at_home ? '<span class="badge home">already at home?</span>' : '') + (i.claimed_by ? `<span class="badge claim">${escapeHtml(i.claimed_by)}'s half</span>` : '') + (i.source === 'off-list' ? '<span class="badge off">added in store</span>' : '') + status;
+  return `<div class="item-row"><div><strong class="${i.status === 'bought' ? 'done-text' : ''}">${escapeHtml(i.name)}${i.quantity > 1 ? ' ×' + i.quantity : ''}</strong>${badges}
+    <div class="who">${dot(S, i.added_by)}for ${escapeHtml(whoLabel(i.added_by))}${i.note ? ` · <span class="note">"${escapeHtml(i.note)}"</span>` : ''}</div></div>
+    ${i.status === 'needed' ? `<button class="ghost danger" onclick="removeItem(${i.id})">Remove</button>` : ''}</div>`;
+}
+function renderList() {
+  const needed = S.shopping_items.filter(i => i.status === 'needed');
+  const bought = S.shopping_items.filter(i => i.status === 'bought');
+  $('#listCount').textContent = `${needed.length} needed${bought.length ? ' · ' + bought.length + ' bought' : ''}`;
+  $('#list').innerHTML = (needed.concat(bought)).map(itemRow).join('') || '<div class="empty">Nothing on the list. Tap a quick-add or type an item.</div>';
+}
+async function addItem(name, note) {
+  const sel = $('#itemFor').value; const forWho = sel === '__me' ? actor() : sel;
+  const it = await post('/api/list', { name, added_by: forWho, note: note || null, source: 'dock' });
+  if (it.at_home) toast(`Added ${name} — but the Dock thinks it's already at home`);
+}
+async function quickAdd(name) { await addItem(name, $('#itemNote').value.trim()); $('#itemNote').value = ''; }
+$('#addItem').onclick = async () => { const n = $('#itemName').value.trim(); if (!n) return; await addItem(n, $('#itemNote').value.trim()); $('#itemName').value = ''; $('#itemNote').value = ''; };
+$('#itemName').addEventListener('keydown', e => { if (e.key === 'Enter') $('#addItem').click(); });
+async function removeItem(id) { await del(`/api/list/${id}`); }
+
+function renderShopCard() {
+  const shop = S.shop;
+  if (shop) {
+    const answered = (S.questions || []).filter(q => q.answer);
+    $('#shopCard').innerHTML = `<div class="card-head"><div><div class="section-kicker">G3 · G5 In the shop</div><h3>Shop in progress</h3></div></div>
+      <p class="muted">${dot(S, shop.shopper)}<b>${escapeHtml(shop.shopper)}</b> has the Cart Unit${shop.helpers.length ? `, splitting the list with ${shop.helpers.map(escapeHtml).join(', ')}` : ''}. Anything you add to the list now appears on their screen.</p>
+      ${answered.length ? `<div class="section-kicker" style="margin-top:14px">Answered</div>` + answered.map(q => `<p class="small" style="margin:6px 0"><b>${escapeHtml(q.text)}</b> → ${escapeHtml(q.answer)} <span class="muted">(${escapeHtml(q.answered_by)})</span></p>`).join('') : ''}
+      <p class="muted small" style="margin-top:14px">When the Cart Unit is re-docked, the shopper taps <b>Finish shop</b> and the summary appears here.</p>
+      <button class="secondary" onclick="finishFromDock()">Finish shop from the Dock</button>`;
+    return;
+  }
+  const b = S.settings?.budget || 60;
+  $('#shopCard').innerHTML = `<div class="card-head"><div><div class="section-kicker">G3 Hand over the baton</div><h3>Who's going shopping?</h3></div></div>
+    <p class="muted small">Tap your token above, set the budget, then take the Cart Unit. Everyone at home will see you're shopping, so nobody buys the same things.</p>
+    <div class="form-grid"><label class="small muted">Budget<input id="startBudget" type="number" step="1" value="${Number(b)}"></label><label class="small muted">Store<input id="startStore" value="${escapeHtml(S.settings?.store || '')}"></label></div>
+    <button class="primary big-btn" style="margin-top:12px" onclick="startShop()">${me ? `${escapeHtml(me)} takes the Cart Unit` : 'Tap your token first'}</button>`;
+}
+async function startShop() {
+  if (!me) { toast('Tap your token first, so the house knows who is shopping'); return; }
+  try { await post('/api/shop/start', { shopper: me, budget: Number($('#startBudget').value) || null, store: $('#startStore').value.trim() || null }); toast(`${me} is shopping now`); }
+  catch (e) { toast(e.message); }
+}
+async function finishFromDock() { if (confirm('Finish the shop and show the summary?')) await post('/api/shop/finish'); }
+
+function renderMeals() {
+  $('#meals').innerHTML = (S.meals || []).map(m => `<div class="meal"><div><strong>${escapeHtml(m.name)}</strong>
+      <div class="meta">${dot(S, m.suggested_by)}suggested by ${escapeHtml(m.suggested_by || '—')} · about ${money(m.cost)} · ${m.minutes} min · serves ${m.serves}</div>
+      <div class="meta">${m.ingredients.map(escapeHtml).join(', ')}</div>
+      <div class="votes">${m.votes.map(v => dot(S, v)).join('')}${m.votes.length ? `<span class="small muted">${m.votes.length} vote${m.votes.length > 1 ? 's' : ''}</span>` : ''}</div></div>
+    <div style="display:grid;gap:6px"><button class="secondary" onclick="vote(${m.id})">${me && m.votes.includes(me) ? 'Unvote' : 'Vote'}</button><button class="ghost" onclick="addMeal(${m.id})">Add what's missing</button></div></div>`).join('');
+}
+async function vote(id) { if (!me) { toast('Tap your token first, then vote'); return; } await post(`/api/meals/${id}/vote`, { member: me }); }
+async function addMeal(id) {
+  const r = await post(`/api/meals/${id}/add`, { added_by: 'Household' });
+  const parts = [];
+  if (r.added.length) parts.push(`Added ${r.added.join(', ')}`);
+  if (r.already_at_home.length) parts.push(`already at home: ${r.already_at_home.join(', ')}`);
+  if (r.already_on_list.length) parts.push(`already on the list: ${r.already_on_list.join(', ')}`);
+  toast(parts.join(' · ') || 'Nothing to add');
+}
+
+function renderPantry() {
+  $('#pantry').innerHTML = (S.pantry || []).map(p => `<span class="chip">${escapeHtml(p.name)}<button class="x" title="Used up" onclick="del('/api/pantry/${p.id}')">×</button></span>`).join('') || '<span class="muted small">Nothing marked yet. Bought items land here after each shop.</span>';
+}
+$('#addPantry').onclick = async () => { const n = $('#pantryName').value.trim(); if (!n) return; await post('/api/pantry', { name: n, added_by: actor() }); $('#pantryName').value = ''; };
+
+function renderTesting() {
+  $('#cartUrl').textContent = `${location.origin}/cart`;
+  if (!$('#renameRows').dataset.built || $('#renameRows').dataset.built !== S.members.map(m => m.name).join('|')) {
+    $('#renameRows').innerHTML = S.members.map((m, i) => `<label class="small muted">${dot(S, m.name)}Token ${i + 1}<input data-id="${m.id}" value="${escapeHtml(m.name)}" onchange="rename(this)"></label>`).join('');
+    $('#renameRows').dataset.built = S.members.map(m => m.name).join('|');
+  }
+  if (document.activeElement !== $('#setBudget')) $('#setBudget').value = S.settings?.budget || '';
+  if (document.activeElement !== $('#setStore')) $('#setStore').value = S.settings?.store || '';
+}
+async function rename(input) { try { await post(`/api/members/${input.dataset.id}`, { name: input.value }); toast('Token renamed'); } catch (e) { toast(e.message); } }
+$('#saveSettings').onclick = async () => { await post('/api/settings', { budget: Number($('#setBudget').value) || null, store: $('#setStore').value.trim() || null }); toast('Saved'); };
+async function resetHouse(scenario) { if (!confirm(`Reset the household to the ${scenario} state?`)) return; me = null; store.set('dock_me', null); await post('/api/reset', { scenario }); toast('Household reset'); showView('home'); }
+
+// ---- product library (James's v0.2 feature, kept) ----
+async function refreshProducts() {
+  const ps = await api('/api/products');
+  $('#productLibrary').innerHTML = ps.length ? ps.map(p => { const pr = productPrice(p); return `<div class="library-row"><div><strong>${escapeHtml(p.name)}</strong><small>${escapeHtml(fmt(p.brand))} · ${escapeHtml(fmt(p.barcode))}</small></div><div><strong>${escapeHtml(fmt(p.category))}</strong><small>Category</small></div><div><strong>${pr ? money(pr.price) : '—'}</strong><small>${pr ? escapeHtml(pr.store) : 'No price'}</small></div><button class="secondary" data-p='${JSON.stringify(p).replace(/'/g, '&#39;')}' onclick="editProduct(JSON.parse(this.dataset.p))">Edit</button></div>`; }).join('') : '<div class="empty">No products yet.</div>';
+}
+function editProduct(p) { $('#pBarcode').value = p.barcode; $('#pName').value = p.name || ''; $('#pBrand').value = p.brand || ''; $('#pQuantity').value = p.quantity || ''; $('#pCategory').value = p.category || ''; const pr = productPrice(p); $('#pPrice').value = pr?.price ?? ''; $('#pUnit').value = pr?.unit_price ?? ''; $('#pProtein').value = p.nutrition?.protein_100g ?? ''; $('#pSugar').value = p.nutrition?.sugars_100g ?? ''; }
+$('#saveProduct').onclick = async () => {
+  const barcode = $('#pBarcode').value.trim(); if (!barcode || !$('#pName').value.trim()) { toast('Barcode and name are needed'); return; }
+  await api(`/api/products/${encodeURIComponent(barcode)}`, { method: 'POST', body: JSON.stringify({ name: $('#pName').value.trim(), brand: $('#pBrand').value.trim() || null, quantity: $('#pQuantity').value.trim() || null, category: $('#pCategory').value.trim().toLowerCase() || null, nutrition: { protein_100g: $('#pProtein').value ? Number($('#pProtein').value) : null, sugars_100g: $('#pSugar').value ? Number($('#pSugar').value) : null }, store: 'Woolworths', price: $('#pPrice').value ? Number($('#pPrice').value) : null, unit_price: $('#pUnit').value.trim() || null }) });
+  toast('Product saved'); refreshProducts();
+};
+$('#refreshProductsBtn').onclick = refreshProducts;
+
+live(msg => {
+  if (msg.type === 'scan') { $('#lastScan').innerHTML = productCard(msg.product); $('#lastScan').classList.remove('empty'); $('#lastCompare').innerHTML = alternativesHtml(msg.comparison); }
+  if (msg.type === 'product_updated' && $('#view-products').classList.contains('active')) refreshProducts();
+  refresh();
+});
+window.onWrite = refresh;
+refresh();
+</script>
+</body>
+</html>
