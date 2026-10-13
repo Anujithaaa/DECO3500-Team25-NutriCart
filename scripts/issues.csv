@@ -1,0 +1,31 @@
+#,Title,Owner,Due,Milestone,Label,Details
+1,"Make repo public, add deco3500-team as collaborator, enable WIKI",Anujitha,Tue 13 Oct,Tradeshow,setup,- [ ] Settings → General → visibility Public - [ ] Settings → Collaborators → add `deco3500-team` - [ ] Settings → Features → Wikis on - [ ] Post the repo URL in team chat
+2,"Push the cleaned repo (force push) and ask everyone to re-clone",Anujitha,Tue 13 Oct,Tradeshow,prototype,"After the history clean-up: force push, make the repo public again, everyone deletes old clones and re-clones."
+3,"Team call: lock domain statement, G1–G6 must-haves, hosting, session schedule",Aman,Wed 14 Oct,Tradeshow,process,Decisions to record in Stand-up Records: - [ ] Final domain statement (v4 or edit) - [ ] G1–G6: which are must-have for the tradeshow - [ ] Hosting: Render vs laptop + hotspot - [ ] Who runs which evaluation session - [ ] Confirm owners on this board
+4,Set up GitHub Projects board and add every issue,Aman,Wed 14 Oct,Tradeshow,process,Board columns: Todo / In progress / Done. Add all issues; set owner and due date fields.
+5,Paste WIKI pages from documents/wiki and resolve every [confirm],Kenan,Wed 14 Oct,Tradeshow,documentation,"Pages: Home, Week 9 Stand-up, Stand-up Records, User Research, Evaluation Plan, Ethical Considerations, Design Process Overview. Upload documents/wiki/images. Search each page for `[confirm` and fix."
+6,Week 9 Stand-up page: confirm stand-up date and team notes,Aman,Wed 14 Oct,Tradeshow,documentation,Keep the honest 'written up after the event' note.
+7,Run v0.3 on a laptop + 2 phones (README demo) and log any bugs,Anujitha,Wed 14 Oct,Tradeshow,prototype,Follow README → Run it on a laptop. Walk through G1–G6 with two Cart Units. Open an issue per bug.
+8,Expo Cart Unit: test in Expo Go on iPhone and Android,James,Wed 14 Oct,Tradeshow,prototype,"`npx expo install --fix` if the SDK doesn't match Expo Go. Test camera scan → compare, Ask home, Split Shop, Finish."
+9,Host the backend and test on uni Wi-Fi and a phone hotspot,Anujitha,Thu 15 Oct,Tradeshow,prototype,render.yaml is in the repo (New → Blueprint). Paste the hosted /dock link into README. Test from 3 devices on uni Wi-Fi.
+10,Pre-load 20–40 real products with shelf prices (one store),James,Thu 15 Oct,Tradeshow,prototype,"Use Dock → Product library. Barcode, name, size, compare category, shelf price, unit price, protein, sugar. Record the store and date observed."
+11,Build the physical Home Dock stand + 4 numbered housemate tokens,James,Fri 16 Oct,Tradeshow,physical,"Tablet or laptop in a kitchen-style stand. Coloured, numbered tokens (1–4) matching the screen. Photograph for the WIKI and poster."
+12,Build the Cart Unit mount for basket AND trolley handles,James,Fri 16 Oct,Tradeshow,physical,Must fit a basket handle (basket shoppers found v2 too big). Photograph it in use.
+13,Optional: make tokens physical with a keypad or Makey Makey (keys 1–4),James,Sat 17 Oct,Tradeshow,physical,The Dock already selects a token when keys 1–4 are pressed.
+14,Recruit 2–3 share houses and 2 shopping pairs; book times,Aman,Wed 14 Oct,Tradeshow,evaluation,Sessions Thu 15–Sat 17. Every member leads or co-runs at least one.
+15,"Run household sessions H1–H3 (Evaluation Plan, Study A)",All,Sat 17 Oct,Tradeshow,evaluation,Reset the house first. Observation sheet + counts + group interview. Add participants to the evidence register within 24 h.
+16,"Run shop-pair sessions S1–S2 (store with permission, or simulated $25 shop)",All,Sat 17 Oct,Tradeshow,evaluation,Study B script.
+17,Evidence register with participant IDs; fix all participant counts,Kenan,Sat 17 Oct,Tradeshow,documentation,"One ID per participant (R1-P01…, R2-, R3-, SH-, H1-P1, S1-P1). Poster and overview numbers come only from here. Label studio peers separately."
+18,Synthesise R4 findings (Q1–Q8) → list of v4 changes,Kenan,Sun 18 Oct,Tradeshow,evaluation,Fill Evaluation Plan → Results.
+19,v4 fixes from evaluation,Anujitha,Mon 19 Oct,Tradeshow,prototype,Only fixes the evidence supports. Note each change and its evidence.
+20,Poster content and A2 portrait layout,James,Thu 15 Oct,Tradeshow,poster,"Use documents/promo/poster-content-draft.md. Close-read, conference style, QR code to the repo."
+21,Send poster to print (A2 portrait),James,Fri 16 Oct,Tradeshow,poster,"Check print-shop lead time first. If evaluation results aren't ready, print with prototype + research and present R4 results verbally."
+22,Pitch script; every member can deliver it (≈2.5 min),Aman,Mon 19 Oct,Tradeshow,poster,Use documents/promo/pitch-script.md. Each member rehearses the whole pitch once.
+23,Tradeshow rehearsal with the real setup,All,Mon 19 Oct,Tradeshow,process,"Dock on a table, 2 Cart Units, hotspot, poster. Reset between visitors. Spare chargers."
+24,Optional promo video (60 s) of a household using the Hub,James,Fri 23 Oct,Submission,poster,Link from README.
+25,Ethical Considerations: update with R4 and tradeshow evidence,Aman,Fri 23 Oct,Submission,documentation,"E1, E3, E4, E5 and the revision log."
+26,"Design Process Overview: add R4, tradeshow, images, who did what",Kenan,Sat 24 Oct,Submission,documentation,"Keep around 1,000 words plus images. Link poster and prototype at the top."
+27,Full citations for every paper we used,Kenan,Fri 23 Oct,Submission,documentation,Including the 8 papers from the literature review.
+28,AI use statement (README + overview),All,Sun 25 Oct,Submission,documentation,"Per course policy: tools, which parts, how checked."
+29,Export Design Process Overview + Ethical Considerations as TeamName_3DesignPrototype.pdf and submit the repo URL,Kenan,Mon 26 Oct 3pm,Submission,submission,Aman is backup. Submit by 12pm to leave a buffer. Check the WIKI is visible to staff.
+30,Cost split: softer wording + a 'don't split' option (Ethics E1),Anujitha,after R4,Submission,prototype,Only if R4 shows the split feels awkward.
