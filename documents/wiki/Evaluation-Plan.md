@@ -1,109 +1,70 @@
-# Evaluation Plan: v3 group evaluation (Week 11)
+# Evaluation Plan: rapid group testing of v3 (Week 11)
 
-The evaluation is **formative**: we want to learn how groups actually use the prototype, what works in context and why, and what we misunderstood, not just whether people like it. Following the course's two rules for social and mobile evaluation, we:
+Our first plan (35–40 minute sessions in people's homes) was not realistic in the time left: participants could not give that much time in assessment season. Following the course advice to **adapt methods** rather than drop them, we switched to **short, guerrilla-style group sessions**. They keep the two rules for social and mobile evaluation:
+1. **Several people use it at once:** every session has 2–3 participants on different devices.
+2. **As close to the real context as we can:** the Dock sits on a table set up as a kitchen bench, and the Cart Unit is used beside a small "shelf" of real products with a fixed budget.
 
-1. **evaluate social interaction** with several people using the system at once, and
-2. **evaluate in context**: a real kitchen bench, and a real store or the closest simulation we can build.
+The evaluation is **formative**: we want to learn what works, what confuses people and what to change, not prove the design works. No SUS or TAM.
 
-We do not use SUS or TAM; they can't tell us whether the social design objective was met.
+## Who and where
 
-## 1. Design objective → questions → evidence
+- **Who:** UQ students who **live with other people** (share house, student accommodation, or flatmates). One screening question: *"Do you live with housemates or flatmates?"* Studio peers count only if they do, and we note it.
+- **Where:** our lab and studio, campus (library, food court), and our own housemates and friends.
+- **How many:** **4–6 groups of 2–3 people** (about 10–15 participants), Thu 15 – Sun 18 Oct.
+- **Team roles:** one facilitator and one note-taker per session. Everyone runs at least one.
 
-**Design objective.** NutriCart Hub *facilitates* (Olsson et al., 2020) the coordination a share house already does around groceries, from the kitchen to the aisle, without adding effort or judgement.
+## The session (10–15 minutes)
 
-| Evaluation question | Evidence we'll collect |
-|---|---|
-| Q1. Do housemates **understand** what it's for without explanation? | First-use comprehension answer; time to first meaningful action; confusion moments |
-| Q2. Does it **replace** texting and remembering, or add to them? | Requests left vs messages sent outside; "what would you normally do?" answers |
-| Q3. **Who does the work, and who benefits?** (Grudin) | Items added per person; who never touches the Dock; reactions in the group interview |
-| Q4. Does the shopper **notice and use** household input at the right moment? | Requests bought as asked; Ask home used; answer time; questions asked by text instead |
-| Q5. Is the in-store part **fast enough** for a normal shop? | Interactions per item; items ticked; compare uses; anything that slowed them |
-| Q6. Does **Split Shop** coordinate two shoppers? | Duplicate or missed items; talk between the pair about who gets what |
-| Q7. Is the **cost split** fair, useful or awkward? | Reactions at re-dock; would they settle using it? |
-| Q8. Does anything feel like **judgement or surveillance**? | Spontaneous comments; answers to "was there anything you didn't want others to see?" |
+**Set-up:** Testing mode → *Reset to demo house*. Dock on the "bench" (laptop or tablet), two phones on `/cart`, about 10 real products with prices on a table.
 
-## 2. Sessions
-
-| Study | Who and where | Length | Moments tested |
+| Min | Step | What the facilitator says or does | Group moment |
 |---|---|---|---|
-| **A. Household** ×2–3 | 2–3 housemates from the same share house, at **their own kitchen bench** with the Dock set up | 35–40 min | G1, G2, G3, G4 (one housemate leaves with the Cart Unit), G6 |
-| **B. Shop pair** ×2 | 2 housemates or friends shopping together. **In store** (Woolworths Toowong or IGA, after asking the duty manager) or a **simulated shop** in the studio with ~20 real products, shelf tags and a fixed **$25 budget** | 25–30 min | G3, G4 (a teammate answers at the Dock), G5, G6 |
+| 1 | Consent | Read the consent line (below) | – |
+| 1 | First look | Point at the Dock: *"What do you think this is for?"* Note the answer; don't explain. | – |
+| 3 | Plan | *"You live together. Plan this week's shop using this."* (vote on a meal, add a request) | G1, G2 |
+| 4 | Shop | Person B takes a phone: *"You're going to the shops. Start the shop and get 3 things within $25."* Partway through: *"They're out of yoghurt. What do you do?"* (Ask home is there if they find it.) Person A stays at the Dock. | G3, G4 |
+| 1 | Split (if 3 people) | Person C joins on the second phone and splits the list | G5 |
+| 1 | Back home | B taps Finish; everyone looks at the summary | G6 |
+| 3 | Questions | The 4 questions below | – |
 
-**Before each session:** Dock → *Testing mode* → **Reset to demo house** (or *empty house* for Study A, so they build their own list). Rename tokens to the participants' aliases. Charge all devices. Use a hotspot.
+**4 questions** (ask exactly these, in this order):
+1. What was the most useful part? What would you ignore?
+2. When would you just text your housemate instead?
+3. How did the cost split feel: fair, useful or awkward?
+4. Was there anything you wouldn't want your housemates to see?
 
-**Every team member leads or co-runs at least one session**, so everyone can speak from experience at the tradeshow.
+## What we record (one sheet per group)
 
-### Study A script (household)
-1. **Consent** (section 4). 2 min
-2. **First look.** Point at the Dock, say nothing else: *"What do you think this is for?"* Note what they say and touch first. 3 min
-3. **Plan together (G1).** *"Plan this week's shop the way you normally would, using this."* No instructions unless they're stuck for 60 s. 8 min
-4. **Leave a request (G2).** Ask one housemate to add something they want, then step away. 2 min
-5. **Go shopping (G3, G4).** One housemate takes a Cart Unit and walks to a nearby shop (or a "store" corner with products). They start the shop and may ask one question home. Those at home carry on as normal. 10 min
-6. **Re-dock (G6).** Shopper finishes; household looks at the summary together. 3 min
-7. **Group interview** (section 5). 10 min
+| Group | Date | Facilitator | Who (codes) | Lives with others? | Said it's for… | Got stuck at… | Used Ask home? | Texted instead? | Cost split reaction | Best quote | Change to make |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| G-01 | | | G01-P1, G01-P2 | | | | | | | | |
 
-### Study B script (shop pair)
-1. Consent; first look at the Cart Unit. 3 min
-2. Partner A starts the shop; Partner B joins (G5). *"Split it however you like."* 2 min
-3. Shop the list within $25. One pre-planned moment: an item is "out of stock", so what do they do? (G4 is available; a teammate answers at the Dock). 12 min
-4. Finish (G6) and **retrospective interview** using the Cart Unit summary as a prompt. 10 min
+- **Codes only** (G01-P1…). No names, faces or recordings. Photos of hands and screens only, with permission.
+- Within the day, add each group to the [evidence register](User-Research#6-evidence-register).
 
-## 3. What we record
+**Consent line:** *"We're DECO3500 students testing a prototype, not testing you. It takes about 10 minutes. We'll take notes and maybe a photo of hands and screens, no faces or names. You can stop any time. OK?"*
 
-### Observation sheet (one per session)
+## Analysis (Sun 18 – Mon 19)
 
-| Time | Who (alias) | Device | Action or quote | Moment (G1–G6) | Confusion? | Workaround (texted, asked aloud, ignored) |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+1. Put every "got stuck", "texted instead" and quote on sticky notes, and group them.
+2. For each group of notes: what happened, how often (e.g. 3 of 5 groups), one quote, and the change it leads to.
+3. Make only the changes the evidence supports (v4), then update the poster panel, pitch and Design Process Overview section 6.
 
-### Counts (fill in after the session)
-- Items added at the Dock, **per person**:
-- Requests with notes:
-- Meal votes / *Add what's missing* used:
-- Questions asked from store / answered / time to answer:
-- Messages sent **outside** NutriCart:
-- Items ticked / off-list items / compares used:
-- Split Shop: duplicates or missed items:
-- Interactions that took more than ~5 s:
+## Tradeshow as a second round
 
-Screen state at the end of the session: screenshot the Dock summary.
+At the tradeshow, visitors try the same 5-minute flow in pairs. The note-taker uses the same sheet, and the findings go into section 7 of the Design Process Overview.
 
-## 4. Consent and data handling
+## Limitations
 
-Say this, or have them read it:
+Short sessions show first use, not how a household behaves over weeks (Grudin). The setting is staged rather than a real kitchen and store. Participants are students we could reach quickly. We report these patterns as formative findings, not proof.
 
-> We're DECO3500 students testing a prototype, not testing you. It's about 30–40 minutes. We'll take notes and, only if you agree, photos of hands and screens (no faces) and an audio recording. Use any name you like on the device; please don't enter anything private. You can skip anything or stop at any time without giving a reason. Notes are stored privately by our team, quotes are anonymised, and recordings are deleted at the end of semester. Is that OK?
+## Results
 
-- Record agreement (yes/no for notes, photos, audio) on the sheet. **No names on any public page.** Use IDs H1-P1, H1-P2… and S1-P1….
-- In store: ask the duty manager first; don't film other shoppers or staff; if refused, use the simulated shop.
-- The prototype database only holds aliases and list items. Reset it after each session.
+| Group | Date | Setting | Key observations | Changes made |
+|---|---|---|---|---|
+| G-01 | | | | |
+| G-02 | | | | |
+| G-03 | | | | |
+| G-04 | | | | |
 
-## 5. Group interview prompts
-
-Neutral, about what happened, not "do you like it":
-- What did you use first? What did you ignore?
-- When did you (or would you) text instead? Why?
-- Who did most of the adding? Is that how it normally goes in your house?
-- Shopper: was anything from home useful at the moment you needed it? Anything that interrupted you?
-- How did the cost split feel? Would you actually settle up from it?
-- Was there anything you didn't want your housemates to see?
-- What would you remove? What would you normally do instead of using this?
-
-## 6. Analysis
-
-1. Within 24 hours: tidy notes, fill in the counts, add each participant to the [evidence register](User-Research#6-evidence-register-template).
-2. As a team, affinity-sort observations under Q1–Q8.
-3. For each question, note **what happened, how often, why we think so** (excerpt), and **what we'll change** (v3 → v4).
-4. Check findings against our earlier criteria: low effort, price support, user-defined priorities, right moment, fits list behaviour, social without performance, household coordination, reduces uncertainty, no overload.
-
-## 7. Results
-
-| Session | Date | Run by | Participants | Setting | Key observations | Changes made |
-|---|---|---|---|---|---|---|
-| H1 | | | | | | |
-| H2 | | | | | | |
-| S1 | | | | | | |
-| S2 | | | | | | |
-| Tradeshow | Wk 12 | all | visitors in pairs | studio | | |
-
-**Summary of findings:** `[write after analysis: 5–8 bullet points, each with evidence]`
+**Summary of findings:** `[after analysis: 4–6 bullet points, each with evidence]`
