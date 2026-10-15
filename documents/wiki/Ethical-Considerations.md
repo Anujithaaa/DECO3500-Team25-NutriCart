@@ -1,6 +1,6 @@
 # Ethical Considerations
 
-We assessed NutriCart Hub with the **Ethical Disclaimer** from the Ethics for Designers toolkit (Gispen, 2017). The disclaimer asks a team to describe the situation, list everyone affected, state its intentions, imagine how the design could cause unethical outcomes for each stakeholder, and decide openly which of those outcomes the team takes responsibility for. Following the course's emphasis on ethical design thinking throughout a project (Loke & Matthews, 2020), this is a **living page**: we revisit it at each milestone (section 6).
+We assessed NutriCart Hub with the **Ethical Disclaimer** from the Ethics for Designers toolkit (Gispen, 2017). We used the Ethical Disclaimer (Gispen, 2017) because it asks designers to state who is affected, what could go wrong and what they take responsibility for, which suits a tool that sits inside a shared home.The disclaimer asks a team to describe the situation, list everyone affected, state its intentions, imagine how the design could cause unethical outcomes for each stakeholder, and decide openly which of those outcomes the team takes responsibility for. Following the course's emphasis on ethical design thinking throughout a project (Loke & Matthews, 2020), this is a **living page**: we revisit it at each milestone (section 6).
 
 ## 1. The current situation
 
@@ -51,7 +51,7 @@ NutriCart Hub is for **student share houses**. It is used **at the kitchen bench
 | Wk 7–8 | Prototype interviews (v1, v2) | Evidence for E1 (pay) and E2 (body image) → group goals made optional; later left out of v3 |
 | Wk 8 | Shadowing attempt | E10: method changed |
 | 13 Oct | v3 build | E3, E8, E9, E11 added; first full disclaimer |
-| 14 Oct | Research archive | Full transcripts and two records with names had been uploaded to the public repo, against what participants were told. Repo made private, files removed from history, all sessions re-published as de-identified records (E10). Lesson: de-identify before anything leaves the private folder. |
+| 14 Oct | Research archive | Transcripts removed from the repo and its history; all sessions re-published as de-identified records; raw files kept privately on OneDrive (E10). Lesson: de-identify before anything leaves the private folder. |
 | `[date]` | R4 evaluation | `[update E1, E3, E4, E5 with evidence]` |
 | `[date]` | Tradeshow | `[visitor reactions]` |
 
