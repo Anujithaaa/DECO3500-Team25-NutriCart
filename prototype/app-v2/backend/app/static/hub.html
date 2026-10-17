@@ -1,0 +1,3536 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    NutriCart Home Dock
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="/static/styles.css?v=6"
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+  >
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     START / IDLE SCREEN
+===================================================== -->
+
+<section
+  id="starterScreen"
+  class="starter-screen"
+>
+
+  <button
+    class="starter-brand"
+    onclick="enterHub('home')"
+  >
+
+    <span>
+      NutriCart Hub
+    </span>
+
+    <small>
+      Home Dock
+    </small>
+
+  </button>
+
+
+  <div class="starter-actions">
+
+    <button
+      onclick="enterHub('meals')"
+    >
+
+      <span>♡</span>
+
+      Meals
+
+    </button>
+
+
+    <button
+      onclick="enterHub('list')"
+    >
+
+      <span>☷</span>
+
+      Shopping List
+
+    </button>
+
+
+    <button
+      onclick="enterHub('household')"
+    >
+
+      <span>♙</span>
+
+      Household
+
+    </button>
+
+
+    <button
+      class="start"
+      onclick="enterHub('ready')"
+    >
+
+      <span>▷</span>
+
+      Start Shopping
+
+    </button>
+
+  </div>
+
+
+  <p class="starter-hint">
+
+    Tap NutriCart Hub to open Household Home
+
+  </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN HOME DOCK
+===================================================== -->
+
+<div
+  id="hubShell"
+  class="device-shell is-hidden"
+>
+
+
+  <!-- HEADER -->
+
+  <header class="device-header">
+
+    <button
+      class="brand-button"
+      onclick="showView('home')"
+    >
+
+      <strong>
+        NutriCart Hub
+      </strong>
+
+      <span>
+        Home Dock
+      </span>
+
+    </button>
+
+     <!-- NAVIGATION -->
+
+  <nav class="dock-nav">
+
+    <button
+      data-view="home"
+      class="active"
+    >
+      Home
+    </button>
+
+    <button data-view="meals">
+      Meals
+    </button>
+
+    <button data-view="list">
+      Shopping List
+    </button>
+
+    <button data-view="household">
+      Household
+    </button>
+
+    <button data-view="products">
+      Products
+    </button>
+
+  </nav>
+
+
+    <div class="status">
+
+      <span class="dot"></span>
+
+      <span id="serverStatus">
+        Backend online
+      </span>
+
+    </div>
+
+
+  </header>
+
+
+
+ 
+
+
+
+  <main>
+
+
+    <!-- =================================================
+         HOUSEHOLD HOME
+    ================================================== -->
+
+    <section
+      class="view active"
+      id="view-home"
+    >
+
+      <div class="home3">
+
+        <div class="home3-main">
+
+          <!-- budget -->
+          <div class="h3-budget">
+            <span class="h3-label">Budget</span>
+            <div class="h3-budget-edit">
+              <span>$</span>
+              <input
+                id="homeBudget"
+                type="number"
+                min="0"
+                step="1"
+                value="60"
+                aria-label="Budget"
+              >
+              <button onclick="saveBudget('homeBudget')">Save</button>
+            </div>
+          </div>
+
+          <!-- start shopping -->
+          <button
+            class="h3-start"
+            onclick="showView('ready')"
+          >
+            <span class="h3-start-icon" aria-hidden="true"></span>
+            <span>
+              <strong>Start shopping</strong>
+              <small id="homeStartSub">Take the Cart Unit with you</small>
+            </span>
+            <span class="h3-start-go">Start →</span>
+          </button>
+
+          <!-- tonight's recipe -->
+          <button
+            class="h3-meal"
+            onclick="showView('meals')"
+          >
+            <span class="h3-label">Tonight's recipe</span>
+            <strong id="homeMealName">No meal selected</strong>
+            <small id="homeMealPerson">Choose one from Meal Ideas</small>
+          </button>
+
+          <!-- already at home -->
+          <div class="h3-athome">
+            <div class="h3-head">
+              <span class="h3-title">Already at home</span>
+              <button class="h3-link" onclick="showView('household')">Manage</button>
+            </div>
+            <div id="homeAtHome" class="h3-athome-grid"></div>
+          </div>
+
+        </div>
+
+        <!-- shared list -->
+        <aside class="h3-list">
+          <div class="h3-head">
+            <span class="h3-title">Shared list</span>
+            <span id="neededCount" class="h3-count">0 items</span>
+          </div>
+          <div id="homeList"></div>
+          <div class="h3-list-actions">
+            <div class="h3-quick">
+              <input
+                id="homeQuickAdd"
+                type="text"
+                placeholder="Add something…"
+                aria-label="Add to the shared list"
+                onkeydown="if (event.key === 'Enter') quickAddFromHome()"
+              >
+              <button onclick="quickAddFromHome()">Add</button>
+            </div>
+            <button class="h3-open" onclick="showView('list')">Open list</button>
+          </div>
+        </aside>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MEALS
+    ================================================== -->
+
+    <section
+      class="view"
+      id="view-meals"
+    >
+
+      <div class="screen-title split-title">
+
+        <span>
+          Meal Ideas
+        </span>
+
+        <button
+          class="text-button"
+          onclick="openMealEditor()"
+        >
+          + Add
+        </button>
+
+      </div>
+
+
+
+      <div
+        id="mealEditor"
+        class="editor-panel is-hidden"
+      >
+
+        <div class="editor-title">
+
+          <strong id="mealEditorTitle">
+            Add meal
+          </strong>
+
+          <button
+            class="text-button"
+            onclick="closeMealEditor()"
+          >
+            Close
+          </button>
+
+        </div>
+
+
+        <div class="meal-form-grid">
+
+          <input
+            id="mealName"
+            placeholder="Meal name"
+          >
+
+          <input
+            id="mealBy"
+            placeholder="Suggested by"
+            value="James"
+          >
+
+          <input
+            id="mealCost"
+            type="number"
+            step="0.01"
+            placeholder="Approx. cost"
+          >
+
+          <input
+            id="mealMinutes"
+            type="number"
+            step="1"
+            placeholder="Prep time"
+          >
+
+          <input
+            id="mealServings"
+            type="number"
+            step="1"
+            placeholder="Servings"
+          >
+
+          <textarea
+            id="mealIngredients"
+            placeholder="Ingredients, one per line"
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-actions">
+
+          <button
+            onclick="closeMealEditor()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="primary"
+            onclick="saveMeal()"
+          >
+            Save meal
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div
+        id="mealList"
+        class="meal-list"
+      ></div>
+
+
+
+      <div
+        id="selectedRecipe"
+        class="recipe-card"
+      ></div>
+
+      <div
+        id="recipeModal"
+        class="modal-overlay is-hidden"
+        onclick="if (event.target === this) closeRecipe()"
+      >
+        <div
+          id="recipePop"
+          class="recipe-pop"
+          role="dialog"
+          aria-label="Recipe"
+        ></div>
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SHOPPING LIST
+    ================================================== -->
+
+    <section
+      class="view"
+      id="view-list"
+    >
+
+      <div class="l3">
+
+        <div class="l3-main">
+
+          <div class="x3-head">
+            <h1>Shared shopping list</h1>
+            <span id="listCountLabel" class="x3-count">0 items</span>
+          </div>
+
+          <div class="l3-add">
+            <label class="x3-field l3-add-name">
+              Add an item
+              <input
+                id="itemName"
+                placeholder="e.g. Oat milk"
+                onkeydown="if (event.key === 'Enter') addItem.click()"
+              >
+            </label>
+            <label class="x3-field l3-add-by">
+              Added by
+              <input id="addedBy" value="James">
+            </label>
+            <label class="x3-field l3-add-qty">
+              Qty
+              <input id="itemQuantity" type="number" min="1" value="1">
+            </label>
+            <button id="addItem" class="x3-dark">Add</button>
+          </div>
+
+          <div id="fullList" class="l3-rows"></div>
+
+        </div>
+
+        <aside class="l3-side">
+
+          <div class="l3-block">
+            <span class="h3-label">Budget</span>
+            <strong id="listBudget" class="l3-big">$60</strong>
+            <span id="listLeft" class="l3-sub">0 items still to buy</span>
+          </div>
+
+          <div class="l3-block">
+            <span class="h3-label">Added by</span>
+            <div id="listByPerson" class="l3-people"></div>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         HOUSEHOLD
+    ================================================== -->
+
+    <section
+      class="view"
+      id="view-household"
+    >
+
+      <div class="hh3">
+
+        <!-- HOUSEMATE REQUESTS -->
+        <div class="hh3-col">
+
+          <div class="x3-head">
+            <h1>Housemate requests</h1>
+            <span id="requestCount" class="x3-count">0</span>
+          </div>
+
+          <div class="x3-addrow">
+            <input
+              id="newRequestPerson"
+              class="hh3-person"
+              placeholder="Person"
+              value="James"
+              aria-label="From"
+            >
+            <input
+              id="newRequestMessage"
+              placeholder="Request or note"
+              aria-label="Request or note"
+              onkeydown="if (event.key === 'Enter') addRequest()"
+            >
+            <button class="x3-dark" onclick="addRequest()">Add</button>
+          </div>
+
+          <div id="requestsList" class="hh3-requests"></div>
+
+        </div>
+
+        <!-- ALREADY AT HOME -->
+        <div class="hh3-col">
+
+          <div class="x3-head">
+            <h1>Already at home</h1>
+            <span id="inventoryCount" class="x3-count">0</span>
+          </div>
+
+          <div class="x3-addrow">
+            <input id="newInventoryName" placeholder="Item" aria-label="Item">
+            <input id="newInventoryQty" placeholder="Amount" aria-label="Amount">
+            <input id="newInventoryNote" placeholder="Note" aria-label="Note">
+            <input id="newInventoryBy" class="hh3-person" placeholder="Who" value="James" aria-label="Updated by">
+            <button class="x3-dark" onclick="addInventory()">Add</button>
+          </div>
+
+          <div id="inventoryList" class="l3-rows"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         READY TO SHOP
+    ================================================== -->
+
+    <section
+      class="view"
+      id="view-ready"
+    >
+
+      <div class="screen-title">
+        Ready to Shop
+      </div>
+
+
+      <div class="ready-card">
+
+
+        <div class="ready-grid">
+
+
+          <div>
+
+            <span>
+              Items
+            </span>
+
+            <strong id="readyCount">
+              0
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Budget
+            </span>
+
+            <strong id="readyBudget">
+              $60.00
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Meal
+            </span>
+
+            <strong id="readyMeal">
+              None
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Requests
+            </span>
+
+            <strong id="readyRequests">
+              0
+            </strong>
+
+          </div>
+
+
+        </div>
+
+
+
+        <label
+          class="field-label"
+          for="readyBudgetInput"
+        >
+          Change budget before leaving
+        </label>
+
+
+        <div class="inline-edit ready-budget-edit">
+
+          <span>$</span>
+
+          <input
+            id="readyBudgetInput"
+            type="number"
+            min="0"
+            step="1"
+            value="60"
+          >
+
+          <button
+            onclick="saveBudget('readyBudgetInput')"
+          >
+            Save
+          </button>
+
+        </div>
+
+
+
+        <div class="ready-actions">
+
+          <button
+            onclick="showView('home')"
+          >
+            Back
+          </button>
+
+
+          <button
+            id="startShopButton"
+            class="primary"
+            onclick="startShop()"
+          >
+
+            Detach Cart Unit / Start Shop
+
+          </button>
+
+        </div>
+
+
+        <p
+          id="shoppingStatusText"
+          class="muted centered"
+        ></p>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PRODUCTS
+    ================================================== -->
+
+    <section
+      class="view"
+      id="view-products"
+    >
+
+      <div class="p3">
+
+        <aside class="p3-form">
+
+          <h1 id="productFormTitle">Add a product</h1>
+
+          <label class="x3-field">
+            Barcode / EAN
+            <input id="pBarcode" class="x3-mono">
+          </label>
+
+          <label class="x3-field">
+            Product name
+            <input id="pName">
+          </label>
+
+          <div class="p3-grid">
+            <label class="x3-field">Brand<input id="pBrand"></label>
+            <label class="x3-field">Size<input id="pQuantity" placeholder="1 kg"></label>
+            <label class="x3-field" title="Products in the same category show up together in Compare on the Cart Unit">Category<input id="pCategory" placeholder="yoghurt"></label>
+            <label class="x3-field">Woolworths price<input id="pPrice" type="number" step="0.01" placeholder="$"></label>
+            <label class="x3-field">Protein /100g<input id="pProtein" type="number" step="0.1"></label>
+            <label class="x3-field">Sugar /100g<input id="pSugar" type="number" step="0.1"></label>
+          </div>
+
+          <div class="p3-actions">
+            <button onclick="clearProductForm()">Clear</button>
+            <button id="saveProduct" class="primary">Save product</button>
+          </div>
+
+        </aside>
+
+        <div class="p3-lib">
+
+          <div class="p3-head">
+            <h1>Product library</h1>
+            <div class="p3-tools">
+              <input
+                id="productSearch"
+                placeholder="Search name or barcode"
+                aria-label="Search products"
+                oninput="renderProducts()"
+              >
+              <button id="refreshProductsBtn">Refresh</button>
+            </div>
+          </div>
+
+          <div id="productChips" class="p3-chips"></div>
+
+          <div id="productLibrary" class="p3-rows"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>
+      Home Dock stays in the kitchen
+    </span>
+
+
+    <button
+      class="footer-home"
+      onclick="showStarter()"
+    >
+      Return to start screen
+    </button>
+
+
+    <span id="cartActivity">
+      Waiting for Cart Unit activity
+    </span>
+
+  </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     NUTRICART CONFIRMATION BOX
+===================================================== -->
+
+<div
+  id="confirmModal"
+  class="modal-overlay is-hidden"
+  onclick="modalBackgroundClick(event)"
+>
+
+  <div
+    class="confirm-box"
+    onclick="event.stopPropagation()"
+  >
+
+    <div
+      id="confirmModalTitle"
+      class="confirm-title"
+    >
+      Are you sure?
+    </div>
+
+
+    <p id="confirmModalText">
+
+      Are you sure you want to remove this item?
+
+    </p>
+
+
+    <div class="confirm-actions">
+
+      <button
+        onclick="closeConfirmModal()"
+      >
+        Cancel
+      </button>
+
+
+      <button
+        id="confirmModalButton"
+        class="confirm-delete"
+        onclick="runConfirmAction()"
+      >
+        Remove
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script src="/static/common.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   GLOBAL STATE
+===================================================== */
+
+const IDLE_MS =
+  60 * 1000;
+
+
+let idleTimer =
+  null;
+
+
+let editingMealId =
+  null;
+
+
+let pendingConfirmAction =
+  null;
+
+
+let stateCache = {
+
+  shopping_items: [],
+
+  recent_scans: [],
+
+  settings: {},
+
+  meals: [],
+
+  selected_meal: null,
+
+  household_requests: [],
+
+  inventory: []
+
+};
+
+
+let productsCache =
+  [];
+
+
+let editingListId = null;
+
+let editingRequestId = null;
+
+let editingInventoryId = null;
+
+let productFilter = 'all';
+
+
+
+/* =====================================================
+   CUSTOM CONFIRMATION BOX
+===================================================== */
+
+function requestConfirm(
+  title,
+  message,
+  action,
+  buttonText = 'Remove'
+) {
+
+  pendingConfirmAction =
+    action;
+
+
+  confirmModalTitle
+    .textContent =
+      title;
+
+
+  confirmModalText
+    .textContent =
+      message;
+
+
+  confirmModalButton
+    .textContent =
+      buttonText;
+
+
+  confirmModal
+    .classList
+    .remove(
+      'is-hidden'
+    );
+
+
+  resetIdleTimer();
+
+}
+
+
+
+function closeConfirmModal() {
+
+  pendingConfirmAction =
+    null;
+
+
+  confirmModal
+    .classList
+    .add(
+      'is-hidden'
+    );
+
+}
+
+
+
+async function runConfirmAction() {
+
+  if (
+    !pendingConfirmAction
+  ) {
+
+    return;
+
+  }
+
+
+  const action =
+    pendingConfirmAction;
+
+
+  pendingConfirmAction =
+    null;
+
+
+  confirmModalButton.disabled =
+    true;
+
+
+  confirmModalButton.textContent =
+    'Removing...';
+
+
+  try {
+
+    await action();
+
+  }
+
+  finally {
+
+    confirmModal
+      .classList
+      .add(
+        'is-hidden'
+      );
+
+
+    confirmModalButton.disabled =
+      false;
+
+
+    confirmModalButton.textContent =
+      'Remove';
+
+  }
+
+}
+
+
+
+function modalBackgroundClick(
+  event
+) {
+
+  if (
+    event.target ===
+    confirmModal
+  ) {
+
+    closeConfirmModal();
+
+  }
+
+}
+
+
+
+/* =====================================================
+   START / IDLE SCREEN
+===================================================== */
+
+function enterHub(
+  view = 'home'
+) {
+
+  starterScreen
+    .classList
+    .add(
+      'is-hidden'
+    );
+
+
+  hubShell
+    .classList
+    .remove(
+      'is-hidden'
+    );
+
+
+  showView(
+    view
+  );
+
+
+  resetIdleTimer();
+
+}
+
+
+
+function showStarter() {
+
+  closeConfirmModal();
+
+
+  closeMealEditor();
+
+
+  hubShell
+    .classList
+    .add(
+      'is-hidden'
+    );
+
+
+  starterScreen
+    .classList
+    .remove(
+      'is-hidden'
+    );
+
+
+  clearTimeout(
+    idleTimer
+  );
+
+
+  idleTimer =
+    null;
+
+}
+
+
+
+function resetIdleTimer() {
+
+  if (
+    hubShell
+      .classList
+      .contains(
+        'is-hidden'
+      )
+  ) {
+
+    return;
+
+  }
+
+
+  clearTimeout(
+    idleTimer
+  );
+
+
+  idleTimer =
+    setTimeout(
+      showStarter,
+      IDLE_MS
+    );
+
+}
+
+
+
+[
+  'pointerdown',
+  'keydown',
+  'touchstart',
+  'wheel',
+  'input',
+  'change'
+]
+.forEach(
+  eventName => {
+
+    document.addEventListener(
+      eventName,
+      resetIdleTimer,
+      {
+        passive: true
+      }
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showView(
+  name
+) {
+
+  document
+    .querySelectorAll(
+      '.view'
+    )
+    .forEach(
+      view => {
+
+        view
+          .classList
+          .remove(
+            'active'
+          );
+
+      }
+    );
+
+
+  const next =
+    document
+      .querySelector(
+        `#view-${name}`
+      );
+
+
+  if (next) {
+
+    next
+      .classList
+      .add(
+        'active'
+      );
+
+  }
+
+
+  document
+    .querySelectorAll(
+      '.dock-nav button'
+    )
+    .forEach(
+      button => {
+
+        button
+          .classList
+          .toggle(
+            'active',
+            button.dataset.view ===
+            name
+          );
+
+      }
+    );
+
+
+  resetIdleTimer();
+
+}
+
+
+
+document
+  .querySelectorAll(
+    '.dock-nav button'
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () =>
+          showView(
+            button.dataset.view
+          );
+
+    }
+  );
+
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+function setInputIfIdle(
+  id,
+  value
+) {
+
+  const element =
+    document
+      .getElementById(
+        id
+      );
+
+
+  if (
+    document.activeElement !==
+    element
+  ) {
+
+    element.value =
+      value ?? '';
+
+  }
+
+}
+
+
+
+function currentBudget() {
+
+  return Number(
+    stateCache
+      .settings
+      ?.budget
+      ?? 60
+  );
+
+}
+
+
+
+async function saveBudget(
+  inputId
+) {
+
+  const value =
+    Number(
+      document
+        .getElementById(
+          inputId
+        )
+        .value
+    );
+
+
+  if (
+    !Number.isFinite(
+      value
+    )
+    ||
+    value < 0
+  ) {
+
+    return alert(
+      'Enter a valid budget.'
+    );
+
+  }
+
+
+  await api(
+    '/api/settings',
+    {
+
+      method:
+        'PATCH',
+
+      body:
+        JSON.stringify(
+          {
+            budget:
+              value
+          }
+        )
+
+    }
+  );
+
+
+  await refreshState();
+
+}
+
+
+
+async function refreshState() {
+
+  try {
+
+    stateCache =
+      await api(
+        '/api/state'
+      );
+
+
+    serverStatus.textContent =
+      'Backend online';
+
+
+    const needed =
+      stateCache
+        .shopping_items
+        .filter(
+          item =>
+            item.status ===
+            'needed'
+        );
+
+
+    const meal =
+      stateCache
+        .selected_meal;
+
+
+    const budget =
+      currentBudget();
+
+
+    neededCount.textContent =
+      `${needed.length} item${
+        needed.length === 1
+          ? ''
+          : 's'
+      }`;
+
+
+    listCountLabel.textContent =
+      `${stateCache.shopping_items.length} item${
+        stateCache.shopping_items.length === 1
+          ? ''
+          : 's'
+      }`;
+
+
+    readyCount.textContent =
+      needed.length;
+
+
+    requestCount.textContent =
+      stateCache
+        .household_requests
+        .length;
+
+
+    inventoryCount.textContent =
+      stateCache
+        .inventory
+        .length;
+
+
+    readyRequests.textContent =
+      stateCache
+        .household_requests
+        .length;
+
+
+    readyBudget.textContent =
+      money(
+        budget
+      );
+
+
+    readyMeal.textContent =
+      meal?.name
+      || 'None';
+
+
+    homeMealName.textContent =
+      meal?.name
+      || 'No meal selected';
+
+
+    homeMealPerson.textContent =
+      meal
+
+      ? `Suggested by ${
+          meal.suggested_by
+          || 'Household'
+        }`
+
+      : 'Choose one from Meal Ideas';
+
+
+    setInputIfIdle(
+      'homeBudget',
+      budget
+    );
+
+
+    setInputIfIdle(
+      'readyBudgetInput',
+      budget
+    );
+
+
+    shoppingStatusText.textContent =
+      stateCache
+        .settings
+        ?.shopping_active
+
+      ? 'Shopping trip is currently active.'
+
+      : '';
+
+
+    startShopButton.textContent =
+      stateCache
+        .settings
+        ?.shopping_active
+
+      ? 'End current shop'
+
+      : 'Detach Cart Unit / Start Shop';
+
+
+    renderShoppingList();
+
+    renderMeals();
+
+    renderSelectedRecipe();
+
+    renderRequests();
+
+    renderInventory();
+
+    renderHome();
+
+  }
+
+  catch (error) {
+
+    serverStatus.textContent =
+      'Backend error';
+
+  }
+
+}
+
+
+
+/* =====================================================
+   SHOPPING LIST
+===================================================== */
+
+function renderShoppingList() {
+
+  const items = stateCache.shopping_items || [];
+  const needed = items.filter(item => item.status === 'needed');
+
+  // side panel
+  listBudget.textContent = money(currentBudget()).replace(/\.00$/, '');
+  listLeft.textContent =
+    `${needed.length} item${needed.length === 1 ? '' : 's'} still to buy`;
+
+  const counts = {};
+  items.forEach(item => {
+    const who = item.added_by || 'Household';
+    counts[who] = (counts[who] || 0) + 1;
+  });
+
+  const people = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+
+  listByPerson.innerHTML = people.length
+    ? people.map(who => `
+        <div class="l3-person">
+          ${personTag(who)}
+          <span>${counts[who]} item${counts[who] === 1 ? '' : 's'}</span>
+        </div>
+      `).join('')
+    : '<div class="h3-empty">No one yet.</div>';
+
+  // rows
+  if (!items.length) {
+    fullList.innerHTML =
+      '<div class="h3-empty">Nothing on the list yet. Add something above.</div>';
+    return;
+  }
+
+  // needed first, bought at the bottom
+  const ordered = [...needed, ...items.filter(item => item.status !== 'needed')];
+
+  fullList.innerHTML = ordered.map(item => {
+
+    if (item.id === editingListId) {
+      return `
+        <div class="x3-editrow">
+          <input id="list-name-${item.id}" value="${escapeHtml(item.name)}" aria-label="Item name"
+            onkeydown="if (event.key === 'Enter') saveListItem(${item.id}); if (event.key === 'Escape') cancelListEdit()">
+          <input id="list-qty-${item.id}" class="x3-qty" type="number" min="1" value="${item.quantity || 1}" aria-label="Quantity">
+          <input id="list-owner-${item.id}" class="x3-who" value="${escapeHtml(item.added_by || '')}" aria-label="Added by">
+          <button class="danger" onclick="deleteListItem(${item.id})">Delete</button>
+          <button onclick="cancelListEdit()">Cancel</button>
+          <button class="primary" onclick="saveListItem(${item.id})">Save</button>
+        </div>
+      `;
+    }
+
+    const bought = item.status === 'bought';
+
+    return `
+      <div class="l3-row ${bought ? 'is-bought' : ''}">
+        <button
+          class="l3-check ${bought ? 'done' : ''}"
+          aria-label="${bought ? 'Mark as needed' : 'Mark as bought'}"
+          onclick="toggleItem(${item.id}, '${item.status}')"
+        >${bought ? '✓' : ''}</button>
+        <span class="l3-name">${escapeHtml(item.name)}</span>
+        <span class="l3-qty">× ${item.quantity || 1}</span>
+        ${personTag(item.added_by)}
+        <button class="x3-edit" onclick="editListItem(${item.id})">Edit</button>
+      </div>
+    `;
+  }).join('');
+
+}
+
+
+function editListItem(id) {
+  editingListId = id;
+  renderShoppingList();
+  const input = document.getElementById(`list-name-${id}`);
+  if (input) { input.focus(); input.select(); }
+}
+
+
+function cancelListEdit() {
+  editingListId = null;
+  renderShoppingList();
+}
+
+
+
+async function toggleItem(
+  id,
+  status
+) {
+
+  await api(
+    `/api/list/${id}`,
+    {
+
+      method:
+        'PATCH',
+
+      body:
+        JSON.stringify(
+          {
+
+            status:
+              status ===
+              'needed'
+
+              ? 'bought'
+
+              : 'needed'
+
+          }
+        )
+
+    }
+  );
+
+
+  refreshState();
+
+}
+
+
+
+async function saveListItem(
+  id
+) {
+
+  const name =
+    document
+      .getElementById(
+        `list-name-${id}`
+      )
+      .value
+      .trim();
+
+
+  const added_by =
+    document
+      .getElementById(
+        `list-owner-${id}`
+      )
+      .value
+      .trim()
+      || 'Household';
+
+
+  const quantity =
+    Math.max(
+      1,
+
+      Number(
+        document
+          .getElementById(
+            `list-qty-${id}`
+          )
+          .value
+      )
+      || 1
+    );
+
+
+  if (!name) {
+
+    return;
+
+  }
+
+
+  await api(
+    `/api/list/${id}`,
+    {
+
+      method:
+        'PATCH',
+
+      body:
+        JSON.stringify(
+          {
+            name,
+            added_by,
+            quantity
+          }
+        )
+
+    }
+  );
+
+
+  editingListId = null;
+
+  refreshState();
+
+}
+
+
+
+function deleteListItem(
+  id
+) {
+
+  const item =
+    stateCache
+      .shopping_items
+      .find(
+        item =>
+          item.id === id
+      );
+
+
+  requestConfirm(
+
+    'Remove item?',
+
+    item
+      ? `Are you sure you want to remove "${item.name}" from the shopping list?`
+      : 'Are you sure you want to remove this item from the shopping list?',
+
+    async () => {
+
+      await api(
+        `/api/list/${id}`,
+        {
+          method:
+            'DELETE'
+        }
+      );
+
+
+      await refreshState();
+
+    }
+
+  );
+
+}
+
+
+
+addItem.onclick =
+  async () => {
+
+    const name =
+      itemName
+        .value
+        .trim();
+
+
+    if (!name) {
+
+      return;
+
+    }
+
+
+    await api(
+      '/api/list',
+      {
+
+        method:
+          'POST',
+
+        body:
+          JSON.stringify(
+            {
+
+              name,
+
+              added_by:
+                addedBy
+                  .value
+                  .trim()
+                || 'Household',
+
+              quantity:
+                Math.max(
+                  1,
+
+                  Number(
+                    itemQuantity
+                      .value
+                  )
+                  || 1
+                )
+
+            }
+          )
+
+      }
+    );
+
+
+    itemName.value =
+      '';
+
+
+    itemQuantity.value =
+      '1';
+
+
+    refreshState();
+
+  };
+
+
+
+/* =====================================================
+   MEALS
+===================================================== */
+
+function renderMeals() {
+
+  if (
+    !stateCache
+      .meals
+      .length
+  ) {
+
+    mealList.innerHTML =
+      '<div class="empty">No meal ideas yet. Add one to get started.</div>';
+
+    return;
+
+  }
+
+
+  mealList.innerHTML =
+    stateCache
+      .meals
+      .map(
+        meal => `
+          <div class="m3-card ${meal.selected ? 'is-tonight' : ''}">
+
+            <div class="m3-top">
+              ${
+                meal.selected
+                  ? '<span class="m3-badge">Tonight</span>'
+                  : '<span></span>'
+              }
+              <span class="m3-icons">
+                <button
+                  class="m3-icon"
+                  aria-label="Edit ${escapeHtml(meal.name)}"
+                  onclick="editMeal(${meal.id})"
+                >Edit</button>
+                <button
+                  class="m3-icon danger"
+                  aria-label="Delete ${escapeHtml(meal.name)}"
+                  onclick="deleteMeal(${meal.id})"
+                >Delete</button>
+              </span>
+            </div>
+
+            <button
+              class="m3-open"
+              onclick="openRecipe(${meal.id})"
+            >
+              <strong>${escapeHtml(meal.name)}</strong>
+              <span>
+                ${escapeHtml(meal.suggested_by || 'Household')}
+                ${meal.cost != null ? ` · ${money(meal.cost)}` : ''}
+                ${meal.prep_minutes ? ` · ${meal.prep_minutes} mins` : ''}
+                ${meal.servings ? ` · serves ${meal.servings}` : ''}
+              </span>
+            </button>
+
+          </div>
+        `
+      )
+      .join('');
+
+
+  if (openRecipeId !== null) {
+    renderRecipePop();
+  }
+
+}
+
+
+
+function openMealEditor(
+  meal = null
+) {
+
+  editingMealId =
+    meal?.id
+    ?? null;
+
+
+  mealEditorTitle.textContent =
+    meal
+    ? 'Edit meal'
+    : 'Add meal';
+
+
+  mealName.value =
+    meal?.name
+    ?? '';
+
+
+  mealBy.value =
+    meal?.suggested_by
+    ?? 'James';
+
+
+  mealCost.value =
+    meal?.cost
+    ?? '';
+
+
+  mealMinutes.value =
+    meal?.prep_minutes
+    ?? '';
+
+
+  mealServings.value =
+    meal?.servings
+    ?? '';
+
+
+  mealIngredients.value =
+    (
+      meal?.ingredients
+      ?? []
+    )
+    .join('\n');
+
+
+  mealEditor
+    .classList
+    .remove(
+      'is-hidden'
+    );
+
+
+  mealEditor
+    .scrollIntoView(
+      {
+
+        behavior:
+          'smooth',
+
+        block:
+          'nearest'
+
+      }
+    );
+
+}
+
+
+
+function closeMealEditor() {
+
+  editingMealId =
+    null;
+
+
+  mealEditor
+    .classList
+    .add(
+      'is-hidden'
+    );
+
+}
+
+
+
+function editMeal(
+  id
+) {
+
+  const meal =
+    stateCache
+      .meals
+      .find(
+        meal =>
+          meal.id === id
+      );
+
+
+  if (meal) {
+
+    openMealEditor(
+      meal
+    );
+
+  }
+
+}
+
+
+
+async function saveMeal() {
+
+  const name =
+    mealName
+      .value
+      .trim();
+
+
+  if (!name) {
+
+    return alert(
+      'Enter a meal name.'
+    );
+
+  }
+
+
+  const payload = {
+
+    name,
+
+    suggested_by:
+      mealBy
+        .value
+        .trim()
+      || 'Household',
+
+    cost:
+      mealCost.value === ''
+
+      ? null
+
+      : Number(
+          mealCost.value
+        ),
+
+    prep_minutes:
+      mealMinutes.value === ''
+
+      ? null
+
+      : Number(
+          mealMinutes.value
+        ),
+
+    servings:
+      mealServings.value === ''
+
+      ? null
+
+      : Number(
+          mealServings.value
+        ),
+
+    ingredients:
+      mealIngredients
+        .value
+        .split(
+          /\n|,/
+        )
+        .map(
+          value =>
+            value.trim()
+        )
+        .filter(
+          Boolean
+        )
+
+  };
+
+
+  if (
+    editingMealId
+  ) {
+
+    await api(
+      `/api/meals/${editingMealId}`,
+      {
+
+        method:
+          'PATCH',
+
+        body:
+          JSON.stringify(
+            payload
+          )
+
+      }
+    );
+
+  }
+
+  else {
+
+    await api(
+      '/api/meals',
+      {
+
+        method:
+          'POST',
+
+        body:
+          JSON.stringify(
+            payload
+          )
+
+      }
+    );
+
+  }
+
+
+  closeMealEditor();
+
+
+  refreshState();
+
+}
+
+
+
+async function selectMeal(
+  id
+) {
+
+  await api(
+    `/api/meals/${id}/select`,
+    {
+      method:
+        'POST'
+    }
+  );
+
+
+  refreshState();
+
+}
+
+
+
+function deleteMeal(
+  id
+) {
+
+  const meal =
+    stateCache
+      .meals
+      .find(
+        meal =>
+          meal.id === id
+      );
+
+
+  requestConfirm(
+
+    'Remove meal?',
+
+    meal
+      ? `Are you sure you want to remove "${meal.name}" from Meal Ideas?`
+      : 'Are you sure you want to remove this meal?',
+
+    async () => {
+
+      await api(
+        `/api/meals/${id}`,
+        {
+          method:
+            'DELETE'
+        }
+      );
+
+
+      await refreshState();
+
+    }
+
+  );
+
+}
+
+
+
+function renderSelectedRecipe() {
+
+  const meal =
+    stateCache
+      .selected_meal;
+
+
+  if (!meal) {
+
+    selectedRecipe.innerHTML =
+      '<div class="empty">Select a meal to see its recipe and what still needs to be bought.</div>';
+
+
+    return;
+
+  }
+
+
+  const atHome =
+    new Set(
+      stateCache
+        .inventory
+        .map(
+          item =>
+            item.name
+              .trim()
+              .toLowerCase()
+        )
+    );
+
+
+  const already =
+    meal
+      .ingredients
+      .filter(
+        ingredient =>
+          atHome.has(
+            ingredient
+              .trim()
+              .toLowerCase()
+          )
+      );
+
+
+  const need =
+    meal
+      .ingredients
+      .filter(
+        ingredient =>
+          !atHome.has(
+            ingredient
+              .trim()
+              .toLowerCase()
+          )
+      );
+
+
+  selectedRecipe.innerHTML =
+    `
+
+      <div class="screen-title small">
+
+        Selected Recipe:
+        ${escapeHtml(meal.name)}
+
+      </div>
+
+
+      <div class="recipe-cols">
+
+
+        <div>
+
+          <strong>
+            Ingredients
+          </strong>
+
+          <p>
+
+            ${
+              meal.ingredients.length
+
+              ? meal.ingredients
+                  .map(
+                    escapeHtml
+                  )
+                  .join('<br>')
+
+              : 'No ingredients saved'
+            }
+
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Already at home
+          </strong>
+
+          <p>
+
+            ${
+              already.length
+
+              ? already
+                  .map(
+                    escapeHtml
+                  )
+                  .join('<br>')
+
+              : 'None marked'
+            }
+
+          </p>
+
+
+          <strong>
+            Need to buy
+          </strong>
+
+          <p>
+
+            ${
+              need.length
+
+              ? need
+                  .map(
+                    escapeHtml
+                  )
+                  .join('<br>')
+
+              : 'Nothing else'
+            }
+
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        class="wide"
+        onclick="
+          addSelectedMealToList(
+            ${meal.id}
+          )
+        "
+      >
+
+        Add missing ingredients to shopping list
+
+      </button>
+
+    `;
+
+}
+
+
+
+async function addSelectedMealToList(
+  id
+) {
+
+  const result =
+    await api(
+      `/api/meals/${id}/add-to-list`,
+      {
+        method:
+          'POST'
+      }
+    );
+
+
+  cartActivity.textContent =
+    result.added.length
+
+    ? (
+        `Added ${
+          result.added.length
+        } recipe item${
+          result.added.length === 1
+          ? ''
+          : 's'
+        } to the list`
+      )
+
+    : 'Recipe items were already covered';
+
+
+  refreshState();
+
+}
+
+
+
+/* =====================================================
+   HOUSEMATE REQUESTS
+===================================================== */
+
+function renderRequests() {
+
+  const requests = stateCache.household_requests || [];
+
+  if (!requests.length) {
+    requestsList.innerHTML =
+      '<div class="h3-empty">No household requests yet.</div>';
+    return;
+  }
+
+  requestsList.innerHTML = requests.map(request => {
+
+    if (request.id === editingRequestId) {
+      return `
+        <div class="x3-editrow">
+          <input id="request-person-${request.id}" class="x3-who" value="${escapeHtml(request.person)}" aria-label="Person">
+          <input id="request-message-${request.id}" value="${escapeHtml(request.message)}" aria-label="Request"
+            onkeydown="if (event.key === 'Enter') saveRequest(${request.id}); if (event.key === 'Escape') cancelHouseholdEdit()">
+          <button class="danger" onclick="deleteRequest(${request.id})">Delete</button>
+          <button onclick="cancelHouseholdEdit()">Cancel</button>
+          <button class="primary" onclick="saveRequest(${request.id})">Save</button>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="hh3-request">
+        ${personTag(request.person)}
+        <span class="hh3-msg">${escapeHtml(request.message)}</span>
+        <button class="x3-edit" onclick="editRequest(${request.id})">Edit</button>
+      </div>
+    `;
+  }).join('');
+
+}
+
+
+function editRequest(id) {
+  editingRequestId = id;
+  editingInventoryId = null;
+  renderRequests();
+  renderInventory();
+  const input = document.getElementById(`request-message-${id}`);
+  if (input) input.focus();
+}
+
+
+function cancelHouseholdEdit() {
+  editingRequestId = null;
+  editingInventoryId = null;
+  renderRequests();
+  renderInventory();
+}
+
+
+
+async function addRequest() {
+
+  const person =
+    newRequestPerson
+      .value
+      .trim();
+
+
+  const message =
+    newRequestMessage
+      .value
+      .trim();
+
+
+  if (
+    !person
+    ||
+    !message
+  ) {
+
+    return;
+
+  }
+
+
+  await api(
+    '/api/requests',
+    {
+
+      method:
+        'POST',
+
+      body:
+        JSON.stringify(
+          {
+            person,
+            message
+          }
+        )
+
+    }
+  );
+
+
+  newRequestMessage.value =
+    '';
+
+
+  refreshState();
+
+}
+
+
+
+async function saveRequest(
+  id
+) {
+
+  const person =
+    document
+      .getElementById(
+        `request-person-${id}`
+      )
+      .value
+      .trim();
+
+
+  const message =
+    document
+      .getElementById(
+        `request-message-${id}`
+      )
+      .value
+      .trim();
+
+
+  if (
+    !person
+    ||
+    !message
+  ) {
+
+    return;
+
+  }
+
+
+  await api(
+    `/api/requests/${id}`,
+    {
+
+      method:
+        'PATCH',
+
+      body:
+        JSON.stringify(
+          {
+            person,
+            message
+          }
+        )
+
+    }
+  );
+
+
+  editingRequestId = null;
+
+  refreshState();
+
+}
+
+
+
+function deleteRequest(
+  id
+) {
+
+  const request =
+    stateCache
+      .household_requests
+      .find(
+        request =>
+          request.id === id
+      );
+
+
+  requestConfirm(
+
+    'Remove request?',
+
+    request
+      ? `Are you sure you want to remove ${request.person}'s request?`
+      : 'Are you sure you want to remove this request?',
+
+    async () => {
+
+      await api(
+        `/api/requests/${id}`,
+        {
+          method:
+            'DELETE'
+        }
+      );
+
+
+      await refreshState();
+
+    }
+
+  );
+
+}
+
+
+
+/* =====================================================
+   ALREADY AT HOME
+===================================================== */
+
+function renderInventory() {
+
+  const inventory = stateCache.inventory || [];
+
+  if (!inventory.length) {
+    inventoryList.innerHTML =
+      '<div class="h3-empty">Nothing has been marked as already at home.</div>';
+    return;
+  }
+
+  inventoryList.innerHTML = inventory.map(item => {
+
+    if (item.id === editingInventoryId) {
+      return `
+        <div class="x3-editrow">
+          <input id="inventory-name-${item.id}" value="${escapeHtml(item.name)}" aria-label="Item"
+            onkeydown="if (event.key === 'Enter') saveInventory(${item.id}); if (event.key === 'Escape') cancelHouseholdEdit()">
+          <input id="inventory-qty-${item.id}" value="${escapeHtml(item.quantity || '')}" placeholder="Amount" aria-label="Amount">
+          <input id="inventory-note-${item.id}" value="${escapeHtml(item.note || '')}" placeholder="Note" aria-label="Note">
+          <input id="inventory-by-${item.id}" class="x3-who" value="${escapeHtml(item.updated_by || '')}" placeholder="Who" aria-label="Updated by">
+          <button class="danger" onclick="deleteInventory(${item.id})">Delete</button>
+          <button class="primary" onclick="saveInventory(${item.id})">Save</button>
+        </div>
+      `;
+    }
+
+    const sub = [item.note, item.updated_by].filter(Boolean).map(escapeHtml).join(' · ');
+
+    return `
+      <div class="hh3-item">
+        <div class="hh3-item-text">
+          <b>${escapeHtml(item.name)}${
+            item.quantity ? ` <span>· ${escapeHtml(item.quantity)}</span>` : ''
+          }</b>
+          ${sub ? `<small>${sub}</small>` : ''}
+        </div>
+        <button class="x3-edit" onclick="editInventory(${item.id})">Edit</button>
+      </div>
+    `;
+  }).join('');
+
+}
+
+
+function editInventory(id) {
+  editingInventoryId = id;
+  editingRequestId = null;
+  renderRequests();
+  renderInventory();
+  const input = document.getElementById(`inventory-name-${id}`);
+  if (input) input.focus();
+}
+
+
+
+async function addInventory() {
+
+  const name =
+    newInventoryName
+      .value
+      .trim();
+
+
+  if (!name) {
+
+    return;
+
+  }
+
+
+  await api(
+    '/api/inventory',
+    {
+
+      method:
+        'POST',
+
+      body:
+        JSON.stringify(
+          {
+
+            name,
+
+            quantity:
+              newInventoryQty
+                .value
+                .trim()
+              || null,
+
+            note:
+              newInventoryNote
+                .value
+                .trim()
+              || null,
+
+            updated_by:
+              newInventoryBy
+                .value
+                .trim()
+              || 'Household'
+
+          }
+        )
+
+    }
+  );
+
+
+  newInventoryName.value =
+    '';
+
+
+  newInventoryQty.value =
+    '';
+
+
+  newInventoryNote.value =
+    '';
+
+
+  refreshState();
+
+}
+
+
+
+async function saveInventory(
+  id
+) {
+
+  const payload = {
+
+    name:
+      document
+        .getElementById(
+          `inventory-name-${id}`
+        )
+        .value
+        .trim(),
+
+    quantity:
+      document
+        .getElementById(
+          `inventory-qty-${id}`
+        )
+        .value
+        .trim(),
+
+    note:
+      document
+        .getElementById(
+          `inventory-note-${id}`
+        )
+        .value
+        .trim(),
+
+    updated_by:
+      document
+        .getElementById(
+          `inventory-by-${id}`
+        )
+        .value
+        .trim()
+      || 'Household'
+
+  };
+
+
+  if (!payload.name) {
+
+    return;
+
+  }
+
+
+  await api(
+    `/api/inventory/${id}`,
+    {
+
+      method:
+        'PATCH',
+
+      body:
+        JSON.stringify(
+          payload
+        )
+
+    }
+  );
+
+
+  editingInventoryId = null;
+
+  refreshState();
+
+}
+
+
+
+function deleteInventory(
+  id
+) {
+
+  const item =
+    stateCache
+      .inventory
+      .find(
+        item =>
+          item.id === id
+      );
+
+
+  requestConfirm(
+
+    'Remove from home list?',
+
+    item
+      ? `Are you sure you want to remove "${item.name}" from Already at Home?`
+      : 'Are you sure you want to remove this item?',
+
+    async () => {
+
+      await api(
+        `/api/inventory/${id}`,
+        {
+          method:
+            'DELETE'
+        }
+      );
+
+
+      await refreshState();
+
+    }
+
+  );
+
+}
+
+
+
+/* =====================================================
+   START SHOP
+===================================================== */
+
+async function startShop() {
+
+  const next =
+    !Boolean(
+      stateCache
+        .settings
+        ?.shopping_active
+    );
+
+
+  await api(
+    '/api/settings',
+    {
+
+      method:
+        'PATCH',
+
+      body:
+        JSON.stringify(
+          {
+            shopping_active:
+              next
+          }
+        )
+
+    }
+  );
+
+
+  cartActivity.textContent =
+    next
+
+    ? 'Cart Unit marked ready for shopping'
+
+    : 'Shopping trip ended';
+
+
+  await refreshState();
+
+
+  if (next) {
+
+    setTimeout(
+      showStarter,
+      1200
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   PRODUCT LIBRARY
+===================================================== */
+
+async function refreshProducts() {
+
+  productsCache =
+    await api(
+      '/api/products'
+    );
+
+  renderProducts();
+
+}
+
+
+function setProductFilter(category) {
+  productFilter = category;
+  renderProducts();
+}
+
+
+function renderProducts() {
+
+  const categoryOf = product => String(product.category || 'other').trim().toLowerCase();
+
+  // category chips
+  const counts = {};
+  productsCache.forEach(product => {
+    const c = categoryOf(product);
+    counts[c] = (counts[c] || 0) + 1;
+  });
+
+  if (productFilter !== 'all' && !counts[productFilter]) {
+    productFilter = 'all';
+  }
+
+  const chip = (key, label, n) => `
+    <button
+      class="p3-chip ${productFilter === key ? 'active' : ''}"
+      onclick="setProductFilter('${escapeHtml(key)}')"
+    >${escapeHtml(label)} <span>${n}</span></button>
+  `;
+
+  productChips.innerHTML = productsCache.length
+    ? chip('all', 'All', productsCache.length) +
+      Object.keys(counts).sort().map(c =>
+        chip(c, c.charAt(0).toUpperCase() + c.slice(1), counts[c])
+      ).join('')
+    : '';
+
+  // filtered rows
+  const query = productSearch.value.trim().toLowerCase();
+
+  const shown = productsCache.filter(product =>
+    (productFilter === 'all' || categoryOf(product) === productFilter) &&
+    (!query ||
+      String(product.name || '').toLowerCase().includes(query) ||
+      String(product.barcode || '').includes(query) ||
+      String(product.brand || '').toLowerCase().includes(query))
+  );
+
+  if (!productsCache.length) {
+    productLibrary.innerHTML = '<div class="h3-empty">No products yet. Add one with the form.</div>';
+    return;
+  }
+
+  if (!shown.length) {
+    productLibrary.innerHTML = '<div class="h3-empty">No products match that search.</div>';
+    return;
+  }
+
+  productLibrary.innerHTML = `
+    <div class="p3-th">
+      <span>Product</span><span>Category</span><span>Price</span><span></span>
+    </div>
+  ` + shown.map(product => {
+
+    const price = productPrice(product);
+    const editing = pBarcode.value.trim() === product.barcode;
+
+    return `
+      <div class="p3-row ${editing ? 'is-editing' : ''}">
+        <div class="p3-row-text">
+          <b>${escapeHtml(product.name)}</b>
+          <small>
+            <span class="x3-mono">${escapeHtml(fmt(product.barcode))}</span>
+            ${product.brand ? ` · ${escapeHtml(product.brand)}` : ''}
+            ${product.quantity ? ` · ${escapeHtml(product.quantity)}` : ''}
+          </small>
+        </div>
+        <span class="p3-cat">${escapeHtml(fmt(product.category))}</span>
+        <span class="p3-price">${price ? money(price.price) : '—'}</span>
+        <span class="p3-btns">
+          <button class="x3-edit" onclick="editProductByBarcode('${product.barcode}')">Edit</button>
+          <button class="x3-edit danger" onclick="deleteProduct('${product.barcode}')">Delete</button>
+        </span>
+      </div>
+    `;
+  }).join('');
+
+}
+
+
+
+function editProductByBarcode(
+  barcode
+) {
+
+  const product =
+    productsCache
+      .find(
+        item =>
+          item.barcode ===
+          barcode
+      );
+
+
+  if (!product) {
+
+    return;
+
+  }
+
+
+  pBarcode.value =
+    product.barcode;
+
+
+  pName.value =
+    product.name
+    || '';
+
+
+  pBrand.value =
+    product.brand
+    || '';
+
+
+  pQuantity.value =
+    product.quantity
+    || '';
+
+
+  pCategory.value =
+    product.category
+    || '';
+
+
+  const price =
+    productPrice(
+      product
+    );
+
+
+  pPrice.value =
+    price?.price
+    ?? '';
+
+
+  pProtein.value =
+    product
+      .nutrition
+      ?.protein_100g
+    ?? '';
+
+
+  pSugar.value =
+    product
+      .nutrition
+      ?.sugars_100g
+    ?? '';
+
+
+  productFormTitle.textContent =
+    'Edit product';
+
+  renderProducts();
+
+  showView(
+    'products'
+  );
+
+}
+
+
+
+function clearProductForm() {
+
+  [
+    'pBarcode',
+    'pName',
+    'pBrand',
+    'pQuantity',
+    'pCategory',
+    'pPrice',
+    'pProtein',
+    'pSugar'
+  ]
+  .forEach(
+    id => {
+
+      document
+        .getElementById(
+          id
+        )
+        .value =
+          '';
+
+    }
+  );
+
+
+  productFormTitle.textContent =
+    'Add a product';
+
+  renderProducts();
+
+}
+
+
+
+saveProduct.onclick =
+  async () => {
+
+    const barcode =
+      pBarcode
+        .value
+        .trim();
+
+
+    if (
+      !barcode
+      ||
+      !pName
+        .value
+        .trim()
+    ) {
+
+      return alert(
+        'Barcode and product name are required.'
+      );
+
+    }
+
+
+    await api(
+      `/api/products/${encodeURIComponent(barcode)}`,
+      {
+
+        method:
+          'POST',
+
+        body:
+          JSON.stringify(
+            {
+
+              name:
+                pName
+                  .value
+                  .trim(),
+
+              brand:
+                pBrand
+                  .value
+                  .trim()
+                || null,
+
+              quantity:
+                pQuantity
+                  .value
+                  .trim()
+                || null,
+
+              category:
+                pCategory
+                  .value
+                  .trim()
+                || null,
+
+              nutrition:
+                {
+
+                  protein_100g:
+                    pProtein.value
+
+                    ? Number(
+                        pProtein.value
+                      )
+
+                    : null,
+
+                  sugars_100g:
+                    pSugar.value
+
+                    ? Number(
+                        pSugar.value
+                      )
+
+                    : null
+
+                },
+
+              store:
+                'Woolworths',
+
+              price:
+                pPrice.value
+
+                ? Number(
+                    pPrice.value
+                  )
+
+                : null
+
+            }
+          )
+
+      }
+    );
+
+
+    clearProductForm();
+
+
+    refreshProducts();
+
+  };
+
+
+
+function deleteProduct(
+  barcode
+) {
+
+  const product =
+    productsCache
+      .find(
+        product =>
+          product.barcode ===
+          barcode
+      );
+
+
+  requestConfirm(
+
+    'Remove product?',
+
+    product
+      ? `Are you sure you want to remove "${product.name}" from the product library?`
+      : 'Are you sure you want to remove this product?',
+
+    async () => {
+
+      await api(
+        `/api/products/${encodeURIComponent(barcode)}`,
+        {
+          method:
+            'DELETE'
+        }
+      );
+
+
+      clearProductForm();
+
+
+      await refreshProducts();
+
+    }
+
+  );
+
+}
+
+
+
+refreshProductsBtn.onclick =
+  refreshProducts;
+
+
+
+/* =====================================================
+   LIVE WEBSOCKET UPDATES
+===================================================== */
+
+function handleLive(
+  message
+) {
+
+  if (
+    message.type ===
+    'scan'
+  ) {
+
+    cartActivity.textContent =
+      `Cart Unit scanned ${
+        message
+          .product
+          .name
+      }`;
+
+
+    refreshProducts();
+
+  }
+
+
+  if (
+    [
+      'list_updated',
+      'settings_updated',
+      'meals_updated',
+      'requests_updated',
+      'inventory_updated'
+    ]
+    .includes(
+      message.type
+    )
+  ) {
+
+    refreshState();
+
+  }
+
+
+  if (
+    message.type ===
+    'product_updated'
+  ) {
+
+    refreshProducts();
+
+  }
+
+}
+
+const HOUSEMATE_CHIP = {
+  james: '#3A6EA5',
+  alex: '#C0841A',
+  jess: '#3F8D6E'
+};
+
+function chipColour(name) {
+  return HOUSEMATE_CHIP[
+    String(name || '').trim().toLowerCase()
+  ] || '#8A857C';
+}
+
+// small coloured initial + name, e.g. (J) James
+function personTag(name) {
+  const label = String(name || '').trim() || 'House';
+  return `<span class="who"><i style="background: ${chipColour(label)}">${
+    escapeHtml(label.charAt(0).toUpperCase())
+  }</i>${escapeHtml(label)}</span>`;
+}
+
+function renderHome() {
+  const items = stateCache.shopping_items || [];
+  const needed = items.filter(item => item.status === 'needed');
+  const shown = needed.slice(0, 8);
+
+  homeList.innerHTML = shown.length
+    ? shown.map(item => `
+        <div class="h3-list-row">
+          <span>${escapeHtml(item.name)}${
+            item.quantity > 1 ? ` <small class="muted">×${item.quantity}</small>` : ''
+          }</span>
+          ${personTag(item.added_by)}
+        </div>
+      `).join('') + (
+        needed.length > shown.length
+          ? `<div class="h3-more">+ ${needed.length - shown.length} more on the list</div>`
+          : ''
+      )
+    : '<div class="h3-empty">Nothing on the list yet.</div>';
+
+  const inventory = stateCache.inventory || [];
+
+  homeAtHome.innerHTML = inventory.length
+    ? inventory.slice(0, 4).map(item => `
+        <div class="h3-tile">
+          <b>${escapeHtml(item.name)}</b>
+          <small>${escapeHtml(item.quantity || item.note || '')}</small>
+        </div>
+      `).join('')
+    : '<div class="h3-empty">Nothing marked as at home yet.</div>';
+
+  homeStartSub.textContent =
+    `${needed.length} item${needed.length === 1 ? '' : 's'} on the list · ${money(currentBudget()).replace(/\.00$/, '')} budget`;
+
+  const meal = stateCache.selected_meal;
+
+  if (meal) {
+    const bits = [
+      `Suggested by ${meal.suggested_by || 'the household'}`,
+      meal.prep_minutes ? `${meal.prep_minutes} mins` : '',
+      meal.servings ? `serves ${meal.servings}` : ''
+    ].filter(Boolean);
+
+    homeMealPerson.textContent = bits.join(' · ');
+  }
+}
+
+async function quickAddFromHome() {
+  const name = homeQuickAdd.value.trim();
+
+  if (!name) {
+    return;
+  }
+
+  await api(
+    '/api/list',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        added_by: 'Household',
+        quantity: 1
+      })
+    }
+  );
+
+  homeQuickAdd.value = '';
+  await refreshState();
+}
+
+/*===================================
+  Meals - Recipe Pop-up
+====================================*/
+
+let openRecipeId = null;
+
+function openRecipe(id) {
+  openRecipeId = id;
+  recipeModal.classList.remove('is-hidden');
+  renderRecipePop();
+}
+
+function closeRecipe() {
+  openRecipeId = null;
+  recipeModal.classList.add('is-hidden');
+}
+
+function renderRecipePop() {
+  const meal = (stateCache.meals || []).find(m => m.id === openRecipeId);
+
+  if (!meal) {
+    closeRecipe();
+    return;
+  }
+
+  const clean = s => String(s || '').trim().toLowerCase();
+
+  const atHome = new Set(
+    (stateCache.inventory || []).map(i => clean(i.name))
+  );
+
+  const onList = new Set(
+    (stateCache.shopping_items || [])
+      .filter(i => i.status === 'needed')
+      .map(i => clean(i.name))
+  );
+
+  const ingredients = meal.ingredients || [];
+
+  const rows = ingredients.map(ing => {
+    const key = clean(ing);
+    let tag = '<span class="m3-tag need">Need to buy</span>';
+    if (atHome.has(key)) tag = '<span class="m3-tag home">At home</span>';
+    else if (onList.has(key)) tag = '<span class="m3-tag list">On the list</span>';
+    return `<div class="m3-row"><span>${escapeHtml(ing)}</span>${tag}</div>`;
+  }).join('');
+
+  const missing = ingredients.filter(ing =>
+    !atHome.has(clean(ing)) && !onList.has(clean(ing))
+  ).length;
+
+  const meta = [
+    `Suggested by ${meal.suggested_by || 'Household'}`,
+    meal.cost != null ? `about ${money(meal.cost)}` : '',
+    meal.prep_minutes ? `${meal.prep_minutes} mins` : '',
+    meal.servings ? `serves ${meal.servings}` : ''
+  ].filter(Boolean).join(' · ');
+
+  recipePop.innerHTML = `
+    <div class="m3-pop-head">
+      <div>
+        <div class="m3-kicker">${meal.selected ? "Tonight's recipe" : 'Meal idea'}</div>
+        <h2>${escapeHtml(meal.name)}</h2>
+        <div class="m3-meta">${escapeHtml(meta)}</div>
+      </div>
+      <button class="m3-close" aria-label="Close" onclick="closeRecipe()">×</button>
+    </div>
+
+    <div class="m3-rows">
+      ${rows || '<div class="empty">No ingredients saved for this meal.</div>'}
+    </div>
+
+    <div class="m3-actions">
+      ${
+        meal.selected
+          ? `<button onclick="closeRecipe(); editMeal(${meal.id})">Edit recipe</button>`
+          : `<button onclick="selectMeal(${meal.id})">Make this tonight</button>`
+      }
+      <button
+        class="primary"
+        ${missing ? '' : 'disabled'}
+        onclick="addSelectedMealToList(${meal.id})"
+      >
+        ${
+          missing
+            ? `Add ${missing} missing item${missing === 1 ? '' : 's'} to the list`
+            : 'Everything is covered'
+        }
+      </button>
+    </div>
+  `;
+}
+
+wsConnect(
+  handleLive
+);
+
+
+refreshState();
+
+refreshProducts();
+
+showStarter();
+
+
+</script>
+
+
+</body>
+
+</html>

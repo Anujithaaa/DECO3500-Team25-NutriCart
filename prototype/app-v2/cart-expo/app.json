@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "NutriCart Cart Unit",
+    "slug": "nutricart-cart-unit",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#183229"
+      }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow NutriCart to scan grocery product barcodes.",
+          "barcodeScannerEnabled": true,
+          "recordAudioAndroid": false
+        }
+      ]
+    ]
+  }
+}
