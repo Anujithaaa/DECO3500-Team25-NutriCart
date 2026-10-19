@@ -23,7 +23,7 @@ NutriCart Hub is a shared food system for student share houses. Housemates plan 
 
 ## Try the prototype
 
-No login: each device picks a housemate token (Alex, Jay, Sam, Priya by default; rename them in *Testing mode*). One server = one household.
+ One server = one household.
 
 | Screen | Runs on | Used for |
 |---|---|---|
