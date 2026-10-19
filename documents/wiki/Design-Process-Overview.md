@@ -1,12 +1,12 @@
 # Design Process Overview
 
-**Poster:** [PDF](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/promo/NutriCart_Poster_A2.pdf) · **Prototype:** runs on a laptop and phones, no login; run steps for app-v2 and v0.3 are in the [README](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart). · **Team 25:** Aman Kushwaha, James Olbes, Anujitha Fernando, Kenan Chu
+**Poster:** [PDF](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/promo/NutriCart_Poster_A2.pdf) · **Promotional material:** [pitch script](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/promo/pitch-script.md) · **Prototype:** runs on a laptop and phones, no login; run steps for app-v2 and v0.3 are in the [README](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart). · **Team 25:** Aman Kushwaha, James Olbes, Anujitha Fernando, Kenan Chu
 
 ## Summary
 
 We investigated how students living together near UQ St Lucia plan, coordinate and make grocery decisions. Price decides most purchases, and “healthy” means something different to everyone. Most shopped alone, yet their shopping overlapped through shared staples, fridge space and lists sent to whoever was going. The useful social influence isn’t a feed of friends’ meals but the everyday coordination of a household: who needs what, who’s going, what’s already in the fridge, and who pays.
 
-NutriCart Hub is our response. Housemates plan together at the kitchen Home Dock, and whoever shops takes the Cart Unit with the household's list, requests and budget. On re-docking, the shop returns with a cost split. The social computing sits in six moments where several housemates take part (G1–G6).
+NutriCart Hub is our response. Housemates plan together at the kitchen Home Dock, and whoever shops takes the Cart Unit with the household's list, requests and budget. The social computing sits in six moments where several housemates take part (G1–G6).
 
 ## Process
 
@@ -23,7 +23,7 @@ Our first domain statement was about "enhancing healthy food choices". Round 1 i
 Thematic synthesis reframed the problem: *support real grocery decisions around price, time, personal priorities and household needs, without adding effort, judgement or another app.* We explored non-app concepts (a budget buzzer, a "shopping traffic light", a fridge-to-trolley "grocery baton") and combined the strongest into **v2**: a cardboard Home Dock and detachable Cart Unit, tested using Wizard of Oz. Testing kept the **shared list, running budget and neutral compare**, and told us to shrink the Cart Unit, keep alerts rare ("noise, not help") and cut data entry ("will be a pain"). This gave us four requirements: inform without judging, put price first, add no extra effort, and support coordination the household already does.
 
 ![Storyboard](images/storyboard.png)
-*Storyboard: Jay forgets what's at home and buys doubles; with the Hub, the household's needs travel with him.*
+*Storyboard: Jay forgets what's at home and buys doubles; with the Hub, the household's needs travel with him. More concepts and mock-ups are in [documents/design](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/tree/main/documents/design).*
 
 ### 4. "What's the point of the social part?" (Week 9 Stand-up)
 Staff said the social aspect was weak: apps are individual by nature, so we redesigned around **six group moments** and placed them on the time–space matrix:
@@ -56,7 +56,7 @@ We ran two group sessions with four students who live together, one in their own
 The tradeshow (20 and 22 Oct) is our second round of testing: visitors try the flow in pairs while we note what they use, ignore and question. Findings follow after Thursday.
 
 ### Limitations
-Our samples were small, qualitative and mostly people we could reach. Early questions were sometimes framed as "healthier vs cheaper". Final testing was two 10–15 minute group sessions with four participants, so it shows first use, not how a household behaves over weeks (Grudin, 1994); one session was screens only. v2 was Wizard of Oz, and v3 supports one household per server.
+Our samples were small, qualitative and mostly people we could reach, and we did not consult a domain expert such as a dietitian or student-housing staff; studio critique stood in. Early questions were sometimes framed as "healthier vs cheaper". Final testing was two 10–15 minute group sessions with four participants, so it shows first use, not how a household behaves over weeks (Grudin, 1994); one session was screens only. v2 was Wizard of Oz, and v3 supports one household per server.
 
 ## Who did what
 

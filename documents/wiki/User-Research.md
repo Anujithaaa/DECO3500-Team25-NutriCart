@@ -22,6 +22,11 @@ This page synthesises our research: methods, who took part, what we found, and h
 
 UQ students aged roughly 18–25 who shop in person near St Lucia (IGA Hawken Drive, Chai Supermarket, Woolworths Toowong and Indooroopilly, Coles). They are budget-conscious, juggle study and work, and live in share houses, student accommodation or on their own. Most shop **alone**, even when they live with others.
 
+### Published data
+
+- **Budget pressure is common.** 41.9% of students surveyed at one Australian university were food insecure (Kent et al., 2022). This matches what our participants told us about money: "budget is tight" ([R1-P02](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P02.md)).
+- **Share houses are a distinct household type.** Group households made up 3.9% of Australian households in the 2021 Census (AHURI, 2022). Food apps are built for individuals or families, not for this kind of household (Marshall et al., 2022).
+
 ## 3. What we found
 
 ### Price structures the shop
@@ -86,6 +91,22 @@ Shadowing had low uptake. People cited privacy, feeling self-conscious and time.
 | Shopping together means splitting up in store | Split the list across two Cart Units | G5 Split Shop |
 | Shared costs cause friction | A neutral cost split after the shop | G6 return summary |
 
+### Requirements and how they changed
+
+We set experience requirements before the Week 9 stand-up (see [Week 9 Stand-up](Week-9-Stand-up)) and checked them again after the Week 12 group tests.
+
+| Requirement | Came from | After Week 12 testing |
+|---|---|---|
+| Price and budget visible when they matter | R1 (price first) | **Confirmed:** all four named the budget, Compare or deals as the best part (F1) |
+| No universal "healthy" verdict | R1, AP-P09 | Kept; nobody asked for a health score |
+| No public comparison; trusted input is optional | AP-P05, AP-P09 | Kept |
+| Low effort: no constant logging | HP-P01 ("a pain") | **Not yet met:** "too many steps", "super tedious" (F5) → one-line quick-add; the finished shop updates what's at home |
+| Fits the coordination a house already does | HP-P02 | **Revised:** work alongside the group chat instead of replacing it (F3) |
+| Right moment: plan at home, quick decisions in store | Location framework, R1 | **Refined:** the social value is the live in-store moment (F4) |
+| Rare, deliberate alerts | HP-P02 ("noise, not help") | Kept; lights replaced by a chime (F6) |
+| Works for solo and shared shopping | R1 (most shop alone) | Kept |
+| Usable unassisted the first time | Brief; G-01, G-02 | **New:** first use was hard for all four (F2) → a 3-step guide on first open and at our stall |
+
 ## 5. Limitations
 
 - Samples are small and qualitative; we report patterns, not percentages.
@@ -130,11 +151,13 @@ Every finding on the poster or in the overview traces back to a row here. Codes 
 
 ## References
 
+- AHURI. (2022, July 26). *Census reveals changes in the makeup of households 2011 to 2021*. Australian Housing and Urban Research Institute. https://www.ahuri.edu.au/analysis/brief/census-reveals-changes-makeup-households-2011-2021
 - Bomfim, M. C. C., Nacke, L. E., Kirkpatrick, S. I., & Wallace, J. R. (2020). Food literacy while shopping: Motivating informed food purchasing behaviour with a situated gameful app. In *Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems*. ACM. https://doi.org/10.1145/3313831.3376801
 - Bomfim, M. C. C., Wong, E., Liang, P., & Wallace, J. R. (2022). Design and evaluation of technologies for informed food choices. *ACM Transactions on Computer-Human Interaction*. https://doi.org/10.1145/3565482
 - Di Cosola III, B. M., & Neff, G. (2022). Nudging behavior change: Using in-group and out-group social comparisons to encourage healthier choices. In *Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems*. ACM.
 - Grudin, J. (1994). Groupware and social dynamics: Eight challenges for developers. *Communications of the ACM, 37*(1), 92–105.
 - Houde, S., & Hill, C. (1997). What do prototypes prototype? In M. Helander, T. Landauer & P. Prabhu (Eds.), *Handbook of Human-Computer Interaction* (2nd ed., pp. 367–381). Elsevier.
+- Kent, K., Visentin, D., Peterson, C., Ayre, I., Elliott, C., Primo, C., & Murray, S. (2022). Severity of food insecurity among Australian university students, professional and academic staff. *Nutrients, 14*(19), 3956. https://doi.org/10.3390/nu14193956
 - Marshall, J., Jimenez-Pazmino, P., Metoyer, R., & Chawla, N. V. (2022). A survey on healthy food decision influences through technological innovations. *ACM Transactions on Computing for Healthcare, 3*(2), Article 25. https://doi.org/10.1145/3494580
 - Strecker, J., Wu, J., Bektaş, K., Vaslin, C., & Mayer, S. (2024). ShoppingCoach: Using diminished reality to prevent unhealthy food choices in an offline supermarket scenario. In *Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA '24)* (pp. 1–8). ACM. https://doi.org/10.1145/3613905.3650795
 - Wang, C.-H. A., Sher, S. T.-H., & Chung, C.-F. (2024). From viral content to real-life cuisine and beyond: Examining teenagers' interactions with TikTok food videos and the influence on their food practices. *Proceedings of the ACM on Human-Computer Interaction, 8*(CSCW2), Article 389. https://doi.org/10.1145/3686928

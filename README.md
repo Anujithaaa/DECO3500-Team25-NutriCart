@@ -11,6 +11,7 @@ NutriCart Hub is a shared food system for student share houses. Housemates plan 
 | **Prototype** | Runs on a laptop and phones, no hosting and no login. See [Try the prototype](#try-the-prototype) |
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
 | **Pitch script** | [pitch-script.md](documents/promo/pitch-script.md) |
+| **Try-it card (stall)** | [NutriCart_Try-it_card_A5.pdf](documents/promo/NutriCart_Try-it_card_A5.pdf) |
 | **Task board** | [GitHub Projects](https://github.com/users/MaxCoder07/projects/1) |
 | **Earlier prototype (v2 HTML Hub)** | https://jarxto.github.io/DECO3500_New_Prototype/Nutricart_Hub/ |
 
