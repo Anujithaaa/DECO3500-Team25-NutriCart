@@ -24,8 +24,6 @@ Thematic synthesis reframed the problem: *support real grocery decisions around 
 
 ![Storyboard](images/storyboard.png)
 *Storyboard: Jay forgets what's at home and buys doubles; with the Hub, the household's needs travel with him.*
-![v2 cardboard prototype](images/v2-cardboard.jpg)
-*v2: cardboard Dock and Cart Unit.*
 
 ### 4. "What's the point of the social part?" (Week 9 Stand-up)
 Staff said the social aspect was weak: apps are individual by nature, so we redesigned around **six group moments** and placed them on the time–space matrix:
@@ -50,8 +48,6 @@ v3 is an **integration prototype** (Houde & Hill, 1997): its real where the soci
 
 James built physical housings for the Dock and the Cart Unit. Kenan's **app-v2** then redesigned the Hub and the Expo Cart Unit to match our combined concept; this is the version we tested in section 6.
 
-![v3 physical Dock and Cart Unit](images/v3-physical.jpg)
-*v3 physical prototype: the Dock stand and the Cart Unit mount.*
 
 ### 6. Evaluating with groups, in context (Week 12)
 We ran two group sessions with four students who live together, one in their own kitchen ([Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)). All four valued the budget, Compare or deals most, and all struggled with first-time navigation. The sharpest finding: **the group chat is our real competitor**. G-01 called requests "another group chat" and felt the design was "promoting the opposite of being social", while G-02 valued seeing what was already at home. The social value sat in the live, in-store moment. So we will lead with same-time coordination (who's shopping, Ask home, live updates), work alongside the chat, simplify first use, and swap the LEDs for a chime.
