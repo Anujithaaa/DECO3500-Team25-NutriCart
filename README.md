@@ -8,9 +8,9 @@ NutriCart Hub is a shared food system for student share houses. Housemates plan 
 
 | | |
 |---|---|
-| **Prototype (hosted)** | `[paste hosted link]/dock` (Home Dock) · `[hosted link]/cart` (Cart Unit) |
-| **Poster** | `[link to poster PDF]` |
-| **Promo video** (optional) | `[link]` |
+| **Prototype** | Runs on a laptop and phones, no hosting and no login. See [Try the prototype](#try-the-prototype) |
+| **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
+| **Pitch script** | [pitch-script.md](documents/promo/pitch-script.md) |
 | **Task board** | [GitHub Projects](https://github.com/users/MaxCoder07/projects/1) |
 | **Earlier prototype (v2 HTML Hub)** | https://jarxto.github.io/DECO3500_New_Prototype/Nutricart_Hub/ |
 
@@ -27,8 +27,8 @@ No login: each device picks a housemate token (Alex, Jay, Sam, Priya by default;
 
 | Screen | Runs on | Used for |
 |---|---|---|
-| **Home Dock** `/dock` | a tablet or laptop (in a kitchen stand `[being built]`) | plan together, leave requests, see who is shopping, answer questions, settle up |
-| **Web Cart Unit** `/cart` | any phone browser, no install (in a basket or trolley mount `[being built]`) | list, running budget, Ask home, Split Shop, finish the shop |
+| **Home Dock** `/dock` | a tablet or laptop (in a kitchen stand) | plan together, leave requests, see who is shopping, answer questions, settle up |
+| **Web Cart Unit** `/cart` | any phone browser, no install (in a basket or trolley mount) | list, running budget, Ask home, Split Shop, finish the shop |
 | **Expo Cart Unit** `prototype/cart-expo` | a phone with Expo Go | the same, plus camera barcode scanning for the optional compare |
 
 | # | Group moment | Try it |
@@ -58,6 +58,36 @@ On Windows, run `prototype/backend/run_windows.bat`. Open the printed **Dock** a
 
 **Expo Cart Unit:** `cd prototype/cart-expo && cp .env.example .env` (set `EXPO_PUBLIC_API_URL` to the server address), then `npm install && npx expo start`. If Expo Go needs a different SDK version, run `npx expo install --fix`. Demo barcodes: `9300000000019`, `9300000000026`, `9300000000033`, `9300000000040`.
 
+### app-v2: the redesigned Hub and Expo Cart Unit (the version we tested)
+
+`prototype/app-v2` is the redesigned Home Hub and Cart Unit. It needs **Python 3.10+**, **Node.js 20.19 or newer** and the **Expo Go** app on a phone. The phone and the computer must be on the same network (on uni Wi-Fi, use a phone hotspot).
+
+**Terminal 1 (backend)**
+
+```bash
+cd prototype/app-v2/backend
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python3 run.py
+```
+
+Open `http://localhost:8000/hub` on the computer and note the **Phone API** address it prints.
+
+**Terminal 2 (Cart Unit)**
+
+```bash
+cd prototype/app-v2/cart-expo
+echo "EXPO_PUBLIC_API_URL=http://<Phone API address>" > .env
+npm install
+npx expo login                   # your own free Expo account, the same one you use in Expo Go
+npx expo start --clear
+```
+
+Scan the QR code with Expo Go. Demo barcodes: `9300000000019`, `9300000000026`, `9300000000033`, `9300000000040`.
+
+app-v2 has the shared list, requests, barcode Compare, the budget, Already at home, meal ideas and a one-phone Split Shop. Ask home, "shopping now", two-phone Split Shop and the cost split are in v0.3 (above). To reset app-v2, stop the backend, delete `prototype/app-v2/backend/nutricart.db` and start it again.
+
 ### Real vs simulated
 
 | Real | Simulated or simplified |
@@ -73,18 +103,23 @@ On Windows, run `prototype/backend/run_windows.bat`. Open the printed **Dock** a
 ├── README.md
 ├── prototype/              prototype source code
 │   ├── backend/            FastAPI server + Home Dock (/dock) + web Cart Unit (/cart)
+│   ├── app-v2/             redesigned Home Hub + Expo Cart Unit (the version we tested in Week 12)
 │   └── cart-expo/          Expo (React Native) Cart Unit with barcode scanning
 ├── documents/
 │   ├── research/           literature review, interview protocols, de-identified interview records, shadowing, brainstorms, peer feedback
-│   ├── evaluation/         prototype testing synthesis and analysis
+│   ├── evaluation/         prototype testing synthesis and analysis; group test records G-01, G-02
 │   ├── design/             storyboards, concepts, mock-ups
 │   ├── standups/           Week 5 and Week 9 materials
 │   ├── team/               team charter, plan of work, studio updates
 │   ├── promo/              poster content, pitch script
-│   └── wiki/               source of the WIKI pages (publish with scripts/publish_wiki.sh)
+│   └── wiki/               a copy of the WIKI pages (the WIKI itself is the live version)
 ├── scripts/                create the task board issues, publish the WIKI
 └── render.yaml             optional hosting config
 ```
+
+## Use of AI
+
+Every team member used Claude (Anthropic) and ChatGPT (OpenAI) as assistants during the project: to help de-identify research records, organise synthesis notes, draft and edit documentation (WIKI pages, poster content, pitch script), and write and debug parts of the prototype code. Every AI-assisted output was reviewed and edited by a team member and checked against our own research records, notes and running code. The research sessions, design decisions and testing were done by the team.
 
 ## Data and privacy
 

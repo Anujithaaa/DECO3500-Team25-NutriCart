@@ -1,26 +1,31 @@
-# Tradeshow pitch: NutriCart Hub (about 2.5 minutes, ~340 words)
+# Tradeshow pitch: NutriCart Hub (2:45, about 340 words)
 
-The tradeshow is a **demonstration, not a presentation**. Speak *while* the visitor uses the Dock and a Cart Unit. **Everyone learns the whole pitch.** The split below is for when all four of us are there.
+The tradeshow is a **demonstration, not a presentation**. Hand the visitor a device in the first 20 seconds and talk *while* they use it. **Everyone learns the whole pitch**, because any of us can be marked alone.
+
+**Set-up for each visitor:** Hub on the laptop (Visitor A), Cart Unit phone in hand (Visitor B). For a single visitor, they hold the phone and you play the housemate at the Hub.
 
 ---
 
-**1. Hook (Aman, 20 s).** Hand the visitor a Cart Unit.
-> "Ever got home from the shops and found your housemate already bought the milk? We spoke to UQ students who shop near St Lucia, and the problem wasn't knowing what's healthy. It was price, time, and coordinating with the people you live with."
+**1. Hook (20 s).** Hand over the phone.
+> "Ever come home from the shops and found your housemate already bought the milk? Or checked the group chat for a request someone sent three days ago? We talked to UQ students in share houses. Their problem wasn't knowing what's healthy. It was money, time, and coordinating with the people they live with."
 
-**2. What we learned (Kenan, 35 s).** Point to the research column on the poster.
-> "We started out building a social app with friends' recipes and group health goals. Students told us price decides almost everything. 'Healthy' means something different to each person. And comparison can hurt: one participant said a group dinner goal was 'essentially telling me that I'm fat.' What *did* help was everyday coordination: shared lists, requests, knowing what's already at home."
+**2. What research showed (25 s).** Point at the poster's research panel.
+> "Price decides almost everything. One student said '99 out of 100 times' it's the price. Health apps felt judgy: one said a group goal was 'essentially telling me that I'm fat.' So we stopped designing a health app and designed for the household."
 
-**3. The concept (James, 30 s).** Point to the physical Dock and tokens.
-> "So we designed NutriCart Hub, a device for the whole share house, not another personal app. The Home Dock lives in the kitchen. Tap your token to add requests or vote on meals. Whoever goes shopping takes the Cart Unit, and the house sees 'Jay is shopping now'."
+**3. The design (25 s).** Point at the Hub, then the phone.
+> "NutriCart Hub is one shared system in two places. The Hub sits in the kitchen, where the house plans meals and leaves requests. Whoever goes shopping takes the Cart Unit, so the household's list, requests and budget travel to the aisle."
 
-**4. Try it (Anujitha, 45 s).** Visitor A holds the Cart Unit; visitor B stands at the Dock.
-> "You're shopping. You've got the household list and your budget. Can't find something? Tap *Ask home*. It pops up here, and your housemate answers with one tap. Shopping together? Join from a second Cart Unit and split the list; ticks sync live. When you're back, finish the shop. The Dock shows what you spent and who owes what, and it remembers what's now at home."
+**4. Try it (50 s).** Guide, don't drive.
+> - Visitor A, at the Hub: *"Add something you want from the shops."* Visitor B: *"Watch your phone."* It appears live.
+> - Visitor B: *"Scan this yoghurt."* Compare shows the options by price. *"See the budget left? That's the biggest number on the screen on purpose."*
+> - *"Already at home stops you buying things twice, and meal ideas show what you can cook from what's there."*
+> - *"Shopping together? Split Shop divides the list between two of you."*
 
-**5. Why it matters (Aman, 20 s).**
-> "The social part isn't a feed or a leaderboard. It's helping a household coordinate what it already does, at home and in the aisle, without judging anyone's food or budget. `[One line from R4: e.g. "In our tests, X of Y households…"]`"
+**5. What testing told us (35 s).** This is the part markers care about most. Say it plainly.
+> "We tested with two groups of housemates. All four named the money side, the budget, Compare or deals, as the best part. But one group told us straight: it 'feels like another group chat.' And one said: 'the only time I can see myself using this is when I'm talking to someone in the grocery store.' That changed our direction. The value isn't another place to send messages. It's the live moment when one person is in the aisle and the house is at home. So our next version leans into that, works with the group chat instead of competing with it, and makes first use simpler."
 
-**6. Close (anyone, 10 s).**
-> "Scan the QR code for our process and ethics. What would your house use it for?"
+**6. Close (10 s).**
+> "Scan the QR code for our process and ethics. Would your house use it, or stick with the group chat?"
 
 ---
 
@@ -28,10 +33,12 @@ The tradeshow is a **demonstration, not a presentation**. Speak *while* the visi
 
 | Question | Answer |
 |---|---|
-| Why not just a group chat? | Chats bury requests and don't know what's on the list, what's at home or what's been bought. The Dock keeps one shared state, visible in the kitchen and in the aisle. One participant told us they forget what a housemate texted days earlier. |
-| Isn't this just a shopping-list app? | The list is the core because that's existing behaviour. The difference is the household layer: who's shopping, requests, a one-tap question home, Split Shop and the cost split. And it's a shared object in a shared place, not one person's phone. |
-| Why a physical device? | Staff and participants pushed back on "another app". A device in the kitchen is something a group uses together, and it gives the whole house a reason to touch it. |
-| What about healthy eating? | We don't define it for people. Compare shows facts in the order *you* choose (price, protein, less sugar) and never says "healthier". Healthier choices can follow from planning meals together, but we don't moralise. |
-| Privacy? | Aliases only, no live location (just the store the shopper picked), no accounts or analytics, nothing scraped, and the household data is wiped with a reset (barcode lookups go to Open Food Facts). See our Ethical Considerations page. |
-| What's real and what's simulated? | Live multi-device sync, requests, Ask home, Split Shop, cost split and barcode scanning are real. Prices are entered by us, and deals and store detection are simulated. |
-| What if only one person uses it? | It works solo. Grudin's warning applies, which is why every housemate gets something back: their requests get bought and the cost is split fairly. `[After R4: what we found about who does the adding.]` |
+| **Why not just use a group chat?** | Honestly, our testers asked the same thing. A chat is great for messages but it doesn't know what's on the list, what's already at home, what's been bought or how much budget is left. That shared state is what G-02 valued: no guessing and no buying things twice. So we're designing to work *alongside* the chat, not replace it. |
+| **Your testers said they wouldn't use it. What did you do?** | That's why we tested. We changed our story from "a shared list" to "live coordination while someone is shopping", which is what they said they'd actually use. We also planned a simpler first use, clearer labels, and a chime instead of lights. |
+| **What's social about it?** | It supports coordination and awareness the household already does: who is shopping now, what others asked for, what's at home (Schmidt 2002 on awareness; the 3C model). On the time–space matrix: planning together is same time, same place; requests are different time, same place; Ask home is same time, different place. Olsson et al. (2020) push us to support people being together, which is why we're moving Split Shop toward shopping together in one store. |
+| **Which framework did you use?** | The location framework from the brief: the Hub is location-specific (the kitchen), and the Cart Unit is designed for the store context: the list, the budget and what's relevant in the aisle. Plus the time–space matrix for the six group moments. |
+| **Who does the work? (Grudin)** | Testers told us updating Already at home "seems super tedious". That's Grudin's (1994) warning about effort and benefit. In v0.3 the finished shop updates what's at home automatically, and our next step is one-line quick-add. |
+| **Why a physical device?** | A shared object in a shared place belongs to the household, not to one person's phone. Our testers also showed its limits: they said the LEDs would go unnoticed, so we're swapping them for a chime. |
+| **Healthy eating?** | We don't define it for people. Compare shows facts in the order *you* choose (price, protein, less sugar) and never says "healthier". |
+| **Privacy?** | Aliases only, no accounts, no live location (the shopper picks the store), no analytics, and the household's data stays on our laptop and is wiped between sessions. See our Ethical Considerations page. |
+| **What's real and what's simulated?** | Real: the live shared list and requests across devices, barcode scanning, Compare, budget and meal ideas. Simulated: prices (entered by us for Woolworths only) and deal alerts. Ask home, live two-phone Split Shop and the cost split are built in our v0.3 code (in the repo) and come back in the next version. |

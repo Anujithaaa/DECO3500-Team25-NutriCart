@@ -58,13 +58,37 @@ At the tradeshow, visitors try the same 5-minute flow in pairs. The note-taker u
 
 Short sessions show first use, not how a household behaves over weeks (Grudin). The setting is staged rather than a real kitchen and store. Participants are students we could reach quickly. We report these patterns as formative findings, not proof.
 
+## What we actually ran
+
+We planned 4–6 groups. We ran **2 groups (4 participants)** in Week 12: heavy rain kept most of us off campus, and the physical Dock was still being finished. Both groups used app-v2 (Home Hub on a laptop, Cart Unit in Expo Go). The tradeshow (Tue 20 and Thu 22) is our second round.
+
 ## Results
 
-| Group | Date | Setting | Key observations | Changes made |
+| Group | Date | Setting | Key observations | Changes |
 |---|---|---|---|---|
-| G-01 | | | | |
-| G-02 | | | | |
-| G-03 | | | | |
-| G-04 | | | | |
+| [G-01](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-01.md) | Week 12 | 2 housemates; one on the Hub, one on the Cart Unit, then swapped | Liked the budget, Compare and meal ideas. Confused by navigation, the store scope and one-phone Split Shop. Saw requests as "another group chat". Said the LEDs would go unnoticed. Neither would use it as it is | F2, F3, F4, F5, F6 |
+| [G-02](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-02.md) | 19 Oct | 2 housemates in their own kitchen, screens only | Valued Compare and price, seeing what's at home (no buying twice), requests and Split Shop. Found it dull and hard to navigate the first time. Asked for a chat box and calling | F1, F2, F3 |
 
-**Summary of findings:** `[after analysis: 4–6 bullet points, each with evidence]`
+## Summary of findings
+
+**F1. Money is the clearest value.** All four participants named the budget, Compare or deals as a good part. G01-P2: "I always think twice on if I have enough budget to buy all of these." G-02 would use it if it saves significant money and time.
+→ Keep the money left and Compare as the biggest things on the Cart Unit.
+
+**F2. First use is hard.** All four struggled to navigate at first (barcode scanning at home, whether prices cover every store, how Split Shop works on one phone).
+→ A 3-step "how it works" card on first open, clearer labels, "Prices: Woolworths (prototype)", and Split Shop that says it needs a second phone.
+
+**F3. The group chat is our real competitor.** G-01 saw requests as "another group chat" and said a message or a call is faster. G-02 valued exactly what a chat can't show: what's already at home, so nothing is bought twice. Even so, G02-P1 asked for chat and calling, and G01-P2 wanted it to "pick up messages between our group chat".
+→ Work alongside the chat instead of replacing it (for example, share the list to the group chat) and keep the focus on what a chat can't do: one live list, what's at home, and the budget.
+
+**F4. The social value is in the live, shared moment.** G01-P2: "the only time I can see myself using this is when I'm talking to someone in the grocery store." G01-P1 felt the app was "promoting the opposite of being social" and asked: "Shouldn't the social aspect be going together rather than away from each other?"
+→ Lead with same-time moments: who is shopping now, Ask home, and live list updates. Present Split Shop as two people shopping together in the same store.
+
+**F5. Effort has to pay off (Grudin, 1994).** "Too many steps for a shopping list" (G01-P2). Manually updating Already at home "seems super tedious" over time (G01-P2).
+→ Quick-add several items in one line, and update Already at home from the finished shop instead of by hand (v0.3 already does this).
+
+**F6. Lights go unnoticed.** Both G-01 participants said the LEDs were redundant. G01-P2 would "rather a sound or a chime".
+→ Replace the LEDs with a short chime when a request or question arrives.
+
+**Also liked:** meal ideas from what's at home (G01-P2: "seeing what we can make with the ingredients at home is pretty sweet"), and Split Shop, which G02-P2 found handy.
+
+**Limits of this round:** two short sessions with four people we could reach; first use only; one session was screens only. These are formative findings, not proof.

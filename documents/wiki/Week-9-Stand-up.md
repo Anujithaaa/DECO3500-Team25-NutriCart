@@ -1,6 +1,6 @@
 # Week 9 Stand-up
 
-> **Note on timing.** The brief asked for this page before the Week 9 stand-up. We presented in our Week 9 studio on `[date, confirm: Tue 22 or Thu 24 Sep 2026]` but did not post the page beforehand. It was written up on 13 October 2026 from our stand-up script, team notes and the feedback we received. Nothing below was added with hindsight except section 5, which is marked as such.
+> **Note on timing.** The brief asked for this page before the Week 9 stand-up. We presented in our Week 9 studio in Week 9 (22–24 Sep 2026) but did not post the page beforehand. It was written up on 13 October 2026 from our stand-up script, team notes and the feedback we received. Nothing below was added with hindsight except section 5, which is marked as such.
 
 ## 1. Where we were
 

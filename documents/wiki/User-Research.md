@@ -7,10 +7,10 @@ This page synthesises our research: methods, who took part, what we found, and h
 | Round | Method | Purpose | Run by | Participants | Prototype shown |
 |---|---|---|---|---|---|
 | R1 | Semi-structured interviews (5 story-based questions: last trip, someone who changed what you bought, social media, healthy vs cheap, hardest part) | Understand how UQ students actually shop, and where social influence shows up | Aman 2, Anujitha 2, James 1, Kenan 2 | **7** (R1-P01–P07) | none |
-| Lit | Literature review | Position the gap | All | `[confirm: 8 unique papers? the protocol notes say 10]` | – |
+| Lit | Literature review | Position the gap | All | 8 unique papers (10 entries across members; two overlap) | – |
 | AP | Think-aloud with the **v1 app probe**, then follow-up questions (in person or by screen share) | React to something concrete: friend recommendations, group goals, recipes, checklist | Aman 5, Kenan 3, Anujitha 1, James 1 | **10 sessions** (AP-P01–P10); AP-P08 may be R1-P06 again | v1 app |
 | HP | Think-aloud with the **v2 NutriCart Hub** physical Cart Unit (three screens: list, alerts and suggestions, compare) | Test the reframed household concept | Kenan | **3 sessions** (HP-P01–P03), all with people interviewed before | v2 Hub (physical) |
-| SH | Shadowing in store (accompany a shop, then post-shop questions) | See behaviour rather than recalled behaviour | James (1 completed), others declined | **1** (SH-P01, same person as R1-P05) + `[n]` declines | none |
+| SH | Shadowing in store (accompany a shop, then post-shop questions) | See behaviour rather than recalled behaviour | James (1 completed), others declined | **1** (SH-P01, same person as R1-P05) (others declined) | none |
 | ST | Studio peer interviews (8 Sep) plus proposal Q&A, studio reviews and peer comments | Critique from staff and other teams | Team | Teams 16, 3 and two others (ST-2026-09-08); **not target users** | slides, v1, v2 |
 | R4 | **Group evaluation of v3** (households at their kitchen bench; pairs shopping) | Does a household actually coordinate through it? | everyone | see [Evaluation Plan](Evaluation-Plan) | v3 |
 
@@ -82,7 +82,7 @@ Shadowing had low uptake. People cited privacy, feeling self-conscious and time.
 | Off-list buys happen | Add items in store | Cart Unit: "Not on the list?" |
 | People forget what's at home | "Already at home" list fed automatically by each shop | Dock pantry, badges on the list |
 | Data entry is "a pain" | Quick-add chips, a meal → missing-ingredients button, prices optional | Dock quick-add, meal board |
-| Another app is unwanted | A dedicated household object: Dock in the kitchen, Cart Unit on the basket | Physical housings `[in progress]` |
+| Another app is unwanted | A dedicated household object: Dock in the kitchen, Cart Unit on the basket | Physical Dock stand and Cart Unit mount (built) |
 | Shopping together means splitting up in store | Split the list across two Cart Units | G5 Split Shop |
 | Shared costs cause friction | A neutral cost split after the shop | G6 return summary |
 
@@ -126,12 +126,20 @@ Every finding on the poster or in the overview traces back to a row here. Codes 
 | H1-P1 … | R4 household | | v3 | | |
 | S1-P1 … | R4 shop pair | | v3 | | |
 
+| G01-P1 | Eval R1 | Kenan | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-01.md) | Findings F2–F6 |
+| G01-P2 | Eval R1 | Kenan | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-01.md) | Findings F1–F6 |
+| G02-P1 | Eval R1 | Aman | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-02.md) | Findings F1–F3 |
+| G02-P2 | Eval R1 | Aman | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-02.md) | Findings F1–F3 |
+
 ## References
 
-- Di Cosola & Neff (2022). `[full citation]`
+- Bomfim, M. C. C., Nacke, L. E., Kirkpatrick, S. I., & Wallace, J. R. (2020). Food literacy while shopping: Motivating informed food purchasing behaviour with a situated gameful app. In *Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems*. ACM. https://doi.org/10.1145/3313831.3376801
+- Bomfim, M. C. C., Wong, E., Liang, P., & Wallace, J. R. (2022). Design and evaluation of technologies for informed food choices. *ACM Transactions on Computer-Human Interaction*. https://doi.org/10.1145/3565482
+- Di Cosola III, B. M., & Neff, G. (2022). Nudging behavior change: Using in-group and out-group social comparisons to encourage healthier choices. In *Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems*. ACM.
 - Grudin, J. (1994). Groupware and social dynamics: Eight challenges for developers. *Communications of the ACM, 37*(1), 92–105.
 - Houde, S., & Hill, C. (1997). What do prototypes prototype? In M. Helander, T. Landauer & P. Prabhu (Eds.), *Handbook of Human-Computer Interaction* (2nd ed., pp. 367–381). Elsevier.
-- Marshall et al. (2022). `[full citation]`
-- Strecker et al. (2024). ShoppingCoach. `[full citation]`
-- Wang et al. (2024). *CSCW*. `[full citation]`
-- `[remaining papers from our review, full citations]`
+- Marshall, J., Jimenez-Pazmino, P., Metoyer, R., & Chawla, N. V. (2022). A survey on healthy food decision influences through technological innovations. *ACM Transactions on Computing for Healthcare, 3*(2), Article 25. https://doi.org/10.1145/3494580
+- Strecker, J., Wu, J., Bektaş, K., Vaslin, C., & Mayer, S. (2024). ShoppingCoach: Using diminished reality to prevent unhealthy food choices in an offline supermarket scenario. In *Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA '24)* (pp. 1–8). ACM. https://doi.org/10.1145/3613905.3650795
+- Wang, C.-H. A., Sher, S. T.-H., & Chung, C.-F. (2024). From viral content to real-life cuisine and beyond: Examining teenagers' interactions with TikTok food videos and the influence on their food practices. *Proceedings of the ACM on Human-Computer Interaction, 8*(CSCW2), Article 389. https://doi.org/10.1145/3686928
+- Wongprawmas, R., Sogari, G., Menozzi, D., & Mora, C. (2022). Strategies to promote healthy eating among university students: A qualitative study using the nominal group technique. *Frontiers in Nutrition, 9*, Article 821016. https://doi.org/10.3389/fnut.2022.821016
+- *Healthy Eating, Identities, and Design Opportunities in Social Media Spaces* (reviewed by James).
