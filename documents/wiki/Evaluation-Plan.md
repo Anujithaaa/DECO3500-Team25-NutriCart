@@ -6,6 +6,21 @@ Our first plan (35–40 minute sessions in people's homes) was not realistic in 
 
 The evaluation is **formative**: we want to learn what works, what confuses people and what to change, not prove the design works. No SUS or TAM.
 
+## Social design objective → evaluation questions → evidence
+
+Following the Week 8 evaluation lecture, we started from what the design is meant to do socially, not from usability.
+
+**Social design objective:** help housemates **coordinate** the shop (Olsson et al., 2020: *facilitate*) by making each other's needs and actions **visible** at the right moment (Schmidt, 2002: awareness), at home and in the aisle, without adding effort.
+
+| Evaluation question | What counts as evidence | Answered by |
+|---|---|---|
+| Do housemates notice what others need and are doing (requests, live list changes)? | They spot a request or a live update without being told | F3, F4 |
+| Does it support coordination, or do people bypass it (text or call instead)? | Moments where they reach for the group chat; what they say they'd do in real life | F3 |
+| Which moment matters most: planning at home, or the live in-store moment? | Where they engage, and what they say they'd keep | F4 |
+| Who does the work, and does the benefit feel worth it? (Grudin, 1994) | Reactions to adding items and keeping "Already at home" up to date | F5 |
+| Can a first-time user get going without help? | Where they get stuck; whether they need us to explain | F2 |
+| What would they not want housemates to see? | Answers to the sharing question | Tradeshow (Ethics E3) |
+
 ## Who and where
 
 - **Who:** UQ students who **live with other people** (share house, student accommodation, or flatmates). One screening question: *"Do you live with housemates or flatmates?"* Studio peers count only if they do, and we note it.
