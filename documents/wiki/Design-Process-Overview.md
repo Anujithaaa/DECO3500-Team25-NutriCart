@@ -4,14 +4,14 @@
 
 ## Summary
 
-We investigated how students living together near UQ St Lucia plan, coordinate and make grocery decisions. Price decides most purchases, and “healthy” means something different to everyone. Most participants shopped alone, yet their shopping overlapped through shared staples, fridge space and lists sent to whoever was going. The useful social influence isn’t a feed of friends’ meals but the everyday coordination of a household: who needs what, who’s going, what’s already in the fridge, and who pays.
+We investigated how students living together near UQ St Lucia plan, coordinate and make grocery decisions. Price decides most purchases, and “healthy” means something different to everyone. Most shopped alone, yet their shopping overlapped through shared staples, fridge space and lists sent to whoever was going. The useful social influence isn’t a feed of friends’ meals but the everyday coordination of a household: who needs what, who’s going, what’s already in the fridge, and who pays.
 
 NutriCart Hub is our response. Housemates plan together at the kitchen Home Dock, and whoever shops takes the Cart Unit with the household's list, requests and budget. On re-docking, the shop returns with a cost split. The social computing sits in six moments where several housemates take part (G1–G6).
 
 ## Process
 
 ### 1. Understanding the domain (Weeks 3–6)
-Our first domain statement was about "enhancing healthy food choices". Round 1 interviews asked for **stories** not opinions, and showed **price first** ("99 out of 100 times"), and social influence that works through **trust and timing**: a housemate who finds the cheap milk, a reel seen right before going out. The literature showed food-choice tools are mostly individual (Marshall et al., 2022), and that social media inspiration rarely carries into the store (Wang et al., 2024). Proposal feedback asked: whose definition of healthy? Why an app?
+Our first domain statement was about "enhancing healthy food choices". Round 1 interviews asked for **stories** not opinions, and showed **price first** ("99 out of 100 times") and social influence that works through **trust and timing**: a housemate who finds the cheap milk, a reel seen right before going out. The literature showed food-choice tools are mostly individual (Marshall et al., 2022), and that social media inspiration rarely carries into the store (Wang et al., 2024). Proposal feedback asked: whose definition of healthy? Why an app?
 
 ![Domain statement versions v1 to v4](images/domain-statements.png)
 *Our domain statement went through four versions, from "healthy choices" and "social media" to household coordination.*
@@ -35,10 +35,10 @@ Staff said the social aspect was weak: apps are individual by nature, so we rede
 
 The Hub now **facilitates** coordination households already do (Olsson et al., 2020), uses visible traces rather than notifications (Schmidt, 2002) and gives every housemate something back (Grudin, 1994).
 
-Following the location framework, each device suits its place: the Hub stays in the kitchen for planning, while the Cart Unit shows only what matters in the store.
+Applying the Designing for Location Dependence framework (Design for Location, n.d.) showed that decisions start at home, not at the store entrance, so NutriCart follows a home → store → home trajectory: the Dock belongs to the kitchen; the Cart Unit shows only what matters in store.
 
 ### 5. v3: multi-user and live, going physical (Weeks 10–11)
-v3 is an **integration prototype** (Houde & Hill, 1997): its real where the social experience depends on it. James built a live sync backend and an Expo Cart Unit with **barcode scanning**. v0.3 added housemate tokens, requests, "Jay is shopping now", Ask home, Split Shop across two phones, a meal board that skips what's already at home, and a cost-split summary. Prices are entered by hand, and compare orders products by **the shopper's** priority, never "healthier".
+v3 is an **integration prototype** (Houde & Hill, 1997): it is real where the social experience depends on it. James built a live-sync backend and an Expo Cart Unit with **barcode scanning**; v0.3 added the household layer: tokens, requests, "Jay is shopping now", Ask home, two-phone Split Shop, a meal board and a cost split. Prices are entered by hand, and compare orders products by **the shopper's** priority, never "healthier".
 
 ![Home Dock during a shop](images/v3-dock-live.png)
 *v3 Home Dock during a live shop, with a question from the store waiting.*
@@ -53,7 +53,7 @@ James built physical housings for the Dock and the Cart Unit. Kenan's **app-v2**
 We ran two group sessions with four students who live together, one in their own kitchen ([Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)). All four valued the budget, Compare or deals most, and all struggled with first-time navigation. The sharpest finding: **the group chat is our real competitor**. G-01 called requests "another group chat" and felt the design was "promoting the opposite of being social", while G-02 valued seeing what was already at home. The social value sat in the live, in-store moment. So we will lead with same-time coordination (who's shopping, Ask home, live updates), work alongside the chat, simplify first use, and swap the LEDs for a chime.
 
 ### 7. Tradeshow (Week 12)
-`[What visitors did in pairs, notable reactions, any last changes.]`
+The tradeshow (20 and 22 Oct) is our second round of testing: visitors try the flow in pairs while we note what they use, ignore and question. Findings follow after Thursday.
 
 ### Limitations
 Our samples were small, qualitative and mostly people we could reach. Early questions were sometimes framed as "healthier vs cheaper". Final testing was two 10–15 minute group sessions with four participants, so it shows first use, not how a household behaves over weeks (Grudin, 1994); one session was screens only. v2 was Wizard of Oz, and v3 supports one household per server.
@@ -62,10 +62,10 @@ Our samples were small, qualitative and mostly people we could reach. Early ques
 
 | Member | Main contributions |
 |---|---|
-| Aman Kushwaha | Project lead: plan, charter, task board and stand-up records; synthesis; repo de-identification; evaluation plan and session G-02; pitch and tradeshow pack |
-| James Olbes | Shadowing session; physical prototypes (v2 cardboard, v3 housings); backend and Expo Cart Unit (v0.1–v0.2) |
-| Anujitha Fernando | GitHub repo set-up; integration and multi-device testing of v3; poster layout and printing |
-| Kenan Chu | Physical prototypes; interview protocol synthesis; personas and scenarios; research archive and README; app-v2 redesign (Hub + Expo Cart Unit); session G-01; WIKI and final PDF |
+| Aman Kushwaha (Project Management Lead) | Plan, charter, task board and stand-up records; synthesis; repo de-identification; evaluation plan and session G-02; pitch and tradeshow pack |
+| James Olbes (Design & Prototyping Lead) | Shadowing session; physical prototypes (v2 cardboard, v3 housings); backend and Expo Cart Unit (v0.1–v0.2) |
+| Anujitha Fernando (Technical & Dev Lead) | GitHub repo set-up; integration and multi-device testing of v3; poster layout and printing |
+| Kenan Chu (Documentation & Theory Lead) | Physical prototypes; interview protocol synthesis; personas and scenarios; research archive and README; app-v2 redesign (Hub + Expo Cart Unit); session G-01; WIKI and final PDF |
 
 We shared 23 research and testing sessions; the [evidence register](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/User-Research#6-evidence-register) shows who ran each.
 
@@ -73,9 +73,10 @@ We shared 23 research and testing sessions; the [evidence register](https://gith
 
 ## References
 
-Grudin, J. (1994). Groupware and social dynamics: Eight challenges for developers. *Communications of the ACM, 37*(1), 92–105.
-Houde, S., & Hill, C. (1997). What do prototypes prototype? In M. Helander, T. Landauer & P. Prabhu (Eds.), *Handbook of Human-Computer Interaction* (2nd ed., pp. 367–381). Elsevier.
-Marshall, J., Jimenez-Pazmino, P., Metoyer, R., & Chawla, N. V. (2022). A survey on healthy food decision influences through technological innovations. *ACM Transactions on Computing for Healthcare, 3*(2), Article 25. https://doi.org/10.1145/3494580
-Olsson, T., Jarusriboonchai, P., Woźniak, P., Paasovaara, S., Väänänen, K., & Lucero, A. (2020). Technologies for enhancing collocated social interaction: Review of design solutions and approaches. *Computer Supported Cooperative Work, 29*, 29–83.
-Schmidt, K. (2002). The problem with "awareness". *Computer Supported Cooperative Work, 11*(3–4), 285–298.
-Wang, C.-H. A., Sher, S. T.-H., & Chung, C.-F. (2024). From viral content to real-life cuisine and beyond: Examining teenagers' interactions with TikTok food videos and the influence on their food practices. *Proceedings of the ACM on Human-Computer Interaction, 8*(CSCW2), Article 389. https://doi.org/10.1145/3686928
+- Design for Location. (n.d.). *Designing for location dependence: A framework*. https://designforlocation.org/framework.html
+- Grudin, J. (1994). Groupware and social dynamics: Eight challenges for developers. *Communications of the ACM, 37*(1), 92–105.
+- Houde, S., & Hill, C. (1997). What do prototypes prototype? In M. Helander, T. Landauer & P. Prabhu (Eds.), *Handbook of Human-Computer Interaction* (2nd ed., pp. 367–381). Elsevier.
+- Marshall, J., Jimenez-Pazmino, P., Metoyer, R., & Chawla, N. V. (2022). A survey on healthy food decision influences through technological innovations. *ACM Transactions on Computing for Healthcare, 3*(2), Article 25. https://doi.org/10.1145/3494580
+- Olsson, T., Jarusriboonchai, P., Woźniak, P., Paasovaara, S., Väänänen, K., & Lucero, A. (2020). Technologies for enhancing collocated social interaction: Review of design solutions and approaches. *Computer Supported Cooperative Work, 29*, 29–83.
+- Schmidt, K. (2002). The problem with "awareness". *Computer Supported Cooperative Work, 11*(3–4), 285–298.
+- Wang, C.-H. A., Sher, S. T.-H., & Chung, C.-F. (2024). From viral content to real-life cuisine and beyond: Examining teenagers' interactions with TikTok food videos and the influence on their food practices. *Proceedings of the ACM on Human-Computer Interaction, 8*(CSCW2), Article 389. https://doi.org/10.1145/3686928

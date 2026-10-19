@@ -133,6 +133,7 @@ Interview participants are referred to by participant code (for example R1-P03).
 | v2 | Cardboard Home Dock + Cart Unit, and an HTML Hub (link above) |
 | v0.1–v0.2 code | James Olbes: FastAPI backend, Home Hub page, Expo Cart Unit with camera scanning, product library and compare |
 | v0.3 code | Household layer: tokens, requests, shopping-now, Ask home, Split Shop, cost split, meal board, already-at-home, reset, web Cart Unit (written with AI assistance; see below) |
+| app-v2 | Kenan Chu: redesigned Home Hub and Expo Cart Unit (new UI), the version tested in Week 12 |
 
 ## Team
 
@@ -143,4 +144,4 @@ Interview participants are referred to by participant code (for example R1-P03).
 
 ## AI use
 
-`[Team to complete per DECO3500 policy: which tools were used, for which parts (code, documentation, analysis), and how outputs were checked.]`
+See [Use of AI](#use-of-ai) above.

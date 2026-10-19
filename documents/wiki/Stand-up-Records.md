@@ -73,6 +73,10 @@ Usual meeting: Mondays 9:30am, plus straight after studio when needed.
 - **Outcomes:** Roles for the week: Kenan front end (app-v2), Anujitha poster, James physical prototype, Aman testing, pitch and documentation. Poster brief and image pack sent to Anujitha.
 - **Next:** Poster to print; physical build; test sessions; push all code to the repo.
 
+---
+
+## Week 12
+
 ### Mon 19 Oct
 - **State:** Heavy rain kept most of us off campus. Kenan ran group session G-01 and pushed app-v2 to the `ui-redesign` branch (PR #31). Aman ran G-02 at home on app-v2.
 - **Outcomes:** Two group sessions instead of 4–6; the tradeshow becomes our second round of testing.

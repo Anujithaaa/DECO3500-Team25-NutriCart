@@ -1,4 +1,4 @@
-# Evaluation Plan: rapid group testing of v3 (Week 11)
+# Evaluation Plan: rapid group testing (Weeks 11–12)
 
 Our first plan (35–40 minute sessions in people's homes) was not realistic in the time left: participants could not give that much time in assessment season. Following the course advice to **adapt methods** rather than drop them, we switched to **short, guerrilla-style group sessions**. They keep the two rules for social and mobile evaluation:
 1. **Several people use it at once:** every session has 2–3 participants on different devices.
@@ -25,19 +25,26 @@ The evaluation is **formative**: we want to learn what works, what confuses peop
 | 4 | Shop | Person B takes a phone: *"You're going to the shops. Start the shop and get 3 things within $25."* Partway through: *"They're out of yoghurt. What do you do?"* (Ask home is there if they find it.) Person A stays at the Dock. | G3, G4 |
 | 1 | Split (if 3 people) | Person C joins on the second phone and splits the list | G5 |
 | 1 | Back home | B taps Finish; everyone looks at the summary | G6 |
-| 3 | Questions | The 4 questions below | – |
+| 3 | Questions | The questions below | – |
 
-**4 questions** (ask exactly these, in this order):
-1. What was the most useful part? What would you ignore?
-2. When would you just text your housemate instead?
-3. How did the cost split feel: fair, useful or awkward?
-4. Was there anything you wouldn't want your housemates to see?
+**Questions** (ask the main question at each stage; use the follow-up if time allows)
+
+| # | Stage | Ask | Follow-up |
+| - | ----- | --- | --------- |
+| 1 | Planning at the Hub | *"Walk me through how you planned the shop together. What did you do first?"* | *"Was there anything you wanted to do but couldn't find?"* |
+| 2 | Tonight's meal | *"When you opened the recipe, would you trust the 'At home' and 'Need to buy' labels, or still check the fridge yourself?"* | *"Why?"* |
+| 3 | Shopping (Cart Unit) | *"While shopping, what did you look at on the phone, and when?"* | *"Did the budget change anything you picked?"* |
+| 4 | Something goes wrong | *"When the yoghurt was out, how did you work out what to do?"* | *"In real life, when would you just text your housemate instead?"* |
+| 5 | Updates at home (ask Person A) | *"While [Person B] was shopping, how did you know what was happening?"* | *"Did you notice the light or small screen? Would that help, get ignored, or annoy you compared with a phone notification?"* |
+| 6 | Sharing | *"Everyone saw the same list, requests and summary. How did that feel?"* | *"Is there anything you wouldn't want your housemates to see?"* |
+| 7 | Overall | *"If your household kept one part of NutriCart and lost the rest, what would you keep, and why?"* | *"What would stop your house actually using this week to week?"* |
 
 ## What we record (one sheet per group)
 
-| Group | Date | Facilitator | Who (codes) | Lives with others? | Said it's for… | Got stuck at… | Used Ask home? | Texted instead? | Cost split reaction | Best quote | Change to make |
+| Group | Date | Facilitator | Who (codes) | Lives with others? | Said it's for… | Got stuck at… | Used Ask home? | Texted instead? | Noticed light/screen? | Best quote | Change to make |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| G-01 | | | G01-P1, G01-P2 | | | | | | | | |
+| G-01 | Week 12 | Kenan | G01-P1, G01-P2 | Yes | P2: "another grocery app" | Navigation; scanning at home; which stores; one-phone Split Shop | Not in app-v2 | Both would message or call | Both: not needed; P2 prefers a chime | "The only time I can see myself using this is when I'm talking to someone in the grocery store" (P2) | Work with the group chat; lead with the live in-store moment |
+| G-02 | 19 Oct | Aman | G02-P1, G02-P2 | Yes | P2: the communication part (requests, suggestions, messages) | First-time navigation (both) | Not in app-v2 | Not raised | Not asked | Notes only (paraphrased) | Simpler first use; P1 asked for chat and calling |
 
 - **Codes only** (G01-P1…). No names, faces or recordings. Photos of hands and screens only, with permission.
 - Within the day, add each group to the [evidence register](User-Research#6-evidence-register).
@@ -60,7 +67,7 @@ Short sessions show first use, not how a household behaves over weeks (Grudin). 
 
 ## What we actually ran
 
-We planned 4–6 groups. We ran **2 groups (4 participants)** in Week 12: heavy rain kept most of us off campus, and the physical Dock was still being finished. Both groups used app-v2 (Home Hub on a laptop, Cart Unit in Expo Go). The tradeshow (Tue 20 and Thu 22) is our second round.
+We planned 4–6 groups. We ran **2 groups (4 participants)** in Week 12: heavy rain kept most of us off campus, and the physical Dock was still being finished. Both groups used app-v2 (Home Hub on a laptop, Cart Unit in Expo Go), so we adapted the session: app-v2 has no Ask home or Finish step, so the shopper found a housemate's request, scanned and compared a product, and tried Split Shop instead. The tradeshow (Tue 20 and Thu 22) is our second round.
 
 ## Results
 

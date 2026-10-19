@@ -11,7 +11,7 @@
 | [Design Process Overview](Design-Process-Overview) | The top-level story: how the prototype came to be, what we tried, what changed, what we learned. **Submitted as PDF.** |
 | [Ethical Considerations](Ethical-Considerations) | Ethical risks and responses, using the Ethical Disclaimer canvas. **Submitted as PDF.** |
 | [User Research](User-Research) | Methods, participants, themes, finding → design traceability, evidence register, limitations |
-| [Evaluation Plan](Evaluation-Plan) | Week 11 group evaluation: questions, sessions, measures, consent, observation sheet, results |
+| [Evaluation Plan](Evaluation-Plan) | Weeks 11–12 group evaluation: sessions, questions, consent, observation sheets, results and findings |
 | [Week 9 Stand-up](Week-9-Stand-up) | Project state at the Week 9 stand-up and the feedback we received |
 | [Stand-up Records](Stand-up-Records) | Internal team stand-ups and meetings, Weeks 3–13 |
 

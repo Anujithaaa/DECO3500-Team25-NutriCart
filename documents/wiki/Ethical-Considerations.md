@@ -1,6 +1,6 @@
 # Ethical Considerations
 
-We assessed NutriCart Hub with the **Ethical Disclaimer** from the Ethics for Designers toolkit (Gispen, 2017). We used the Ethical Disclaimer (Gispen, 2017) because it asks designers to state who is affected, what could go wrong and what they take responsibility for, which suits a tool that sits inside a shared home.The disclaimer asks a team to describe the situation, list everyone affected, state its intentions, imagine how the design could cause unethical outcomes for each stakeholder, and decide openly which of those outcomes the team takes responsibility for. Following the course's emphasis on ethical design thinking throughout a project (Loke & Matthews, 2020), this is a **living page**: we revisit it at each milestone (section 6).
+We assessed NutriCart Hub with the **Ethical Disclaimer** from the Ethics for Designers toolkit (Gispen, 2017), because it asks designers to state who is affected, what could go wrong and what they take responsibility for, which suits a tool that sits inside a shared home. The disclaimer asks a team to describe the situation, list everyone affected, state its intentions, imagine how the design could cause unethical outcomes for each stakeholder, and decide openly which of those outcomes the team takes responsibility for. Following the course's emphasis on ethical design thinking throughout a project (Loke & Matthews, 2020), this is a **living page**: we revisit it at each milestone (section 6).
 
 ## 1. The current situation
 
@@ -14,12 +14,14 @@ Students in share houses near UQ St Lucia coordinate groceries informally: group
 | Housemates at home (use the Dock) | Supermarket staff and other shoppers (in-store use and testing) |
 | A housemate on a tighter budget | Retailers whose prices appear in the product library |
 | A housemate who doesn't share food or doesn't want to take part | Open Food Facts (receives barcode lookups) |
-| Housemates with dietary, cultural, religious or allergy needs | The hosting provider (stores the prototype database) |
+| Housemates with dietary, cultural, religious or allergy needs | Expo (the Cart Unit runs in the Expo Go app) |
 | Someone with a difficult relationship with food or their body | Research participants and the team |
 
 ## 3. Our intentions
 
 NutriCart Hub is for **student share houses**. It is used **at the kitchen bench and in the supermarket aisle**. Its purpose is to **make the coordination housemates already do easier and fairer**: who needs what, who is shopping, what's already at home, and how to split the cost. It is not meant to change what anyone eats or to rate their choices.
+
+The risks below are written for the full design (v0.3 in the repo). app-v2, the version we tested in Week 12, has a subset of its features: it has no cost split, so E1 and E5 apply when the split returns.
 
 ## 4. Imagining how it could go wrong
 
@@ -32,8 +34,8 @@ NutriCart Hub is for **student share houses**. It is used **at the kitchen bench
 | E5 | Housemates who don't share food, or don't want to take part | The design's **script** (Akrich) assumes a cooperative household; non-participants may feel pressured to join or be left out. **In v3, items marked "for the household" are split across every token, so a housemate who never uses NutriCart still appears as owing a share.** | Everything works for one person, and personal requests are only charged to whoever asked. *Next:* let a housemate opt out of shared costs, and remove unused tokens. | Partly addressed |
 | E6 | Housemates with dietary, cultural, religious or allergy needs | A product library and meal board built by our team reflect **our** food habits. | Products are editable in the Product library; compare shows the shopper's priority, not ours. Meals are currently fixed demo meals. *Next:* add and edit meals. *Next:* allergy and dietary notes per housemate visible on requests. | Open |
 | E7 | Housemates with low vision or colour-vision differences | Colour-only tokens exclude some users. | Tokens carry a **number and a name** as well as a colour; large touch targets. *Next:* contrast check. | Partly addressed |
-| E8 | Retailers, the household | **Commercial capture**: a compare screen is an obvious place to sell rankings to brands. Scraping prices could breach retailer terms. | Ordering is only by the shopper's chosen priority; no sponsored ordering, ever. Prices are entered by hand (currently four demo products; real shelf prices will be observed and entered by the team); **nothing is scraped**. | Decided |
-| E9 | Everyone using it | **Data**: shopping lists reveal diet, budget and routines. Barcode lookups go to Open Food Facts; a hosted demo puts the database on a third-party server. | No accounts, no analytics, aliases only. The server stores list items, past shops with their cost splits, questions and barcode scans until the next reset. The demo database is reset between sessions. Database files are git-ignored. | Addressed for the prototype |
+| E8 | Retailers, the household | **Commercial capture**: a compare screen is an obvious place to sell rankings to brands. Scraping prices could breach retailer terms. | Ordering is only by the shopper's chosen priority; no sponsored ordering, ever. Prices are entered by hand from observed shelf prices; **nothing is scraped**. | Decided |
+| E9 | Everyone using it | **Data**: shopping lists reveal diet, budget and routines. Barcode lookups go to Open Food Facts. We decided not to host the demo, so the database stays on our own laptop. | No accounts, no analytics, aliases only. The server stores list items, past shops with their cost splits, questions and barcode scans until the next reset. The demo database is reset between sessions. Database files are git-ignored. | Addressed for the prototype |
 | E10 | Other shoppers, store staff, research participants | **Research harms**: shadowing felt intrusive; filming in store captures bystanders. | Moved from shadowing to lower-burden sessions; consent script; manager permission in store, or a simulated shop; no faces or bystanders; recordings and transcripts kept off public GitHub, deleted at semester end. | Addressed |
 | E11 | The shopper | **Dependence**: if the server or connection fails mid-shop, the list disappears. | Automatic fallback from live connection to polling; hotspot setup. *Next:* keep a cached copy on the Cart Unit. | Partly addressed |
 
@@ -53,7 +55,7 @@ NutriCart Hub is for **student share houses**. It is used **at the kitchen bench
 | 13 Oct | v3 build | E3, E8, E9, E11 added; first full disclaimer |
 | 14 Oct | Research archive | Transcripts removed from the repo and its history; all sessions re-published as de-identified records; raw files kept privately on OneDrive (E10). Lesson: de-identify before anything leaves the private folder. |
 | 19 Oct | Evaluation round 1 (G-01, G-02) | **E4 confirmed:** keeping Already at home updated "seems super tedious" (G01-P2), so the finished shop updates it automatically (v0.3) and one-line quick-add is next. **E5 strengthened:** G-01 would rather use the group chat, so NutriCart must work alongside the chat instead of pulling the whole house onto it. **E1 and E3 not yet tested** (app-v2 has no cost split; the privacy question wasn't recorded), so we ask tradeshow visitors. |
-| `[date]` | Tradeshow | `[visitor reactions]` |
+| 20–22 Oct | Tradeshow | Second round: we ask visitors about E1 (cost split) and E3 (what they wouldn't want housemates to see) and add what we learn after Thursday. |
 
 ## References
 

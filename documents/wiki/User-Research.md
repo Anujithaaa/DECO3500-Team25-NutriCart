@@ -10,11 +10,11 @@ This page synthesises our research: methods, who took part, what we found, and h
 | Lit | Literature review | Position the gap | All | 8 unique papers (10 entries across members; two overlap) | – |
 | AP | Think-aloud with the **v1 app probe**, then follow-up questions (in person or by screen share) | React to something concrete: friend recommendations, group goals, recipes, checklist | Aman 5, Kenan 3, Anujitha 1, James 1 | **10 sessions** (AP-P01–P10); AP-P08 may be R1-P06 again | v1 app |
 | HP | Think-aloud with the **v2 NutriCart Hub** physical Cart Unit (three screens: list, alerts and suggestions, compare) | Test the reframed household concept | Kenan | **3 sessions** (HP-P01–P03), all with people interviewed before | v2 Hub (physical) |
-| SH | Shadowing in store (accompany a shop, then post-shop questions) | See behaviour rather than recalled behaviour | James (1 completed), others declined | **1** (SH-P01, same person as R1-P05) (others declined) | none |
+| SH | Shadowing in store (accompany a shop, then post-shop questions) | See behaviour rather than recalled behaviour | James (1 completed), others declined | **1** (SH-P01, same person as R1-P05) | none |
 | ST | Studio peer interviews (8 Sep) plus proposal Q&A, studio reviews and peer comments | Critique from staff and other teams | Team | Teams 16, 3 and two others (ST-2026-09-08); **not target users** | slides, v1, v2 |
-| R4 | **Group evaluation of v3** (households at their kitchen bench; pairs shopping) | Does a household actually coordinate through it? | everyone | see [Evaluation Plan](Evaluation-Plan) | v3 |
+| G | **Rapid group sessions** (one plans at the Hub, one shops with the Cart Unit, then they swap or answer questions) | Does a household coordinate through it, and would they use it? | Kenan 1, Aman 1 | **2 groups, 4 participants** (G01-P1/P2, G02-P1/P2); see [Evaluation Plan](Evaluation-Plan) | app-v2 |
 
-> **Counting rule.** Each **session** has one code. Some people took part more than once (noted under *Linked records* in each record), so sessions ≠ people. Across R1, AP and HP we ran **20 sessions** with UQ students, plus one shadowing session. Counts on the poster and in the Design Process Overview come only from the register in section 6.
+> **Counting rule.** Each **session** has one code. Some people took part more than once (noted under *Linked records* in each record), so sessions ≠ people. Across R1, AP and HP we ran **20 sessions** with UQ students, plus one shadowing session and **2 group sessions** (4 participants) in Week 12: **23 sessions** in all. Counts on the poster and in the Design Process Overview come only from the register in section 6.
 >
 > **Note:** an earlier internal analysis said some app-probe sessions used the HTML Hub. The transcripts show all of Aman's five sessions used the v1 app.
 
@@ -91,41 +91,38 @@ Shadowing had low uptake. People cited privacy, feeling self-conscious and time.
 - Samples are small and qualitative; we report patterns, not percentages.
 - Some early prototype questions were leading, or explained a feature's benefit before the participant had reacted.
 - Not everyone saw the same prototype version, so we don't compare versions as if they were conditions.
-- AP and HP sessions were one participant at a time, which can't show household dynamics that unfold over days (Grudin). R4 is designed to address this.
+- AP and HP sessions were one participant at a time, which can't show household dynamics that unfold over days (Grudin). The two Week 12 group sessions address this only partly.
 - People who agreed to take part may be more interested in food and shopping than those who declined.
 - Studio peer feedback is critique, not user evidence, and is labelled as such.
 
 ## 6. Evidence register
 
-Every finding on the poster or in the overview traces back to a row here. Codes only, never names. Fill the last column as findings are used.
+Every finding on the poster or in the overview traces back to a row here. Codes only, never names.
 
 | Code | Study | Run by | Prototype | Record | Used for |
 |---|---|---|---|---|---|
-| R1-P01 | R1 | Aman | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P01.md) | |
-| R1-P02 | R1 | Aman | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P02.md) | |
-| R1-P03 | R1 | Anujitha | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P03.md) | |
-| R1-P04 | R1 | Anujitha | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P04.md) | |
-| R1-P05 | R1 | James | – (also SH-P01) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P05.md) | |
-| R1-P06 | R1 | Kenan | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P06.md) | |
-| R1-P07 | R1 | Kenan | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P07.md) | |
-| AP-P01 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P01.md) | |
-| AP-P02 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P02.md) | |
-| AP-P03 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P03.md) | |
-| AP-P04 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P04.md) | |
-| AP-P05 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P05.md) | |
-| AP-P06 | AP | Anujitha | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P06.md) | |
-| AP-P07 | AP | James | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P07.md) | |
-| AP-P08 | AP | Kenan | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P08.md) | |
-| AP-P09 | AP | Kenan | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P09.md) | |
-| AP-P10 | AP | Kenan | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P10.md) | |
-| HP-P01 | HP | Kenan | v2 Hub (physical) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/HP-P01.md) | |
-| HP-P02 | HP | Kenan | v2 Hub (physical) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/HP-P02.md) | |
-| HP-P03 | HP | Kenan | v2 Hub (physical) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/HP-P03.md) | |
-| SH-P01 | SH | James | – (in store) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/SH-P01.md) | |
-| ST-2026-09-08 | ST | Team | v1 app (peers) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/ST-2026-09-08.md) | |
-| H1-P1 … | R4 household | | v3 | | |
-| S1-P1 … | R4 shop pair | | v3 | | |
-
+| R1-P01 | R1 | Aman | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P01.md) | Plans give way to mood (§3) |
+| R1-P02 | R1 | Aman | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P02.md) | Price first, "99 out of 100 times" (§3, overview §1, poster) |
+| R1-P03 | R1 | Anujitha | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P03.md) | Round 1 synthesis |
+| R1-P04 | R1 | Anujitha | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P04.md) | Round 1 synthesis |
+| R1-P05 | R1 | James | – (also SH-P01) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P05.md) | Round 1 synthesis; later shadowed (SH-P01) |
+| R1-P06 | R1 | Kenan | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P06.md) | Price first: buys what is on sale (§3) |
+| R1-P07 | R1 | Kenan | – | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/R1-P07.md) | Social influence runs on trust (§3) |
+| AP-P01 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P01.md) | v1 probe synthesis |
+| AP-P02 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P02.md) | v1 probe synthesis |
+| AP-P03 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P03.md) | v1 probe synthesis |
+| AP-P04 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P04.md) | v1 probe synthesis |
+| AP-P05 | AP | Aman | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P05.md) | Comparison divides people, "getting less pay" (§3, overview §2, Ethics E1) |
+| AP-P06 | AP | Anujitha | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P06.md) | v1 probe synthesis |
+| AP-P07 | AP | James | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P07.md) | v1 probe synthesis |
+| AP-P08 | AP | Kenan | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P08.md) | v1 probe synthesis |
+| AP-P09 | AP | Kenan | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P09.md) | "Telling me that I'm fat"; friend feed unwanted (§3, overview §2, Ethics E2, poster) |
+| AP-P10 | AP | Kenan | v1 app | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/AP-P10.md) | v1 probe synthesis |
+| HP-P01 | HP | Kenan | v2 Hub (physical) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/HP-P01.md) | Budget remaining; data entry "a pain" (§3, overview §3) |
+| HP-P02 | HP | Kenan | v2 Hub (physical) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/HP-P02.md) | "Texted me a few days ago"; "noise, not help" (§3, overview §3, poster) |
+| HP-P03 | HP | Kenan | v2 Hub (physical) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/HP-P03.md) | v2 Hub synthesis |
+| SH-P01 | SH | James | – (in store) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/shadowing/SH-P01.md) | Being watched changes shopping (§3, Ethics E10) |
+| ST-2026-09-08 | ST | Team | v1 app (peers) | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/research/interviews/ST-2026-09-08.md) | Studio critique (not user evidence) |
 | G01-P1 | Eval R1 | Kenan | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-01.md) | Findings F2–F6 |
 | G01-P2 | Eval R1 | Kenan | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-01.md) | Findings F1–F6 |
 | G02-P1 | Eval R1 | Aman | app-v2 | [record](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/G-02.md) | Findings F1–F3 |
