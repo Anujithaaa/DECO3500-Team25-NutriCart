@@ -168,7 +168,7 @@
     </button>
 
     <button data-view="products">
-      Products
+      Scan &amp; Nutrition
     </button>
 
   </nav>
@@ -442,6 +442,14 @@
 
           <div class="x3-head">
             <h1>Shared shopping list</h1>
+             <!-- NUTRICART_CLEAR_ALL_VISIBLE_V2 -->
+             <button
+               class="danger"
+               onclick="clearAllHubShoppingEntries()"
+             >
+               Clear all entries
+             </button>
+
             <span id="listCountLabel" class="x3-count">0 items</span>
           </div>
 
@@ -704,6 +712,179 @@
       class="view"
       id="view-products"
     >
+<style>#view-products > .p3 {display:none !important}</style>
+
+<!-- NUTRICART_LIVE_SCANNER_V1 -->
+<style>
+/* NUTRICART_SCAN_RESET_LED_CHAT_V1 */
+#nutri-live-facts, #nutri-live-facts * {
+  box-sizing:border-box!important;
+}
+#nutri-live-facts {
+  max-width:1120px!important;
+  padding:24px!important;
+  margin:5px auto 26px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#243026!important;
+}
+#nutri-live-facts .nu-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:13px;
+}
+#nutri-live-facts h1 {
+  font-size:clamp(26px,3vw,36px)!important;
+  letter-spacing:-1px!important;
+  margin:0!important;
+}
+#nutri-live-facts .nu-reset {
+  background:#fff!important;
+  border:1px solid #d9a6a1!important;
+  color:#a33f35!important;
+  border-radius:9px!important;
+  padding:11px 15px!important;
+  cursor:pointer;
+  width:auto!important;
+  font-weight:700!important;
+}
+#nutri-live-facts .nu-panels {
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);
+  gap:16px;
+  align-items:start;
+  margin:23px 0 14px;
+}
+#nutri-live-facts .nu-panel {
+  background:white;
+  border:1px solid #dcded7;
+  border-radius:14px;
+  padding:22px;
+  min-width:0;
+}
+#nutri-live-facts .nu-title {
+  font-size:16px!important;
+  font-weight:800;
+  margin:0 0 15px!important;
+}
+#nutri-live-facts .nu-left > div:first-of-type {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:end!important;
+  gap:10px!important;
+}
+#nutri-live-facts .nu-left label {
+  display:block!important;
+  min-width:0!important;
+}
+#nutri-live-facts #nutri-barcode {
+  border-radius:9px!important;
+  padding:13px!important;
+}
+#nutri-live-facts .nu-left button {
+  padding:12px 14px!important;
+  border-radius:9px!important;
+  min-height:46px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+#nutri-live-facts #nutri-field-options {
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px!important;
+}
+#nutri-live-facts #nutri-field-options label {
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:9px!important;
+  width:auto!important;
+  white-space:normal!important;
+  font-size:13px!important;
+  line-height:1.3!important;
+  padding:11px!important;
+  border:1px solid #e0e3db;
+  background:#f9faf8;
+  border-radius:9px;
+  min-height:46px;
+  margin:0!important;
+}
+#nutri-live-facts #nutri-field-options input[type=checkbox] {
+  appearance:auto!important;
+  width:17px!important;
+  height:17px!important;
+  min-width:17px!important;
+  margin:0!important;
+  padding:0!important;
+  position:static!important;
+  flex:none!important;
+  opacity:1!important;
+}
+#nutri-live-facts fieldset {
+  padding:0!important;
+  border:0!important;
+  margin:0!important;
+  min-width:0;
+}
+#nutri-live-facts fieldset legend {
+  display:none!important;
+}
+#nutri-live-facts #nutri-camera-reader {
+  max-width:100%!important;
+}
+#nutri-live-facts #nutri-scan-status {
+  margin:15px 0 0!important;
+  font-size:13px!important;
+  line-height:1.5!important;
+}
+#nutri-live-facts #nutri-result {
+  min-height:0!important;
+}
+#nutri-live-facts #nutri-result > div {
+  max-width:100%;
+}
+@media(max-width:850px) {
+  #nutri-live-facts .nu-panels {
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:570px) {
+  #nutri-live-facts {
+    padding:10px!important;
+  }
+  #nutri-live-facts .nu-panel {
+    padding:15px!important;
+  }
+  #nutri-live-facts .nu-left > div:first-of-type {
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+<section id="nutri-live-facts" style="max-width:1050px;margin:0 auto 32px;padding:24px;background:#f9f8f4;color:#252721;border:1px solid #deded4;border-radius:12px">
+  <h1 style="font-size:29px;margin:0 0 8px">Scan a product</h1>
+  <p style="color:#6a6d63;line-height:1.5;margin-bottom:20px">Point your laptop camera at a packaged-food barcode to see real nutrition from Open Food Facts. No manual product library required.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:16px">
+    <label style="flex:1;min-width:200px;font-weight:600">Barcode (EAN / UPC)
+      <input id="nutri-barcode" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="e.g. 9300633631536" style="display:block;width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #c5c9bd;border-radius:6px" onkeydown="if(event.key==='Enter')nutriLookup()">
+    </label>
+    <button class="primary" type="button" onclick="nutriLookup()">Look up product</button>
+    <button type="button" id="nutri-camera-toggle" onclick="nutriToggleCamera()">Start laptop camera</button>
+  </div>
+  <div id="nutri-camera-reader" style="display:none;max-width:550px;background:#fff;margin:14px 0;border-radius:8px;overflow:hidden"></div>
+  <p id="nutri-scan-status" role="status" aria-live="polite" style="font-size:13px;color:#526044;margin:8px 0 14px">Enter a barcode or start the camera.</p>
+  <fieldset style="border:1px solid #d7d9d0;border-radius:8px;padding:13px;margin:12px 0">
+    <legend style="padding:0 6px;font-weight:700">Nutrition facts to display</legend>
+    <div id="nutri-field-options" style="display:flex;gap:10px 17px;flex-wrap:wrap"></div>
+  </fieldset>
+  <div id="nutri-result" aria-live="polite" style="min-height:60px"></div>
+  <p style="font-size:12px;color:#666c61;margin:18px 0 0">Source: <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">Open Food Facts</a>. Data is community contributed and may be incomplete or incorrect. Always check the product packaging for dietary decisions.</p>
+</section>
+
+
 
       <div class="p3">
 
@@ -1700,6 +1881,58 @@ async function saveListItem(
 }
 
 
+
+
+// NUTRICART_CLEAR_ALL_VISIBLE_V2
+function clearAllHubShoppingEntries() {
+  const entries = [
+    ...(stateCache.shopping_items || [])
+  ];
+
+  if (!entries.length) return;
+
+  requestConfirm(
+    'Clear entire shopping list?',
+    `Delete all ${entries.length} entries from the Home Hub and Cart Units? This cannot be undone.`,
+    async () => {
+      let failures = 0;
+
+      try {
+        await api('/api/cart/clear-list', {
+          method: 'POST'
+        });
+      } catch (error) {
+        // Fallback for the original backend.
+        if (!/not found|404/i.test(
+          String(error.message || error)
+        )) {
+          throw error;
+        }
+
+        const results = await Promise.allSettled(
+          entries.map(item =>
+            api(`/api/list/${item.id}`, {
+              method: 'DELETE'
+            })
+          )
+        );
+
+        failures = results.filter(
+          result => result.status === 'rejected'
+        ).length;
+      }
+
+      await refreshState();
+
+      if (failures) {
+        alert(
+          `${failures} entries could not be deleted. Please retry.`
+        );
+      }
+    },
+    'Delete all'
+  );
+}
 
 function deleteListItem(
   id
@@ -3531,6 +3764,235 @@ showStarter();
 </script>
 
 
+<script>
+
+// NUTRICART_LIVE_SCANNER_V1
+const nutriFields = [
+  ['energy_kcal_100g','Calories (kcal)','kcal',true],
+  ['energy_kj_100g','Energy (kJ)','kJ',false],
+  ['protein_100g','Protein','g',true],
+  ['carbohydrates_100g','Carbohydrates','g',true],
+  ['fat_100g','Fat','g',true],
+  ['saturated_fat_100g','Saturated fat','g',false],
+  ['sugars_100g','Sugar','g',true],
+  ['fiber_100g','Fibre','g',false],
+  ['salt_100g','Salt','g',false],
+  ['sodium_100g','Sodium','g',false],
+];
+let nutriScanner = null;
+let nutriProduct = null;
+let nutriStarting = false;
+const nutriStatus = text => {
+  document.getElementById('nutri-scan-status').textContent = text;
+};
+const nutriNode = (tag, text, style={}) => {
+  const node = document.createElement(tag);
+  if (text !== null && text !== undefined) node.textContent = String(text);
+  Object.assign(node.style, style);
+  return node;
+};
+
+nutriFields.forEach(([key, name, unit, on]) => {
+  const label = nutriNode('label', null, {whiteSpace:'nowrap',fontSize:'13px'});
+  const check = document.createElement('input');
+  check.type='checkbox';check.value=key;check.checked=on;
+  check.addEventListener('change',nutriShowProduct);
+  label.append(check,document.createTextNode(' '+name));
+  document.getElementById('nutri-field-options').append(label);
+});
+
+function nutriShowProduct() {
+  const el = document.getElementById('nutri-result');
+  el.replaceChildren();
+  const p = nutriProduct;
+  if (!p) return;
+  if (p.source === 'unmatched') {
+    el.append(nutriNode('p','This barcode was not found. No nutrition values have been invented. Try checking the packaging.',{color:'#993b24'}));
+    return;
+  }
+  const header = nutriNode('div',null,{display:'flex',gap:'16px',flexWrap:'wrap',margin:'18px 0'});
+  const details = nutriNode('div',null,{flex:'1',minWidth:'200px'});
+  details.append(nutriNode('h2',p.name,{fontSize:'21px',margin:'0 0 8px'}));
+  details.append(nutriNode('p',[p.brand,p.quantity].filter(Boolean).join(' · '),{margin:'0 0 6px',color:'#555'}));
+  details.append(nutriNode('p','Barcode: '+p.barcode,{fontSize:'12px',color:'#666'}));
+  if (p.cached_offline) details.append(nutriNode('p','Showing previously retrieved Open Food Facts data (service unreachable)',{color:'#996322',fontSize:'12px'}));
+  if (p.image_url && /^https:\/\//.test(p.image_url)) {
+    const img=document.createElement('img');img.src=p.image_url;img.alt=p.name;
+    Object.assign(img.style,{width:'112px',height:'112px',objectFit:'contain',borderRadius:'7px',background:'#fff'});
+    header.append(img);
+  }
+  header.append(details);el.append(header);
+  const per=nutriNode('h3','Nutrition per 100g / 100ml (as reported)',{margin:'18px 0 12px',fontSize:'16px'});
+  el.append(per);
+  const grid=nutriNode('div',null,{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(145px,1fr))',gap:'10px'});
+  const selected=new Set([...document.querySelectorAll('#nutri-field-options input:checked')].map(el=>el.value));
+  nutriFields.filter(([key])=>selected.has(key)).forEach(([key,title,unit])=>{
+    const value=p.nutrition?.[key];
+    const card=nutriNode('div',null,{border:'1px solid #e0e2d9',borderRadius:'8px',padding:'13px',background:'#fff'});
+    card.append(nutriNode('div',title,{color:'#5d6258',fontSize:'12px'}));
+    card.append(nutriNode('strong',Number.isFinite(Number(value)) && value!==null && value!=='' ? Number(value).toLocaleString(undefined,{maximumFractionDigits:2})+' '+unit:'Not available',{fontSize:'18px',display:'block',marginTop:'5px'}));
+    grid.append(card);
+  });
+  el.append(grid);
+  if (p.nutriscore_grade) el.append(nutriNode('p','Nutri-Score: '+String(p.nutriscore_grade).toUpperCase(),{marginTop:'16px'}));
+  if (p.ingredients_text) el.append(nutriNode('p','Ingredients: '+p.ingredients_text,{fontSize:'13px',lineHeight:'1.6'}));
+  if (p.allergens?.length) el.append(nutriNode('p','Reported allergens: '+p.allergens.join(', '),{fontSize:'13px'}));
+  if (p.source_url) {
+    const link=nutriNode('a','View original Open Food Facts record ↗');
+    link.href=p.source_url;link.target='_blank';link.rel='noopener noreferrer';el.append(link);
+  }
+}
+
+async function nutriLookup(raw) {
+  const barcode=String(raw??document.getElementById('nutri-barcode').value).trim();
+  if (!/^\d{8,14}$/.test(barcode)) {
+    nutriStatus('Enter a valid 8–14 digit product barcode.');return;
+  }
+  document.getElementById('nutri-barcode').value=barcode;
+  nutriStatus('Looking up '+barcode+'…');
+  try {
+    const response=await fetch('/api/nutrition/'+encodeURIComponent(barcode));
+    if (!response.ok) throw new Error('Server returned '+response.status);
+    nutriProduct=await response.json();
+    nutriShowProduct();
+    nutriStatus(nutriProduct.source==='unmatched'?'Product not found.':'Product loaded from '+nutriProduct.source+'.');
+  } catch(err) {
+    nutriStatus('Lookup failed: '+(err?.message||err)+'. Make sure your backend and internet are running.');
+  }
+}
+
+async function nutriLoadScannerLibrary(){
+  if(window.Html5Qrcode)return;
+  await new Promise((resolve,reject)=>{
+    const s=document.createElement('script');
+    s.src='https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js';
+    s.onload=resolve;
+    s.onerror=()=>reject(new Error('Scanner library could not load. Internet is required.'));
+    document.head.append(s);
+  });
+}
+
+async function nutriToggleCamera(){
+  const holder=document.getElementById('nutri-camera-reader');
+  const toggle=document.getElementById('nutri-camera-toggle');
+  if(nutriStarting)return;
+  if(nutriScanner){
+    nutriStarting=true;
+    try{await nutriScanner.stop();nutriScanner.clear();}
+    catch(e){console.warn(e);}
+    nutriScanner=null;holder.style.display='none';toggle.textContent='Start laptop camera';nutriStatus('Camera stopped.');nutriStarting=false;return;
+  }
+  nutriStarting=true;
+  try{
+    if(!navigator.mediaDevices?.getUserMedia)throw new Error('Camera access requires localhost or HTTPS and a compatible browser.');
+    await nutriLoadScannerLibrary();
+    holder.style.display='block';
+    const reader=new Html5Qrcode('nutri-camera-reader');
+    nutriScanner=reader;
+    const cameras=await Html5Qrcode.getCameras();
+    if(!cameras.length)throw new Error('No accessible camera was found.');
+    await reader.start(cameras[0].id,{fps:10,qrbox:{width:250,height:115}},async decoded=>{
+      if(!nutriScanner)return;
+      await nutriToggleCamera();
+      await nutriLookup(decoded);
+    },()=>{});
+    toggle.textContent='Stop camera';nutriStatus('Hold the barcode steady in the camera guide.');
+  }catch(err){
+    nutriStatus('Camera unavailable: '+(err?.message||err)+' — enter the barcode above instead.');
+    if(nutriScanner){try{await nutriScanner.stop();}catch(e){}try{nutriScanner.clear();}catch(e){}}
+    nutriScanner=null;holder.style.display='none';
+    toggle.textContent='Start laptop camera';
+  }finally{nutriStarting=false;}
+}
+
+</script>
+<script>
+// NUTRICART_SCAN_RESET_LED_CHAT_V1
+(function redesignNutritionScanner() {
+  const page=document.getElementById('nutri-live-facts');
+  if(!page || page.querySelector('.nu-panels'))return;
+
+  const title=page.querySelector('h1');
+  const reset=document.createElement('button');
+  reset.className='nu-reset';
+  reset.type='button';
+  reset.textContent='⟲ Hard Reset';
+  reset.onclick=nutriHardReset;
+
+  const header=document.createElement('div');
+  header.className='nu-header';
+  page.insertBefore(header,title);
+  header.append(title,reset);
+
+  const panels=document.createElement('div');
+  panels.className='nu-panels';
+
+  const left=document.createElement('section');
+  left.className='nu-panel nu-left';
+
+  const right=document.createElement('section');
+  right.className='nu-panel nu-right';
+
+  panels.append(left,right);
+
+  const barcode=document.getElementById('nutri-barcode');
+  const controls=barcode.closest('label').parentElement;
+  const camera=document.getElementById('nutri-camera-reader');
+  const status=document.getElementById('nutri-scan-status');
+  const fieldset=document.getElementById('nutri-field-options').closest('fieldset');
+
+  page.insertBefore(panels,controls);
+
+  const label=document.createElement('h2');
+  label.className='nu-title';
+  label.textContent='Find a product';
+
+  left.append(label,controls,camera,status);
+
+  const choose=document.createElement('h2');
+  choose.className='nu-title';
+  choose.textContent='Nutrition facts to display';
+
+  right.append(choose,fieldset);
+})();
+
+async function nutriHardReset() {
+  if (!confirm(
+    'Hard Reset will clear the shopping list, recent scans and Split Shop pairing. Continue?'
+  ))return;
+
+  if (prompt('Type RESET to confirm') !== 'RESET')return;
+
+  const status=document.getElementById('nutri-scan-status');
+  status.textContent='Resetting shopping session…';
+
+  try {
+    const response=await fetch('/api/system/hard-reset', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({confirm:'RESET'})
+    });
+
+    if(!response.ok)throw new Error(
+      'Server error '+response.status
+    );
+
+    document.getElementById('nutri-barcode').value='';
+    nutriProduct=null;
+    nutriShowProduct();
+
+    status.textContent='Shopping session reset. Cart Unit is idle.';
+
+    if(typeof refreshState==='function')await refreshState();
+
+  }catch(e){
+    status.textContent='Reset failed: '+e.message;
+  }
+}
+</script>
+
+<script src="/static/list_scanner.js?v=2"></script>
+<script src="/static/scanner_unified.js?v=5"></script>
 </body>
 
 </html>

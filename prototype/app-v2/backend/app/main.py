@@ -697,6 +697,42 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
+# NUTRICART_SCAN_RESET_LED_CHAT_V1
+from .led_scan_events import record as record_led_scan, latest as latest_led_scan
+
+@app.get('/api/led/latest')
+def latest_led_result():
+    return latest_led_scan(DB_PATH)
+
+@app.post('/api/system/hard-reset')
+async def reset_nutricart_session(body: dict[str, str]):
+    if body.get('confirm') != 'RESET':
+        raise HTTPException(400, 'Type RESET to confirm.')
+    with db() as conn:
+        conn.execute('DELETE FROM shopping_items')
+        conn.execute('DELETE FROM scans')
+        names = {r[0] for r in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'")}
+        if 'cart_split_assignments' in names:
+            conn.execute('DELETE FROM cart_split_assignments')
+        if 'cart_split_session' in names:
+            conn.execute("""UPDATE cart_split_session
+                SET mode='idle', primary_id=NULL, secondary_id=NULL,
+                    primary_confirmed=NULL, secondary_confirmed=NULL
+                WHERE id=1""")
+        conn.execute("""INSERT INTO hub_settings(key,value_json)
+            VALUES('shopping_active','false')
+            ON CONFLICT(key) DO UPDATE SET value_json='false'""")
+    await manager.broadcast({'type': 'list_updated'})
+    await manager.broadcast({'type': 'settings_updated'})
+    return {'ok': True}
+
+
+# NUTRICART_CART_UPGRADE_2026
+from .split_cart import create_cart_router
+app.include_router(create_cart_router(DB_PATH, manager.broadcast))
+
+
 
 # ---------------------------------------------------------
 # STARTUP
@@ -889,201 +925,16 @@ def get_local_product(
         return product
 
 
-async def fetch_open_food_facts(
-    barcode: str
-) -> dict[str, Any] | None:
+# NUTRICART_LIVE_NUTRITION_V1
+from .nutrition_live import live_lookup
 
-    fields = (
-        "code,"
-        "product_name,"
-        "brands,"
-        "quantity,"
-        "categories_tags,"
-        "image_front_small_url,"
-        "nutriments"
+async def resolve_product(barcode: str) -> dict[str, Any]:
+    return await live_lookup(
+        barcode=barcode, db=db, get_local_product=get_local_product,
+        now_iso=now_iso,
+        user_agent=(USER_AGENT if ('http' in USER_AGENT or '@' in USER_AGENT)
+                    else 'NutriCart/1.0 (https://github.com/Anujithaaa/DECO3500-Team25-NutriCart)'),
     )
-
-    url = (
-        f"{OFF_BASE}/"
-        f"{barcode}.json?"
-        f"fields={fields}"
-    )
-
-    try:
-
-        async with httpx.AsyncClient(
-            timeout=5.0,
-            headers={
-                "User-Agent": USER_AGENT
-            }
-        ) as client:
-
-            r = await client.get(url)
-
-            if r.status_code != 200:
-
-                return None
-
-            data = r.json()
-
-    except Exception:
-
-        return None
-
-    if (
-        data.get("status") != 1
-        or not data.get("product")
-    ):
-
-        return None
-
-    p = data["product"]
-
-    n = p.get("nutriments") or {}
-
-    nutrition = {
-        "energy_kj_100g":
-            n.get("energy-kj_100g"),
-        "protein_100g":
-            n.get("proteins_100g"),
-        "sugars_100g":
-            n.get("sugars_100g"),
-        "fat_100g":
-            n.get("fat_100g"),
-        "salt_100g":
-            n.get("salt_100g"),
-    }
-
-    categories = (
-        p.get("categories_tags")
-        or []
-    )
-
-    category = (
-        categories[0]
-        .split(":", 1)[-1]
-        .replace("-", " ")
-        if categories
-        else None
-    )
-
-    product = {
-        "barcode": barcode,
-        "name":
-            p.get("product_name")
-            or f"Product {barcode}",
-        "brand":
-            p.get("brands"),
-        "quantity":
-            p.get("quantity"),
-        "category":
-            category,
-        "image_url":
-            p.get("image_front_small_url"),
-        "nutrition":
-            nutrition,
-        "source":
-            "Open Food Facts",
-    }
-
-    with db() as conn:
-
-        conn.execute(
-            """
-            INSERT INTO products(
-                barcode,
-                name,
-                brand,
-                quantity,
-                category,
-                image_url,
-                nutrition_json,
-                source,
-                updated_at
-            )
-            VALUES(?,?,?,?,?,?,?,?,?)
-
-            ON CONFLICT(barcode)
-            DO UPDATE SET
-
-                name=excluded.name,
-                brand=excluded.brand,
-                quantity=excluded.quantity,
-
-                category=COALESCE(
-                    products.category,
-                    excluded.category
-                ),
-
-                image_url=excluded.image_url,
-                nutrition_json=excluded.nutrition_json,
-                source=excluded.source,
-                updated_at=excluded.updated_at
-            """,
-            (
-                barcode,
-                product["name"],
-                product["brand"],
-                product["quantity"],
-                product["category"],
-                product["image_url"],
-                json.dumps(
-                    product["nutrition"]
-                ),
-                product["source"],
-                now_iso()
-            )
-        )
-
-    product["prices"] = []
-
-    return product
-
-
-async def resolve_product(
-    barcode: str
-) -> dict[str, Any]:
-
-    barcode = "".join(
-        ch
-        for ch in barcode
-        if ch.isdigit()
-    )
-
-    if not barcode:
-
-        raise HTTPException(
-            400,
-            "Barcode must contain digits"
-        )
-
-    local = get_local_product(
-        barcode
-    )
-
-    if local:
-
-        return local
-
-    off = await fetch_open_food_facts(
-        barcode
-    )
-
-    if off:
-
-        return off
-
-    return {
-        "barcode": barcode,
-        "name": "Unknown product",
-        "brand": None,
-        "quantity": None,
-        "category": None,
-        "image_url": None,
-        "nutrition": {},
-        "source": "unmatched",
-        "prices": [],
-    }
 
 
 def score_alternative(
@@ -1539,6 +1390,14 @@ async def compare(
     }
 
 
+@app.get("/api/nutrition/{barcode}")
+async def read_nutrition(barcode: str):
+    product = await resolve_product(barcode)
+    record_led_scan(DB_PATH, barcode, product)
+    return product
+
+
+
 # ---------------------------------------------------------
 # BARCODE SCANNING
 # ---------------------------------------------------------
@@ -1551,6 +1410,7 @@ async def scan(
     product = await resolve_product(
         body.barcode
     )
+    record_led_scan(DB_PATH, body.barcode, product)
 
     with db() as conn:
 

@@ -1,4 +1,4 @@
-export const API_URL = (process.env.EXPO_PUBLIC_API_URL || 'http://192.168.1.20:8000').replace(/\/$/, '');
+export const API_URL = (process.env.EXPO_PUBLIC_API_URL || 'http://10.91.183.58:8000').replace(/\/$/, '');
 export const WS_URL = API_URL.replace(/^http/, 'ws') + '/ws';
 
 export async function api(path, options = {}) {
