@@ -119,8 +119,10 @@ The key design question for the next iteration is:
 
 | | |
 |---|---|
-| **Prototype** | Runs on a laptop and phones. See [Try the prototype](#try-the-prototype) |
+| **Prototype** | Runs on a laptop and phones. See [Requirements](#requirements) and the run steps below |
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
+| **Submitted PDF** | [NutriCartHub_3DesignPrototype.pdf](documents/promo/NutriCartHub_3DesignPrototype.pdf) (Design Process Overview + Ethical Considerations) |
+| **Tradeshow feedback** | [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md) |
 | **Promo Video** | [NutriCart_Showcase_Loop.mp4](documents/promo/NutriCart_Showcase_Loop.mp4) |
 | **Pitch script** | [pitch-script.md](documents/promo/pitch-script.md) |
 | **Try-it card (stall)** | [NutriCart_Try-it_card_A5.pdf](documents/promo/NutriCart_Try-it_card_A5.pdf) |
@@ -466,6 +468,12 @@ The current evaluation includes two Week 12 group sessions:
 - screen-based Home Hub and Cart Unit
 - facilitator notes written after the session
 - no names or faces stored in the repository record
+
+### Tradeshow (20 and 22 Oct)
+
+- visitors used the physical Dock and two Cart Units in pairs
+- peer-feedback cards from five teams on the course Miro board
+- summary by theme: [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md)
 
 These sessions provide evidence about usability and perceived value, but they are small prototype evaluations rather than proof that NutriCart works for all share houses.
 
