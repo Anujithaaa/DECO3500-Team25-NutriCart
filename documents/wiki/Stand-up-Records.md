@@ -88,6 +88,26 @@ Usual meeting: Mondays 9:30am, plus straight after studio when needed.
 - **Outcomes:** Demo app-v2 on one laptop (Aman's) with the physical Dock and Cart Unit mount; v0.3 stays in the repo as the version with Ask home, two-phone Split Shop and the cost split. Use a phone hotspot, not uni Wi-Fi; no hosted version. Merge PR #31 into `main`. Documentation finished for the tradeshow: test findings, references, README run steps, AI-use statement.
 - **Next:** Tradeshow day 1 (Tue 11am, 49-316): visitor notes, peer feedback on Miro.
 
+### Tue 20 Oct (tradeshow day 1, 49-316)
+- **Present:** Aman, Kenan, Anujitha, James
+- **State:** Stall running app-v2 on one laptop, with the physical Dock and two Cart Units in James's housings. Poster printed A2; try-it card on the table. Kenan added the showcase loop video to the README.
+- **Outcomes:** Visitors tried the flow in pairs. The first-use steps needed us to explain them, so we pointed people to the try-it card first.
+- **Next:** Day 2 on Thursday; everyone fills their six Miro peer-feedback cards.
+
+### Thu 22 Oct (tradeshow day 2)
+- **Present:** Aman, Kenan, Anujitha, James
+- **State:** Second demo day. Peer-feedback cards from five teams arrived in our Miro inbox; each of us filled one card for each of our six assigned teams.
+- **Outcomes:** Repeated themes: first use, unlabelled numbers, the group chat, and money visibility. These go into DPO §7 and the Ethics page.
+- **Next:** Write up the tradeshow findings and finish the submission by Mon 26, 3pm.
+
+## Week 13
+
+### Mon 26 Oct (final check)
+- **Present:** Aman (with updates from Kenan and James over chat)
+- **State:** Full audit against the brief. Tradeshow feedback summarised ([tradeshow-feedback.md](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/tradeshow-feedback.md)); DPO §7, Ethics E1/E3/E11 and the revision log updated; physical prototype photos added; the last reference fixed (#27).
+- **Outcomes:** PDF export of the DPO and Ethics pages; repo URL and PDF submitted on Blackboard (#29).
+- **Next:** Exam revision.
+
 ---
 
 ### Template (copy for each meeting)

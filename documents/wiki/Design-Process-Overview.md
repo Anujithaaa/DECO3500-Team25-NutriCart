@@ -17,10 +17,10 @@ Our first domain statement was about "enhancing healthy food choices". Round 1 i
 *Our domain statement went through four versions, from "healthy choices" and "social media" to household coordination.*
 
 ### 2. An app as a probe, not a product (Weeks 6–7)
-**v1** was a social shopping app with friend recommendations, group goals, recipes and a checklist. We used it as a **design probe**. People wanted **prices**, not friends' recipes. Group goals divided them: one participant worried about shared goals for someone "getting less pay", and another read a healthy-dinner goal as "essentially telling me that I'm fat". One asked why they'd use another app when the supermarket already has one. 
+**v1** was a social shopping app with friend recommendations, group goals, recipes and a checklist. We used it as a **design probe**. People wanted **prices**, not friends' recipes. Group goals divided them: one participant read a healthy-dinner goal as "essentially telling me that I'm fat". 
 
 ### 3. Reframing and divergence (Weeks 7–8)
-Thematic synthesis reframed the problem: *support real grocery decisions around price, time, personal priorities and household needs, without adding effort, judgement or another app.* We explored non-app concepts (a budget buzzer, a "shopping traffic light", a fridge-to-trolley "grocery baton") and combined the strongest into **v2**: a cardboard Home Dock and detachable Cart Unit, tested using Wizard of Oz. Testing kept the **shared list, running budget and neutral compare**, and told us to shrink the Cart Unit, keep alerts rare ("noise, not help") and cut data entry ("will be a pain"). This gave us four requirements: inform without judging, put price first, add no extra effort, and support coordination the household already does.
+Thematic synthesis reframed the problem: *support real grocery decisions around price, time, personal priorities and household needs, without adding effort, judgement or another app.* We explored non-app concepts (a budget buzzer, a "grocery baton") and combined the strongest into **v2**: a cardboard Home Dock and detachable Cart Unit, tested using Wizard of Oz. Testing kept the **shared list, running budget and neutral compare**, and told us to shrink the Cart Unit, keep alerts rare ("noise, not help") and cut data entry ("will be a pain"). This gave us four requirements: inform without judging, put price first, add no extra effort, and support coordination the household already does.
 
 ![Storyboard](images/storyboard.png)
 *Storyboard: Jay forgets what's at home and buys doubles; with the Hub, the household's needs travel with him. More concepts and mock-ups are in [documents/design](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/tree/main/documents/design).*
@@ -38,7 +38,7 @@ The Hub now **facilitates** coordination households already do (Olsson et al., 2
 Applying the Designing for Location Dependence framework (Design for Location, n.d.) showed that decisions start at home, not at the store entrance, so NutriCart follows a home → store → home trajectory: the Dock belongs to the kitchen; the Cart Unit shows only what matters in store.
 
 ### 5. v3: multi-user and live, going physical (Weeks 10–11)
-v3 is an **integration prototype** (Houde & Hill, 1997): it is real where the social experience depends on it. James built a live-sync backend and an Expo Cart Unit with **barcode scanning**; v0.3 added the household layer: tokens, requests, "Jay is shopping now", Ask home, two-phone Split Shop, a meal board and a cost split. Prices are entered by hand, and compare orders products by **the shopper's** priority, never "healthier".
+v3 is an **integration prototype** (Houde & Hill, 1997): it is real where the social experience depends on it. James built a live-sync backend and an Expo Cart Unit with **barcode scanning**; v0.3 added the household layer: requests, "Jay is shopping now", Ask home, two-phone Split Shop and a cost split. Prices are entered by hand, and compare orders products by **the shopper's** priority, never "healthier".
 
 ![Home Dock during a shop](images/v3-dock-live.png)
 *v3 Home Dock during a live shop, with a question from the store waiting.*
@@ -46,17 +46,32 @@ v3 is an **integration prototype** (Houde & Hill, 1997): it is real where the so
 ![Cart Units](images/v3-cart-units.png)
 *v3 Cart Units: Split Shop ("My half"), Ask home, neutral compare and the return summary.*
 
-James built physical housings for the Dock and the Cart Unit. Kenan's **app-v2** then redesigned the Hub and the Expo Cart Unit to match our combined concept; this is the version we tested in section 6.
+James built physical housings for the Dock and the Cart Unit. Kenan's **app-v2** then redesigned the Hub and the Expo Cart Unit to match our combined concept; this is the version we tested in section 6 and showed at the tradeshow.
+
+![Physical Home Dock and two Cart Units at the tradeshow](images/v3-physical-dock-cart.jpg)
+*The tradeshow set-up: the Home Dock housing with two hinged Cart Unit mounts.*
+
+![Two Cart Units during a Split Shop](images/v3-cart-unit-split.jpg)
+*Split Shop on two Cart Units; the summary says NutriCart "does not score the shopper or judge their choices".*
 
 
 ### 6. Evaluating with groups, in context (Week 12)
 We ran two group sessions with four students who live together, one in their own kitchen ([Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)). All four valued the budget, Compare or deals most, and all struggled with first-time navigation. The sharpest finding: **the group chat is our real competitor**. G-01 called requests "another group chat" and felt the design was "promoting the opposite of being social", while G-02 valued seeing what was already at home. The social value sat in the live, in-store moment. So we will lead with same-time coordination (who's shopping, Ask home, live updates), work alongside the chat, simplify first use, and swap the LEDs for a chime.
 
 ### 7. Tradeshow (Week 12)
-The tradeshow (20 and 22 Oct) is our second round of testing: visitors try the flow in pairs while we note what they use, ignore and question. Findings follow after Thursday.
+![Teaching staff trying the Dock at our stall](images/tradeshow-staff-visit.jpg)
+*Teaching staff and visitors trying the Dock at our stall (faces blurred).*
+
+Over two days, visitors used the physical Dock and two Cart Units in pairs, and five teams left peer-feedback cards on Miro ([summary](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/tradeshow-feedback.md)). They confirmed the two-place design ("it splits the experience across two distinct physical environments", Team 18) and the poster's research-to-design strip. Three problems repeated:
+
+- **First use is still hard.** Three teams asked for a short guide or simpler navigation, which confirms F2.
+- **Unlabelled numbers.** Values in the meal editor had no units, and the deals tab and barcode compare were not fully working.
+- **The group chat again.** "Instead of replacing group chats, integrate with it" (Team 18), which confirms F3.
+
+Peers also asked whether the Hub makes housemates talk *less*. **Next iteration:** a first-use walkthrough, labels and units everywhere, a working compare, sharing to the group chat, and the v0.3 cost split with a private option (Ethics E1).
 
 ### Limitations
-Our samples were small, qualitative and mostly people we could reach, and we did not consult a domain expert such as a dietitian or student-housing staff; studio critique stood in. Early questions were sometimes framed as "healthier vs cheaper". Final testing was two 10–15 minute group sessions with four participants, so it shows first use, not how a household behaves over weeks (Grudin, 1994); one session was screens only. v2 was Wizard of Oz, and v3 supports one household per server.
+Our samples were small, qualitative and mostly people we could reach, and we did not consult a domain expert such as a dietitian or student-housing staff; studio critique stood in. Early questions were sometimes framed as "healthier vs cheaper". Final testing was two 10–15 minute group sessions with four participants plus tradeshow visitors (peers, not real share houses), so it shows first use, not how a household behaves over weeks (Grudin, 1994); one session was screens only. v2 was Wizard of Oz, and v3 supports one household per server.
 
 ## Who did what
 
@@ -65,7 +80,7 @@ Our samples were small, qualitative and mostly people we could reach, and we did
 | Aman Kushwaha (Project Management Lead) | Plan, charter, task board and stand-up records; synthesis; repo de-identification; evaluation plan and session G-02; pitch and tradeshow pack |
 | James Olbes (Design & Prototyping Lead) | Shadowing session; physical prototypes (v2 cardboard, v3 housings); backend and Expo Cart Unit (v0.1–v0.2) |
 | Anujitha Fernando (Technical & Dev Lead) | GitHub repo set-up; integration and multi-device testing of v3; poster layout and printing |
-| Kenan Chu (Documentation & Theory Lead) | Physical prototypes; interview protocol synthesis; personas and scenarios; research archive and README; app-v2 redesign (Hub + Expo Cart Unit); session G-01; WIKI and final PDF |
+| Kenan Chu (Documentation & Theory Lead) | Physical prototypes; interview protocol synthesis; personas and scenarios; research archive and README; app-v2 redesign (Hub + Expo Cart Unit); session G-01; frontend for Home hub and cart unit; WIKI and final PDF |
 
 We shared 23 research and testing sessions; the [evidence register](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/User-Research#6-evidence-register) shows who ran each.
 
