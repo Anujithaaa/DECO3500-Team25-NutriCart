@@ -2,13 +2,124 @@
 
 DECO3500 Social & Mobile Computing · Semester 2, 2026 · Team 25
 
-NutriCart Hub is a shared food system for student share houses. Housemates plan together at the **Home Dock** in the kitchen. Whoever goes shopping takes the detachable **Cart Unit** to the grocery store with the shared list, budget, requests and an optional price comparison, and the shop comes back to the household (including who owes what) when they re-dock. The full story is in the [Design Process Overview](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Design-Process-Overview).
+NutriCart is a shared household shopping system designed for student share houses. The current iteration combines a **Home Dock** used for planning at home with a detachable **Cart Unit** used while shopping.
+
+The project has moved away from the earlier idea of making grocery shopping “more social” through extra social features. The current direction focuses on supporting the coordination that already happens between housemates: deciding what is needed, planning meals, managing a shared list and budget, checking what is already at home, comparing products, and dividing shopping responsibilities.
+
+The Home Dock and Cart Unit are intended to work as one shared process rather than as two separate apps. The full design history is documented in the [Design Process Overview](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Design-Process-Overview).
+
+---
+
+## Current iteration
+
+The newest tested version is **app-v2**, located in:
+
+```text
+prototype/app-v2/
+```
+
+This iteration was tested in Week 12 using:
+
+- a laptop as the Home Hub
+- an Expo Go phone as the Cart Unit
+- two-housemate test sessions
+- role swapping between Home Hub and Cart Unit in G-01
+- an in-home kitchen test in G-02
+
+The current iteration includes:
+
+- shared shopping list
+- household requests
+- Already at Home
+- meal ideas
+- running budget
+- barcode scanning
+- product comparison
+- editable shelf prices
+- Split Shop concept
+- shared state between the Home Hub and Cart Unit
+
+This is still an evolving prototype. Some parts of the wider NutriCart concept, including stronger two-phone coordination, Ask Home, cost splitting and more complete re-docking behaviour, exist in other prototype versions or remain areas for further iteration.
+
+---
+
+## What the latest testing showed
+
+Two group test sessions were used to evaluate app-v2.
+
+### G-01
+
+G-01 involved two housemates using the Home Hub and Cart Unit, then swapping roles.
+
+The strongest issues were:
+
+- navigation felt confusing for first-time users
+- some features felt like extra steps compared with Notes or a group chat
+- Housemate Requests and Already at Home were not seen as useful enough by both participants
+- Split Shop was not immediately clear
+- the social purpose of the system was questioned
+- LED notifications were not considered useful
+
+However, there were still features participants valued:
+
+- the shared shopping list was useful for group shopping
+- Product Compare was liked
+- the remaining budget was strongly valued
+- meal ideas were useful when housemates were indecisive
+- deal information was useful, although location information was requested
+
+The main lesson from G-01 was that NutriCart cannot justify itself only by combining features that already exist elsewhere. It needs to reduce effort and make coordination easier than the tools people already use.
+
+### G-02
+
+G-02 involved two housemates using the system in their own shared kitchen.
+
+This session was more positive about the core concept.
+
+Participants liked:
+
+- Product Compare
+- seeing prices in one place
+- household communication
+- meal and recipe suggestions
+- avoiding duplicate purchases
+- offers and budget information
+- Split Shop
+
+The main criticism was again first-time usability. Both participants found the interface a little dull and difficult to understand at first.
+
+Both also said the system would be worth trying if it could save a meaningful amount of **time and money**, which reinforces the importance of budget, comparison and reducing duplicated purchases.
+
+---
+
+## How this feedback shapes the current direction
+
+The latest iteration is therefore focused less on adding features and more on making the existing workflow easier to understand.
+
+| Feedback | Current design response |
+|---|---|
+| Too many steps | Reduce unnecessary screens and make the main shopping flow more direct |
+| Navigation unclear | Improve labels, screen hierarchy and first-time guidance |
+| Requests feel like another group chat | Keep requests lightweight and tied directly to shopping items |
+| Already at Home may become tedious | Treat it as supporting information rather than something users must constantly maintain |
+| Compare was useful | Keep Product Compare as one of the main Cart Unit features |
+| Budget was highly valued | Keep the running budget visible during the shop |
+| Meal ideas were useful | Keep meal planning connected directly to the shared list |
+| Split Shop was confusing | Make the two-person purpose and device relationship clearer |
+| LED feedback was not valued | Do not treat LED notifications as a central interaction |
+| Users already rely on Notes and group chats | NutriCart must provide value through connected household state, not simply repeat messaging features |
+
+The key design question for the next iteration is:
+
+> Does NutriCart reduce the effort of coordinating a shared shop enough to justify using it instead of a group chat, Notes app or existing grocery app?
+
+---
 
 ## Quick links
 
 | | |
 |---|---|
-| **Prototype** | Runs on a laptop and phones, no hosting and no login. See [Try the prototype](#try-the-prototype) |
+| **Prototype** | Runs on a laptop and phones. See [Try the prototype](#try-the-prototype) |
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
 | **Promo Video** | [NutriCart_Showcase_Loop.mp4](documents/promo/NutriCart_Showcase_Loop.mp4) |
 | **Pitch script** | [pitch-script.md](documents/promo/pitch-script.md) |
@@ -16,134 +127,403 @@ NutriCart Hub is a shared food system for student share houses. Housemates plan 
 | **Task board** | [GitHub Projects](https://github.com/users/MaxCoder07/projects/1) |
 | **Earlier prototype (v2 HTML Hub)** | https://jarxto.github.io/DECO3500_New_Prototype/Nutricart_Hub/ |
 
+---
+
 ## Key documentation
 
-- [Design Process Overview](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Design-Process-Overview) · [Ethical Considerations](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Ethical-Considerations): submitted as PDF
-- [User Research](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/User-Research) · [Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)
-- [Week 9 Stand-up](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Week-9-Stand-up) · [Stand-up Records](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Stand-up-Records)
-- [Research](documents/research) · [Interview records (de-identified)](documents/research/interviews) · [Evaluation](documents/evaluation) · [Design](documents/design) · [Standups](documents/standups) · [Team](documents/team) · [Promo](documents/promo)
+- [Design Process Overview](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Design-Process-Overview)
+- [Ethical Considerations](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Ethical-Considerations)
+- [User Research](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/User-Research)
+- [Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)
+- [Week 9 Stand-up](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Week-9-Stand-up)
+- [Stand-up Records](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Stand-up-Records)
 
-## Try the prototype
+Repository folders:
 
- One server = one household.
+- [Research](documents/research)
+- [Interview records (de-identified)](documents/research/interviews)
+- [Evaluation](documents/evaluation)
+- [Design](documents/design)
+- [Standups](documents/standups)
+- [Team](documents/team)
+- [Promo](documents/promo)
+
+---
+
+# Try the prototype
+
+One server represents one household.
+
+## Main prototype screens
 
 | Screen | Runs on | Used for |
 |---|---|---|
-| **Home Dock** `/dock` | a tablet or laptop (in a kitchen stand) | plan together, leave requests, see who is shopping, answer questions, settle up |
-| **Web Cart Unit** `/cart` | any phone browser, no install (in a basket or trolley mount) | list, running budget, Ask home, Split Shop, finish the shop |
-| **Expo Cart Unit** `prototype/cart-expo` | a phone with Expo Go | the same, plus camera barcode scanning for the optional compare |
+| **Home Dock** | Laptop or tablet in the home | Meal planning, shared list, household requests, Already at Home and shopping preparation |
+| **Expo Cart Unit** | Phone with Expo Go | Shopping list, running budget, barcode scanning, Compare and shopping-related household information |
+| **Web Cart Unit** | Phone browser in the wider prototype | Shared list, budget, Ask Home, Split Shop and finishing the shop |
 
-| # | Group moment | Try it |
-|---|---|---|
-| G1 | Plan together | Dock: tap your token, vote on the meal board, *Add what's missing*. Items already at home are skipped. |
-| G2 | Leave a request | Add an item *for* yourself with a note ("the cheap one please"). |
-| G3 | Hand over the baton | Cart Unit: pick your token, *Start shop*. The Dock shows "Jay is shopping now". |
-| G4 | One quick question home | Cart Unit → *Ask home*. One-tap answers on the Dock buzz back to the shopper. |
-| G5 | Split Shop | A second phone *Join*s and taps *Split the list*. Ticks sync live. |
-| G6 | Return and settle | Cart Unit → *Finish*. The Dock shows the total against the budget and who owes the shopper what. |
+---
 
-### Run it on a laptop
+## Main household flow
 
-Requires Python 3.10+.
+A typical NutriCart journey is:
 
-```bash
-cd prototype/backend
-python3 -m pip install -r requirements.txt
-python3 run.py
+1. **Plan at home**  
+   Housemates use the Home Dock to check the list, discuss a meal and see what is already available.
+
+2. **Prepare the shared list**  
+   Items can be added by different housemates, including quantities, requests or exact products where needed.
+
+3. **Take the Cart Unit shopping**  
+   The shopper uses the shared list and running budget while in the supermarket.
+
+4. **Compare when needed**  
+   Two products can be scanned and compared by price and available product information.
+
+5. **Coordinate with another shopper**  
+   Split Shop can divide shopping responsibilities when two people are involved.
+
+6. **Return to the household**  
+   Updated shopping information should return to the shared household state.
+
+The goal is not to force every household to shop socially. Close friends may use NutriCart while planning meals and shopping together, while less familiar housemates may mainly use it for low-pressure practical coordination.
+
+---
+
+# Running app-v2
+
+`prototype/app-v2` is the redesigned Home Hub and Expo Cart Unit used in the Week 12 testing.
+
+## Requirements
+
+Install:
+
+- **Python 3.12**
+- **Node.js 20.19 or newer**
+- **Expo Go** on the phone
+
+The computer and phone must be connected to the same network.
+
+A phone hotspot is recommended if university Wi-Fi prevents devices from communicating.
+
+---
+
+## Terminal 1 - backend
+
+Open a terminal in:
+
+```text
+prototype/app-v2/backend
 ```
 
-On Windows, run `prototype/backend/run_windows.bat`. Open the printed **Dock** address on the laptop or tablet and the **Cart Unit** address on one or two phones. Then *Testing mode → Reset to demo house*.
+### Windows
 
-> Uni Wi-Fi often stops devices from seeing each other. Use a **phone hotspot** or the hosted link. If the live connection drops, screens refresh every 4 seconds instead.
+Create the virtual environment:
 
-**Host it online:** `render.yaml` is ready for [Render](https://render.com) (*New → Blueprint*). Free hosting usually sleeps when idle and resets data on redeploy, so open the link a couple of minutes early and press *Reset*.
+```powershell
+py -3.12 -m venv .venv
+```
 
-**Expo Cart Unit:** `cd prototype/cart-expo && cp .env.example .env` (set `EXPO_PUBLIC_API_URL` to the server address), then `npm install && npx expo start`. If Expo Go needs a different SDK version, run `npx expo install --fix`. Demo barcodes: `9300000000019`, `9300000000026`, `9300000000033`, `9300000000040`.
+Activate it:
 
-### app-v2: the redesigned Hub and Expo Cart Unit (the version we tested)
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-`prototype/app-v2` is the redesigned Home Hub and Cart Unit. It needs **Python 3.10+**, **Node.js 20.19 or newer** and the **Expo Go** app on a phone. The phone and the computer must be on the same network (on uni Wi-Fi, use a phone hotspot).
+Install requirements:
 
-**Terminal 1 (backend)**
-
-```bash
-cd prototype/app-v2/backend
-python3 -m venv .venv
-source .venv/bin/activate        # Windows: .\.venv\Scripts\Activate.ps1
+```powershell
 pip install -r requirements.txt
-python3 run.py
 ```
 
-Open `http://localhost:8000/hub` on the computer and note the **Phone API** address it prints.
+Start the backend:
 
-**Terminal 2 (Cart Unit)**
-
-```bash
-cd prototype/app-v2/cart-expo
-echo "EXPO_PUBLIC_API_URL=http://<Phone API address>" > .env
-npm install
-npx expo login                   # your own free Expo account, the same one you use in Expo Go
-npx expo start --clear
+```powershell
+python run.py
 ```
 
-Scan the QR code with Expo Go. Demo barcodes: `9300000000019`, `9300000000026`, `9300000000033`, `9300000000040`.
+Open:
 
-app-v2 has the shared list, requests, barcode Compare, the budget, Already at home, meal ideas and a one-phone Split Shop. Ask home, "shopping now", two-phone Split Shop and the cost split are in v0.3 (above). To reset app-v2, stop the backend, delete `prototype/app-v2/backend/nutricart.db` and start it again.
+```text
+http://localhost:8000/hub
+```
 
-### Real vs simulated
+The backend should also provide the local network address needed by the phone.
+
+---
+
+## Terminal 2 - Expo Cart Unit
+
+Open another terminal in:
+
+```text
+prototype/app-v2/cart-expo
+```
+
+Create or update the `.env` file:
+
+```text
+EXPO_PUBLIC_API_URL=http://YOUR-COMPUTER-IP:8000
+```
+
+Example:
+
+```text
+EXPO_PUBLIC_API_URL=http://192.168.0.24:8000
+```
+
+Do not use `localhost` for the phone because `localhost` on the phone refers to the phone itself.
+
+Install the packages:
+
+```powershell
+npm.cmd install
+```
+
+Start Expo:
+
+```powershell
+npx.cmd expo start --clear
+```
+
+Scan the QR code with Expo Go.
+
+Demo barcodes:
+
+```text
+9300000000019
+9300000000026
+9300000000033
+9300000000040
+```
+
+If Expo package versions do not match the installed SDK, run:
+
+```powershell
+npx.cmd expo install --fix
+```
+
+---
+
+## Resetting app-v2
+
+To reset the local app-v2 database:
+
+1. Stop the backend.
+2. Delete:
+
+```text
+prototype/app-v2/backend/nutricart.db
+```
+
+3. Start the backend again.
+
+Only do this when you intentionally want to reset the prototype data.
+
+---
+
+# Wider prototype
+
+The repository also contains the wider v0.3 prototype under:
+
+```text
+prototype/backend
+```
+
+This version includes additional household coordination features such as:
+
+- household tokens
+- shopping-now status
+- Ask Home
+- multi-device Split Shop
+- cost splitting
+- meal board
+- Already at Home
+- reset tools
+- web Cart Unit
+
+These features represent a broader version of the design direction, while **app-v2 is the redesigned version used in the Week 12 evaluation sessions**.
+
+---
+
+## Real vs simulated
 
 | Real | Simulated or simplified |
 |---|---|
-| Live shared state across a Dock and several Cart Units | One household per server; tokens tapped on screen (keys 1–4 also work, for a hidden keypad or Makey Makey) |
-| Requests, Ask home, Split Shop, cost split, already-at-home, meal board | "Already at home" only knows what passed through NutriCart or was added by hand |
-| Barcode scanning (Expo), Open Food Facts product lookup | Shelf prices entered by the team in the Product library; nothing is scraped from any retailer |
-| Running budget | Deal alerts and store location detection not built (the shopper picks the store) |
+| Shared state between the Home Hub and Cart Unit | One household is represented by one server |
+| Shared shopping list and household information | Some household information must still be entered manually |
+| Expo barcode scanning | Scanner reliability depends on camera, lighting and barcode quality |
+| Open Food Facts product lookup | Product data may be incomplete |
+| Running shopping budget | Shelf prices can be entered manually |
+| Product comparison | Retail prices are not automatically scraped from Woolworths or Coles |
+| Household coordination features | Not every feature has been tested equally across multiple devices |
+
+The prototype should not present simulated or manually entered information as live retailer data.
+
+---
+
+## Current limitations
+
+The latest testing identified several important limitations.
+
+### First-time usability
+
+Both G-01 and G-02 found navigation difficult in places. The next iteration should make the main path through the system clearer without requiring explanation from a facilitator.
+
+### Effort compared with existing tools
+
+G-01 questioned whether the system was easier than a group chat, Notes or an existing grocery app.
+
+This is one of the most important findings. NutriCart needs to reduce duplicated effort rather than simply place existing tasks into another interface.
+
+### Household maintenance
+
+Features such as Already at Home can become tedious if users are expected to constantly update them.
+
+The system should minimise manual maintenance where possible.
+
+### Social value
+
+Split Shop and household requests support coordination, but they do not automatically create meaningful social interaction.
+
+The system should support existing relationships and practical cooperation without claiming that the technology itself makes housemates closer.
+
+### Data reliability
+
+Open Food Facts is community-contributed, so nutritional data may be incomplete or incorrect.
+
+Missing values should be shown as unavailable rather than estimated.
+
+### Price information
+
+Saved prices are reference values and may not match current supermarket prices.
+
+Current shelf prices can be entered during shopping when required.
+
+### Privacy
+
+Housemates may not want personal food preferences, spending or purchases visible to everyone.
+
+The prototype should avoid requiring unnecessary personal information.
+
+---
+
+## Next iteration priorities
+
+Based on the Week 12 testing, the next iteration should focus on:
+
+1. simplifying first-time navigation
+2. reducing the number of steps for common actions
+3. keeping Product Compare, price and budget information prominent
+4. connecting meal planning more directly to the shopping list
+5. clarifying how Split Shop works across two people and devices
+6. reducing manual maintenance for Already at Home
+7. keeping requests short and shopping-specific rather than recreating a group chat
+8. testing the complete Home Dock → supermarket → Home Dock journey
+9. comparing NutriCart directly against the tools housemates already use
+10. measuring whether the system actually saves time or reduces duplicated purchases
+
+---
 
 ## Repository structure
 
-```
+```text
 ├── README.md
-├── prototype/              prototype source code
-│   ├── backend/            FastAPI server + Home Dock (/dock) + web Cart Unit (/cart)
-│   ├── app-v2/             redesigned Home Hub + Expo Cart Unit (the version we tested in Week 12)
-│   └── cart-expo/          Expo (React Native) Cart Unit with barcode scanning
+├── prototype/
+│   ├── backend/            FastAPI server + wider Home Dock and web Cart Unit prototype
+│   ├── app-v2/             redesigned Home Hub + Expo Cart Unit tested in Week 12
+│   └── cart-expo/          Expo Cart Unit used by the wider prototype
 ├── documents/
-│   ├── research/           literature review, interview protocols, de-identified interview records, shadowing, brainstorms, peer feedback
-│   ├── evaluation/         prototype testing synthesis and analysis; group test records G-01, G-02
-│   ├── design/             storyboards, concepts, mock-ups
-│   ├── standups/           Week 5 and Week 9 materials
-│   ├── team/               team charter, plan of work, studio updates
-│   ├── promo/              poster content, pitch script
-│   └── wiki/               a copy of the WIKI pages (the WIKI itself is the live version)
-├── scripts/                create the task board issues, publish the WIKI
-└── render.yaml             optional hosting config
+│   ├── research/           literature review, interview protocols and de-identified research
+│   ├── evaluation/         prototype testing, G-01 and G-02 records and analysis
+│   ├── design/             storyboards, concepts and mock-ups
+│   ├── standups/           stand-up materials
+│   ├── team/               team charter and project planning
+│   ├── promo/              poster, pitch and showcase material
+│   └── wiki/               repository copy of Wiki material
+├── scripts/
+└── render.yaml
 ```
 
-## Use of AI
+---
 
-Every team member used Claude (Anthropic) and ChatGPT (OpenAI) as assistants during the project: to help de-identify research records, organise synthesis notes, draft and edit documentation (WIKI pages, poster content, pitch script), and write and debug parts of the prototype code. Every AI-assisted output was reviewed and edited by a team member and checked against our own research records, notes and running code. The research sessions, design decisions and testing were done by the team.
+## Evaluation records
+
+The current evaluation includes two Week 12 group sessions:
+
+### G-01
+
+- two housemates
+- Home Hub and Cart Unit
+- roles swapped between rounds
+- facilitator notes
+- no names, faces or recordings stored in the repository record
+
+### G-02
+
+- two housemates
+- tested in their own shared kitchen
+- screen-based Home Hub and Cart Unit
+- facilitator notes written after the session
+- no names or faces stored in the repository record
+
+These sessions provide evidence about usability and perceived value, but they are small prototype evaluations rather than proof that NutriCart works for all share houses.
+
+---
 
 ## Data and privacy
 
-Interview participants are referred to by participant code (for example R1-P03). Recordings and full transcripts are held privately by the team and not shared outside it, as participants were told; this repo only holds [de-identified records](documents/research/interviews). The prototype stores only aliases, list items, prices, questions, past shops and scans, until the next *Reset*. Database files are git-ignored.
+Interview and evaluation participants are referred to using participant codes.
+
+The repository contains de-identified research records only. Full recordings or identifying research material are not publicly shared.
+
+The prototype stores household information such as:
+
+- aliases
+- shopping-list items
+- requests
+- prices
+- questions
+- shopping state
+- scans
+
+Database files are git-ignored.
+
+The design should avoid collecting information that is not necessary for the household shopping task.
+
+---
+
+## Use of AI
+
+Team members used Claude (Anthropic) and ChatGPT (OpenAI) as assistants during parts of the project, including:
+
+- organising research notes
+- de-identifying records
+- drafting and editing documentation
+- supporting prototype coding and debugging
+
+AI-assisted material was reviewed and edited by team members against the team's research records, design decisions and running prototype.
+
+Research sessions, participant feedback, design decisions and evaluation activities were carried out by the team.
+
+---
 
 ## Version history
 
 | Version | What changed |
 |---|---|
-| v1 | App probe: friend recommendations, group goals, shopping checklist |
-| v2 | Cardboard Home Dock + Cart Unit, and an HTML Hub (link above) |
-| v0.1–v0.2 code | James Olbes: FastAPI backend, Home Hub page, Expo Cart Unit with camera scanning, product library and compare |
-| v0.3 code | Household layer: tokens, requests, shopping-now, Ask home, Split Shop, cost split, meal board, already-at-home, reset, web Cart Unit (written with AI assistance; see below) |
-| app-v2 | Kenan Chu: redesigned Home Hub and Expo Cart Unit (new UI), the version tested in Week 12 |
+| **v1** | App probe with friend recommendations, group goals and shopping checklist |
+| **v2** | Cardboard Home Dock + Cart Unit and HTML Hub |
+| **v0.1-v0.2 code** | FastAPI backend, Home Hub, Expo Cart Unit, scanning, product library and comparison |
+| **v0.3 code** | Household layer including tokens, requests, shopping-now, Ask Home, Split Shop, cost split, meal board and Already at Home |
+| **app-v2** | Redesigned Home Hub and Expo Cart Unit used in the Week 12 G-01 and G-02 evaluations |
+| **Current iteration direction** | Simplify navigation and reduce effort while keeping the strongest features: shared list, meal planning, budget, product comparison and household coordination |
+
+---
 
 ## Team
 
-- James Olbes, Design & Prototyping Lead
-- Kenan Chu, Documentation & Theory Lead
-- Aman Kushwaha, Project Management Lead
-- Anujitha Fernando, Technical & Dev Lead
-
-## AI use
-
-See [Use of AI](#use-of-ai) above.
+- James Olbes - Design & Prototyping Lead
+- Kenan Chu - Documentation & Theory Lead
+- Aman Kushwaha - Project Management Lead
+- Anujitha Fernando - Technical & Dev Lead
