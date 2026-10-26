@@ -12,7 +12,7 @@ The software is designed to keep the Hub and Cart Units connected to one househo
 
 ## Current iteration
 
-The actively developed prototype is **`prototype/app-v2/`**, built around a Home Hub and an Expo Cart Unit. Only the lasted code (pico-cart and prototype folders) of the project is there all the other documentation is still located in the main branch.
+The actively developed prototype is **`prototype/app-v2/`**, built around a Home Hub and an Expo Cart Unit. Only the lasted code (pico-nutricart and prototype folders) of the project is there all the other documentation is still located in the main branch.
 
 **Current development features**
 
