@@ -110,7 +110,7 @@ The key design question for the next iteration is:
 |---|---|
 | **Prototype** | Final code in [`prototype/app-v2`](prototype/app-v2) (Home Hub + Expo Cart Unit) and [`pico_nutricart`](pico_nutricart) (optional LED). Runs on a laptop and phones, no login. See [Requirements](#requirements) and the run steps below |
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
-| **Submitted PDF** | [NutriCartHub_3DesignPrototype.pdf](documents/promo/NutriCartHub_3DesignPrototype.pdf) (Design Process Overview + Ethical Considerations) |
+| **Submitted PDF** | [Team25_DesignPrototypeDocs.pdf](documents/promo/Team25_DesignPrototypeDocs.pdf) (Design Process Overview + Ethical Considerations) |
 | **Tradeshow feedback** | [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md) |
 | **Iteration evaluation** | [current-iteration-evaluation.md](documents/evaluation/current-iteration-evaluation.md) (what testing and the tradeshow mean for the next version) |
 | **Promo Video** | [NutriCart_Showcase_Loop.mp4](documents/promo/NutriCart_Showcase_Loop.mp4) |
@@ -139,6 +139,7 @@ Repository folders:
 - [Standups](documents/standups)
 - [Team](documents/team)
 - [Promo](documents/promo)
+- [Prototype photos](documents/prototype%20photos)
 
 ---
 
@@ -528,6 +529,9 @@ Team members used Claude (Anthropic) and ChatGPT (OpenAI) as assistants during p
 - de-identifying records
 - drafting and editing documentation
 - supporting prototype coding and debugging
+- generating most of the v0.3 household-layer code (prototype/backend), which the team then tested and adapted
+- poster and promotional material layout, and the tradeshow feedback summary
+- formatting the submitted PDF and blurring faces in photos
 
 AI-assisted material was reviewed and edited by team members against the team's research records, design decisions and running prototype.
 
