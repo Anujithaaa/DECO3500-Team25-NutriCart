@@ -55,7 +55,7 @@ James built physical housings; Kenan's **app-v2** redesigned the Hub and Cart Un
 *Split Shop on two Cart Units.*
 
 ### 6. Evaluating with groups, in context (Week 12)
-Two group sessions with four students who live together, one in their own kitchen ([Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)). All four valued the budget, Compare or deals most; all struggled with first use. The sharpest finding: **the group chat is our real competitor**. G-01 called requests "another group chat", while G-02 valued seeing what was already at home. The social value sat in the live, in-store moment, so we will lead with same-time coordination, work alongside the chat, simplify first use, and swap the LEDs for a chime.
+Two group sessions with four students who live together, one in their own kitchen ([Evaluation Plan](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/wiki/Evaluation-Plan)). All four valued the budget, Compare or deals most; all struggled with first use (F2). The sharpest finding: **the group chat is our real competitor (F3)**. G-01 called requests "another group chat" and felt the design was “promoting the opposite of being social”, while G-02 valued seeing what was already at home. The social value sat in the live, in-store moment, so we will lead with same-time coordination, work alongside the chat, simplify first use, and swap the LEDs for a chime.
 
 ### 7. Tradeshow (Week 12)
 ![Teaching staff trying the Dock at our stall](images/tradeshow-staff-visit.jpg)
@@ -64,7 +64,7 @@ Two group sessions with four students who live together, one in their own kitche
 Visitors used the Dock and two Cart Units in pairs, and five teams left feedback on Miro ([summary](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/tradeshow-feedback.md)). They confirmed the two-place design ("it splits the experience across two distinct physical environments", Team 18). Three problems repeated:
 
 - **First use** is hard: three teams asked for a guide (F2).
-- **Unlabelled numbers**, and deals and scanning not fully working.
+- **Unlabelled numbers** in the meal editor, deals and scanning not fully working.
 - **The group chat**: "instead of replacing group chats, integrate with it" (Team 18; F3).
 
 **Next:** a first-use walkthrough, clear labels, working compare, sharing to the chat, and a private cost split (Ethics E1). James's [iteration evaluation](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/blob/main/documents/evaluation/current-iteration-evaluation.md) sets out the next test.

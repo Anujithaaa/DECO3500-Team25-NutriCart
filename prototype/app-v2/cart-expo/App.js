@@ -1,3 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
+import { CartIdlePanel, RegisterProductScreen, SplitSetupPanel, SplitStandbyPanel, SplitOnlyPanel } from './src/CartUpgradeScreens';
+
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -389,527 +393,11 @@ function normaliseBarcode(
 }
 
 
-/*
-  ======================================================
-  PROTOTYPE NUTRITION
-  ======================================================
-
-  If the database already contains nutrition data,
-  that data is kept.
-
-  Missing values are filled using believable prototype
-  ranges for the type of food.
-
-  The same product always gets the same generated values.
-*/
-
-
-function textSeed(
-  value = ''
-) {
-  let hash =
-    0;
-
-
-  for (
-    let i = 0;
-    i < value.length;
-    i++
-  ) {
-    hash =
-      (
-        (
-          hash << 5
-        )
-        -
-        hash
-      )
-      +
-      value.charCodeAt(
-        i
-      );
-
-
-    hash |= 0;
-  }
-
-
-  return Math.abs(
-    hash
-  );
+// NUTRICART_REAL_NUTRITION_V1
+function realNutrition(product) {
+  // Only display externally sourced or user-entered values.
+  return product;
 }
-
-
-function seededNumber(
-  seed,
-  minimum,
-  maximum,
-  offset = 0
-) {
-  const value =
-    Math.abs(
-      Math.sin(
-        seed +
-        offset * 999
-      )
-      *
-      10000
-    );
-
-
-  const decimal =
-    value -
-    Math.floor(
-      value
-    );
-
-
-  return (
-    minimum +
-    decimal *
-    (
-      maximum -
-      minimum
-    )
-  );
-}
-
-
-function roundNutrition(
-  value
-) {
-  return (
-    Math.round(
-      value * 10
-    )
-    /
-    10
-  );
-}
-
-
-function detectFoodType(
-  product
-) {
-  const text =
-    `
-      ${product?.name || ''}
-      ${product?.category || ''}
-      ${product?.brand || ''}
-    `
-      .toLowerCase();
-
-
-  if (
-    text.includes(
-      'high protein yoghurt'
-    )
-    ||
-    text.includes(
-      'high protein yogurt'
-    )
-    ||
-    text.includes(
-      'greek yoghurt'
-    )
-    ||
-    text.includes(
-      'greek yogurt'
-    )
-  ) {
-    return 'highProteinYoghurt';
-  }
-
-
-  if (
-    text.includes('yoghurt')
-    ||
-    text.includes('yogurt')
-  ) {
-    return 'yoghurt';
-  }
-
-
-  if (
-    text.includes('milk')
-  ) {
-    return 'milk';
-  }
-
-
-  if (
-    text.includes('bread')
-    ||
-    text.includes('loaf')
-  ) {
-    return 'bread';
-  }
-
-
-  if (
-    text.includes('cereal')
-    ||
-    text.includes('muesli')
-    ||
-    text.includes('granola')
-  ) {
-    return 'cereal';
-  }
-
-
-  if (
-    text.includes('chicken')
-  ) {
-    return 'chicken';
-  }
-
-
-  if (
-    text.includes('rice')
-  ) {
-    return 'rice';
-  }
-
-
-  if (
-    text.includes('pasta')
-    ||
-    text.includes('spaghetti')
-    ||
-    text.includes('penne')
-  ) {
-    return 'pasta';
-  }
-
-
-  if (
-    text.includes('bean')
-    ||
-    text.includes('lentil')
-    ||
-    text.includes('chickpea')
-  ) {
-    return 'beans';
-  }
-
-
-  if (
-    text.includes('cheese')
-  ) {
-    return 'cheese';
-  }
-
-
-  if (
-    text.includes('egg')
-  ) {
-    return 'eggs';
-  }
-
-
-  if (
-    text.includes('tuna')
-    ||
-    text.includes('salmon')
-    ||
-    text.includes('fish')
-  ) {
-    return 'fish';
-  }
-
-
-  if (
-    text.includes('juice')
-  ) {
-    return 'juice';
-  }
-
-
-  if (
-    text.includes('cola')
-    ||
-    text.includes('soft drink')
-    ||
-    text.includes('soda')
-  ) {
-    return 'softDrink';
-  }
-
-
-  if (
-    text.includes('protein bar')
-    ||
-    text.includes('protein snack')
-  ) {
-    return 'proteinSnack';
-  }
-
-
-  if (
-    text.includes('chips')
-    ||
-    text.includes('crisps')
-    ||
-    text.includes('cracker')
-    ||
-    text.includes('snack')
-  ) {
-    return 'snack';
-  }
-
-
-  return 'general';
-}
-
-
-const NUTRITION_PROFILES = {
-
-  highProteinYoghurt: {
-    protein: [8, 15],
-    sugar: [3, 8],
-    fat: [0.5, 5],
-    energy: [300, 550]
-  },
-
-
-  yoghurt: {
-    protein: [4, 8],
-    sugar: [4, 12],
-    fat: [1, 7],
-    energy: [300, 650]
-  },
-
-
-  milk: {
-    protein: [3, 4],
-    sugar: [4, 6],
-    fat: [0.2, 4],
-    energy: [170, 300]
-  },
-
-
-  bread: {
-    protein: [7, 12],
-    sugar: [2, 7],
-    fat: [1, 6],
-    energy: [900, 1200]
-  },
-
-
-  cereal: {
-    protein: [6, 14],
-    sugar: [6, 25],
-    fat: [2, 12],
-    energy: [1400, 1800]
-  },
-
-
-  chicken: {
-    protein: [20, 31],
-    sugar: [0, 1],
-    fat: [2, 12],
-    energy: [450, 850]
-  },
-
-
-  rice: {
-    protein: [6, 9],
-    sugar: [0, 1],
-    fat: [0.5, 3],
-    energy: [1400, 1600]
-  },
-
-
-  pasta: {
-    protein: [10, 15],
-    sugar: [1, 4],
-    fat: [1, 4],
-    energy: [1400, 1650]
-  },
-
-
-  beans: {
-    protein: [6, 10],
-    sugar: [1, 5],
-    fat: [0.5, 3],
-    energy: [400, 750]
-  },
-
-
-  cheese: {
-    protein: [20, 30],
-    sugar: [0, 3],
-    fat: [20, 35],
-    energy: [1300, 1800]
-  },
-
-
-  eggs: {
-    protein: [12, 14],
-    sugar: [0, 1],
-    fat: [9, 12],
-    energy: [550, 700]
-  },
-
-
-  fish: {
-    protein: [20, 28],
-    sugar: [0, 1],
-    fat: [1, 15],
-    energy: [400, 900]
-  },
-
-
-  juice: {
-    protein: [0, 1],
-    sugar: [7, 12],
-    fat: [0, 0.5],
-    energy: [140, 240]
-  },
-
-
-  softDrink: {
-    protein: [0, 0.2],
-    sugar: [8, 12],
-    fat: [0, 0.1],
-    energy: [140, 210]
-  },
-
-
-  snack: {
-    protein: [4, 10],
-    sugar: [2, 15],
-    fat: [15, 35],
-    energy: [1800, 2400]
-  },
-
-
-  proteinSnack: {
-    protein: [15, 30],
-    sugar: [2, 12],
-    fat: [5, 18],
-    energy: [1200, 1900]
-  },
-
-
-  general: {
-    protein: [4, 15],
-    sugar: [2, 15],
-    fat: [2, 15],
-    energy: [600, 1500]
-  },
-
-};
-
-
-function addPrototypeNutrition(
-  product
-) {
-  if (!product) {
-    return product;
-  }
-
-
-  const existing =
-    product.nutrition
-    ||
-    {};
-
-
-  const type =
-    detectFoodType(
-      product
-    );
-
-
-  const profile =
-    NUTRITION_PROFILES[type]
-    ||
-    NUTRITION_PROFILES.general;
-
-
-  const seed =
-    textSeed(
-      `${product.barcode || ''}-${product.name || ''}`
-    );
-
-
-  let usedPrototype =
-    false;
-
-
-  function getValue(
-    existingValue,
-    range,
-    offset
-  ) {
-    if (
-      existingValue !== null &&
-      existingValue !== undefined &&
-      existingValue !== ''
-    ) {
-      return existingValue;
-    }
-
-
-    usedPrototype =
-      true;
-
-
-    return roundNutrition(
-      seededNumber(
-        seed,
-        range[0],
-        range[1],
-        offset
-      )
-    );
-  }
-
-
-  return {
-    ...product,
-
-    nutrition: {
-      ...existing,
-
-      protein_100g:
-        getValue(
-          existing.protein_100g,
-          profile.protein,
-          1
-        ),
-
-      sugars_100g:
-        getValue(
-          existing.sugars_100g,
-          profile.sugar,
-          2
-        ),
-
-      fat_100g:
-        getValue(
-          existing.fat_100g,
-          profile.fat,
-          3
-        ),
-
-      energy_kj_100g:
-        getValue(
-          existing.energy_kj_100g,
-          profile.energy,
-          4
-        ),
-    },
-
-    prototypeNutrition:
-      usedPrototype,
-
-    detectedFoodType:
-      type,
-  };
-}
-
 
 /*
   ======================================================
@@ -1115,6 +603,13 @@ function CompareTable({
     ],
 
 
+    
+    [
+      'Carbohydrates',
+      valueOrDash(productA?.nutrition?.carbohydrates_100g, ' g'),
+      valueOrDash(productB?.nutrition?.carbohydrates_100g, ' g'),
+    ],
+
     [
       'Sugar',
 
@@ -1294,7 +789,70 @@ function CompareTable({
 */
 
 
+// NUTRICART_STABLE_CAMERA_V1
+import NutriCartStableCamera from './src/NutriCartStableCamera';
+
 export default function App() {
+
+  // NUTRICART_CART_UPGRADE_2026
+  const [splitDeviceId, setSplitDeviceId] = useState(null);
+  const [splitPair, setSplitPair] = useState({mode:'idle', items:[], confirmation:{}});
+  const [newProductBarcode, setNewProductBarcode] = useState('');
+  const [newProductDraft, setNewProductDraft] = useState(null);
+  const previousSplitMode = useRef(null);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      let id = await AsyncStorage.getItem('nutricart_cart_unit_id_v2');
+      if (!id) {
+        id = 'cart-' + Date.now() + '-' + Math.random().toString(36).slice(2,12);
+        await AsyncStorage.setItem('nutricart_cart_unit_id_v2', id);
+      }
+      if (active) setSplitDeviceId(id);
+    })().catch(err => console.warn('Device identity:', err));
+    return () => { active = false; };
+  }, []);
+
+  const refreshSplit = useCallback(async () => {
+    try { setSplitPair(await api('/api/split/state')); }
+    catch(e) { console.warn('Split Shop unavailable:', e.message); }
+  }, []);
+
+  useEffect(() => {
+    if (!splitDeviceId) return;
+    refreshSplit();
+    const timer = setInterval(refreshSplit, 1200);
+    return () => clearInterval(timer);
+  }, [splitDeviceId, refreshSplit]);
+
+  useEffect(() => {
+    if (previousSplitMode.current === 'split' && splitPair.mode === 'paired') {
+      setScreen('shop');
+    }
+    previousSplitMode.current = splitPair.mode;
+  }, [splitPair.mode]);
+
+  const splitRole = !splitDeviceId ? null
+    : splitPair.primary_id === splitDeviceId ? 'primary'
+    : splitPair.secondary_id === splitDeviceId ? 'secondary' : null;
+  const splitLimited = splitPair.mode === 'split' && Boolean(splitRole);
+  const splitStandby = splitPair.mode === 'paired' && splitRole === 'secondary';
+
+  async function splitAction(path, extra={}) {
+    if (!splitDeviceId) return;
+    try {
+      const updated = await api(path, {
+        method:'POST',
+        body:JSON.stringify({device_id:splitDeviceId, ...extra})
+      });
+      setSplitPair(updated);
+      return updated;
+    } catch(e) {
+      showNotice('Split Shop: ' + String(e.message || e).slice(0, 130));
+    }
+  }
+
 
   const [
     permission,
@@ -1536,6 +1094,18 @@ export default function App() {
   const budgetRemaining =
     budget -
     spent;
+
+  // NUTRICART_HARD_RESET_SYNC_CHAT_V1
+  useEffect(() => {
+    if (state.settings?.shopping_active === false &&
+        (state.shopping_items || []).length === 0) {
+      setSpent(0);
+      setItemPrices(previous => Object.keys(previous).length ? {} : previous);
+    }
+  }, [state.settings?.shopping_active, state.shopping_items?.length]);
+
+
+  const cartIdle = state.settings?.shopping_active === false;
 
 
   /*
@@ -2098,6 +1668,8 @@ export default function App() {
       }
 
 
+
+
       const result =
         await api(
           '/api/scan',
@@ -2145,10 +1717,9 @@ export default function App() {
 
 
       const scanned =
-        addPrototypeNutrition(
+        realNutrition(
           returnedProduct
         );
-
 
       const priceInfo =
         storedPrice(
@@ -2257,6 +1828,24 @@ export default function App() {
     }
   }
 
+
+
+  function onProductRegistered(product) {
+    const slot = scanSlotRef.current;
+    const registered = realNutrition(product);
+    const savedPrice = storedPrice(registered)?.price;
+    if (slot === 'A') {
+      setCompareA(registered);
+      setComparePriceA(savedPrice == null ? '' : String(savedPrice));
+    } else if (slot === 'B') {
+      setCompareB(registered);
+      setComparePriceB(savedPrice == null ? '' : String(savedPrice));
+    }
+    setNewProductBarcode('');
+    setNewProductDraft(null);
+    setScreen('compare');
+    showNotice(registered.name + ' saved to the Home Hub.');
+  }
 
   function resetCompare() {
 
@@ -2413,54 +2002,8 @@ export default function App() {
 
 
   function openSplitShop() {
-
-    const one =
-      [];
-
-
-    const two =
-      [];
-
-
-    needed.forEach(
-      (
-        item,
-        index
-      ) => {
-
-        if (
-          index % 2 ===
-          0
-        ) {
-          one.push(
-            item
-          );
-        }
-        else {
-          two.push(
-            item
-          );
-        }
-
-      }
-    );
-
-
-    setShopperOne(
-      one
-    );
-
-
-    setShopperTwo(
-      two
-    );
-
-
-    setScreen(
-      'split'
-    );
+    setScreen('split');
   }
-
 
   function moveToShopperTwo(
     item
@@ -2588,40 +2131,12 @@ export default function App() {
 
 
   async function finishShop() {
-
     try {
-
-      await api(
-        '/api/settings',
-        {
-
-          method:
-            'PATCH',
-
-          body:
-            JSON.stringify({
-              shopping_active:
-                false
-            }),
-
-        }
-      );
-
-
+      await api('/api/cart/finish', {method:'POST'});
       await refreshState();
-
-
-      showNotice(
-        'Shopping trip finished.'
-      );
-
-    }
-    catch {
-
-      showNotice(
-        'Could not finish shop.'
-      );
-
+      showNotice('Shopping finished. Cart Unit is now idle.');
+    } catch(e) {
+      showNotice('Could not finish: ' + (e.message || e));
     }
   }
 
@@ -2632,6 +2147,29 @@ export default function App() {
     ======================================================
   */
 
+
+
+  // A confirmed bulk clear: clears the household list, NOT the product library.
+  function clearShoppingList() {
+    if (!state.shopping_items.length) return;
+    Alert.alert(
+      'Clear shopping list?',
+      'Remove all ' + state.shopping_items.length + ' items from the Home Hub and Cart Units? This cannot be undone.',
+      [
+        {text:'Cancel', style:'cancel'},
+        {text:'Clear list', style:'destructive', onPress: async () => {
+          try {
+            await api('/api/cart/clear-list', {method:'POST'});
+            setSpent(0);
+            setItemPrices({});
+            setSelectedItem(null);
+            await refreshState();
+            showNotice('Shopping list cleared.');
+          } catch(e) { showNotice('Could not clear list: ' + e.message); }
+        }}
+      ]
+    );
+  }
 
   function ShopScreen() {
 
@@ -2645,6 +2183,15 @@ export default function App() {
         <RuleTitle>
           Today’s Shop
         </RuleTitle>
+        {/* NUTRICART_CLEAR_ALL_VISIBLE_V2 */}
+        <Button
+          wide
+          disabled={!state.shopping_items.length}
+          onPress={clearShoppingList}
+        >
+          Clear all entries ({state.shopping_items.length})
+        </Button>
+
 
 
         <View style={styles.budgetBlock}>
@@ -2728,7 +2275,6 @@ export default function App() {
           }
 
         </Box>
-
 
         <View style={styles.summaryRow}>
 
@@ -3306,116 +2852,203 @@ export default function App() {
   */
 
 
+
+  // NUTRICART_UNIFIED_SCANNER_V1
+
+
+  // NUTRICART_NEUTRAL_SCANNER_V3
+
   function ScannerScreen() {
 
+    // NUTRICART_NEUTRAL_SCANNER_V3
+
+    const grey = 'rgba(48, 50, 51, 0.64)';
+
     return (
-      <View style={styles.scannerPage}>
 
-        <RuleTitle>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#f6f4f0',
+          padding: 16
+        }}
+      >
+
+        <Text
+          style={{
+            fontSize: 27,
+            fontWeight: '800',
+            color: '#242d26',
+            marginBottom: 8
+          }}
+        >
           Scan Product {scanSlot || ''}
-        </RuleTitle>
+        </Text>
 
-
-        <Text style={styles.scannerInstruction}>
-          Hold the Code 128 barcode inside the guide.
+        <Text
+          style={{
+            color: '#6e6a63',
+            fontSize: 14,
+            marginBottom: 14
+          }}
+        >
+          Hold the barcode in the clear rectangle.
         </Text>
 
 
-        <Text style={styles.scannerSubtext}>
-          Code 128 only
-        </Text>
+        {/* CAMERA PREVIEW */}
 
-
-        <View style={styles.cameraWrap}>
+        <View
+          style={{
+            flex: 1,
+            minHeight: 280,
+            borderRadius: 14,
+            overflow: 'hidden',
+            backgroundColor: '#202424',
+            marginBottom: 16
+          }}
+        >
 
           <CameraView
-            style={
-              styles.camera
-            }
 
-            facing=
-              "back"
+            style={StyleSheet.absoluteFillObject}
 
-            autofocus=
-              "on"
+            facing="front"
+
+            autofocus="on"
 
             barcodeScannerSettings={{
               barcodeTypes: [
+                'ean13',
+                'ean8',
+                'upc_a',
+                'upc_e',
                 'code128'
               ]
             }}
 
-            onBarcodeScanned={({
-              data,
-              type
-            }) => {
+            onBarcodeScanned={({data, type}) => {
 
-              if (
-                scanLockRef.current
-              ) {
-                return;
+              if (!scanLockRef.current) {
+
+                handleBarcodeScan(
+                  data,
+                  type
+                );
+
               }
 
-
-              handleBarcodeScan(
-                data,
-                type
-              );
-
             }}
+
           />
 
 
-          <View
-            pointerEvents=
-              "none"
+          {/* NEUTRAL BARCODE VIEWFINDER */}
 
-            style={
-              styles.scanFrame
-            }
+          <View
+
+            pointerEvents="none"
+
+            style={[
+              StyleSheet.absoluteFillObject,
+              {
+                flexDirection: 'column'
+              }
+            ]}
+
           >
 
-            <View style={styles.scanLine} />
+
+            {/* TOP GREY AREA */}
+
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: grey
+              }}
+            />
+
+
+            {/* CLEAR CENTER RECTANGLE */}
+
+            <View
+              style={{
+                height: 118,
+                flexDirection: 'row'
+              }}
+            >
+
+              {/* LEFT GREY AREA */}
+
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: grey
+                }}
+              />
+
+
+              {/* CLEAR SCANNING BOX */}
+
+              <View
+                style={{
+                  width: '78%',
+                  borderWidth: 2,
+                  borderColor:
+                    'rgba(250,250,250,0.90)',
+                  borderRadius: 6
+                }}
+              />
+
+
+              {/* RIGHT GREY AREA */}
+
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: grey
+                }}
+              />
+
+            </View>
+
+
+            {/* BOTTOM GREY AREA */}
+
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: grey
+              }}
+            />
 
           </View>
-
-
-          <Text
-            pointerEvents=
-              "none"
-
-            style={
-              styles.scanHint
-            }
-          >
-            Keep the whole barcode and some white space on both ends inside the box
-          </Text>
 
         </View>
 
 
+        {/* CANCEL BUTTON */}
+
         <Button
+
           wide
 
-          onPress={
-            () => {
+          onPress={() => {
 
-              scanLockRef.current =
-                true;
+            scanLockRef.current = true;
 
+            setScreen('compare');
 
-              setScreen(
-                'compare'
-              );
+          }}
 
-            }
-          }
         >
-          Cancel
+          Cancel scan
         </Button>
 
       </View>
+
     );
+
   }
 
 
@@ -4400,7 +4033,7 @@ export default function App() {
           </View>
 
 
-          <Pressable
+          {!(cartIdle || splitStandby || splitLimited) && (<Pressable
             style={styles.menuTopButton}
 
             onPress={
@@ -4415,7 +4048,7 @@ export default function App() {
               Menu
             </Text>
 
-          </Pressable>
+          </Pressable>)} 
 
         </View>
 
@@ -4439,6 +4072,12 @@ export default function App() {
       }
 
 
+      {cartIdle && <CartIdlePanel />}
+      {!cartIdle && splitStandby && <SplitStandbyPanel />}
+      {!cartIdle && splitLimited &&
+        <SplitOnlyPanel pair={splitPair} role={splitRole}
+          act={splitAction} requests={state.household_requests} />}
+      {!cartIdle && !(splitStandby || splitLimited) && (
       <KeyboardAvoidingView
         style={{
           flex: 1
@@ -4464,7 +4103,7 @@ export default function App() {
           screen ===
           'item'
           &&
-          <ItemScreen />
+          ItemScreen()
         }
 
 
@@ -4480,7 +4119,7 @@ export default function App() {
           screen ===
           'compare'
           &&
-          <CompareScreen />
+          CompareScreen()
         }
 
 
@@ -4488,7 +4127,16 @@ export default function App() {
           screen ===
           'scanner'
           &&
-          <ScannerScreen />
+          <NutriCartStableCamera
+            scanSlot={scanSlot}
+            permission={permission}
+            scanLockRef={scanLockRef}
+            onBarcodeScanned={handleBarcodeScan}
+            onCancel={() => {
+              scanLockRef.current = true;
+              setScreen('compare');
+            }}
+          />
         }
 
 
@@ -4536,18 +4184,33 @@ export default function App() {
           screen ===
           'split'
           &&
-          <SplitShopScreen />
+          <SplitSetupPanel
+        pair={splitPair}
+        role={splitRole}
+        ready={Boolean(splitDeviceId)}
+        act={splitAction}
+        onClose={() => setScreen('shop')}
+      />
         }
 
 
+        {screen === 'register-product' &&
+          <RegisterProductScreen
+            barcode={newProductBarcode}
+            initialProduct={newProductDraft}
+            onSaved={onProductRegistered}
+            onCancel={() => setScreen('compare')}
+          />}
+
         {
           screen ===
-          'summary'
+          'summary' 
           &&
           <SummaryScreen />
         }
 
       </KeyboardAvoidingView>
+      )}
 
 
       <View style={styles.footer}>

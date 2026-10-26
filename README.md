@@ -12,7 +12,7 @@ The software is designed to keep the Hub and Cart Units connected to one househo
 
 ## Current iteration
 
-The actively developed prototype is **`prototype/app-v2/`**, built around a Home Hub and an Expo Cart Unit. Only the lasted code (pico-nutricart and prototype folders) of the project is there all the other documentation is still located in the main branch.
+The actively developed prototype is **`prototype/app-v2/`**, built around a Home Hub and an Expo Cart Unit, with the optional Pico LED code in **`pico_nutricart/`**. This is the final code (also kept on the `nutricart-final-prototype` branch as a backup).
 
 **Current development features**
 
@@ -108,7 +108,7 @@ The key design question for the next iteration is:
 
 | | |
 |---|---|
-| **Prototype** | **Prototype:** final code is on the [`nutricart-final-prototype`](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/tree/nutricart-final-prototype/prototype/app-v2) branch, runs on a laptop and phones, no login; run steps are in that branch's [README](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/tree/nutricart-final-prototype#readme). See [Requirements](#requirements) and the run steps below |
+| **Prototype** | Final code in [`prototype/app-v2`](prototype/app-v2) (Home Hub + Expo Cart Unit) and [`pico_nutricart`](pico_nutricart) (optional LED). Runs on a laptop and phones, no login. See [Requirements](#requirements) and the run steps below |
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
 | **Submitted PDF** | [NutriCartHub_3DesignPrototype.pdf](documents/promo/NutriCartHub_3DesignPrototype.pdf) (Design Process Overview + Ethical Considerations) |
 | **Tradeshow feedback** | [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md) |
@@ -435,8 +435,7 @@ The Week 12 findings remain relevant, even after the newest technical upgrades. 
 │   │   │   │   └── static/
 │   │   │   │       ├── hub.html
 │   │   │   │       ├── list_scanner.js   shared-list camera scanner*
-│   │   │   │       ├── scanner_unified.js neutral viewfinder styling*
-│   │   │   │       └── standard_prices.js regular-price Hub UI*
+│   │   │   │       └── scanner_unified.js neutral viewfinder styling*
 │   │   │   └── run.py
 │   │   └── cart-expo/
 │   │       ├── App.js
@@ -459,7 +458,7 @@ The Week 12 findings remain relevant, even after the newest technical upgrades. 
 └── render.yaml
 ```
 
-`*` Newer local upgrade files; verify they have been added to the intended Git branch. They may not be present in the original `ui-redesign` remote branch. The price add-on in particular may be absent if its installer has not been run.
+`*` Added in the final iteration after the Week 12 tests (also on the `nutricart-final-prototype` branch).
 
 ---
 
