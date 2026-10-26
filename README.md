@@ -123,6 +123,7 @@ The key design question for the next iteration is:
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
 | **Submitted PDF** | [NutriCartHub_3DesignPrototype.pdf](documents/promo/NutriCartHub_3DesignPrototype.pdf) (Design Process Overview + Ethical Considerations) |
 | **Tradeshow feedback** | [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md) |
+| **Iteration evaluation** | [current-iteration-evaluation.md](documents/evaluation/current-iteration-evaluation.md) (what testing and the tradeshow mean for the next version) |
 | **Promo Video** | [NutriCart_Showcase_Loop.mp4](documents/promo/NutriCart_Showcase_Loop.mp4) |
 | **Pitch script** | [pitch-script.md](documents/promo/pitch-script.md) |
 | **Try-it card (stall)** | [NutriCart_Try-it_card_A5.pdf](documents/promo/NutriCart_Try-it_card_A5.pdf) |
@@ -474,6 +475,10 @@ The current evaluation includes two Week 12 group sessions:
 - visitors used the physical Dock and two Cart Units in pairs
 - peer-feedback cards from five teams on the course Miro board
 - summary by theme: [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md)
+
+### Iteration evaluation
+
+- [current-iteration-evaluation.md](documents/evaluation/current-iteration-evaluation.md): what G-01, G-02 and the tradeshow mean for the next version, and the next test to run
 
 These sessions provide evidence about usability and perceived value, but they are small prototype evaluations rather than proof that NutriCart works for all share houses.
 

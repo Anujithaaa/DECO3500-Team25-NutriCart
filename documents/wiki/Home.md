@@ -2,7 +2,7 @@
 
 **NutriCart Hub** is a shared kitchen device for student share houses. Housemates plan the shop together at the **Home Dock**, whoever goes shopping takes the **Cart Unit** into the store, and the shop comes back to the household when they re-dock it.
 
-**Domain statement (final):** We are interested in enhancing how students in share houses near UQ St Lucia plan, coordinate and make grocery choices together, from the shared kitchen to the supermarket aisle, with the possibilities of social and contextual computing.
+**Domain statement:** We are interested in enhancing how students in share houses near UQ St Lucia plan, coordinate and make grocery choices together, from the shared kitchen to the supermarket aisle, with the possibilities of social and contextual computing.
 
 ## Pages
 
