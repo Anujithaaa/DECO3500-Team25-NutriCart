@@ -108,7 +108,7 @@ The key design question for the next iteration is:
 
 | | |
 |---|---|
-| **Prototype** | Runs on a laptop and phones. See [Requirements](#requirements) and the run steps below |
+| **Prototype** | **Prototype:** final code is on the [`nutricart-final-prototype` branch](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/tree/nutricart-final-prototype/prototype/app-v2), runs on a laptop and phones, no login; run steps are in that branch's [README](https://github.com/Anujithaaa/DECO3500-Team25-NutriCart/tree/nutricart-final-prototype#readme). See [Requirements](#requirements) and the run steps below |
 | **Poster** | [NutriCart_Poster_A2.pdf](documents/promo/NutriCart_Poster_A2.pdf) |
 | **Submitted PDF** | [NutriCartHub_3DesignPrototype.pdf](documents/promo/NutriCartHub_3DesignPrototype.pdf) (Design Process Overview + Ethical Considerations) |
 | **Tradeshow feedback** | [tradeshow-feedback.md](documents/evaluation/tradeshow-feedback.md) |
